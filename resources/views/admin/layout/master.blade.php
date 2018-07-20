@@ -19,7 +19,6 @@
     </main>
     <script src="js/admin/jquery-3.2.1.min.js"></script>
     <script src="js/admin/bootstrap.min.js"></script>
-    <script src="js/admin/main.js"></script>
     @yield('script')
   </body>
 </html>
