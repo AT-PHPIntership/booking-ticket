@@ -20,9 +20,3 @@ Route::group(['prefix' => 'admin'], function() {
       return view('admin.pages.home.index');
   });
 });
-
-Route::group(['prefix' => 'admin'], function() {
-    Route::get('/category', function() {
-      return view('admin.pages.categories.index');
-  });
-});
