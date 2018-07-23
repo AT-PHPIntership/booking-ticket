@@ -1,21 +1,19 @@
 @extends('admin.layout.master')
-@section('title')
-    List user
-@endsection
+@section('title', __('user.admin.list.title'))
 @section('content')
 <div class="col-md-12">
   <div class="tile">
-    <h3 class="tile-title">User</h3>
+    <h3 class="tile-title">@lang('user.admin.list.title')</h3>
     <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Email</th>
-            <th>Fullname</th>
-            <th>Address</th>
-            <th>Delete</th>
-            <th>Edit</th>
+            <th>@lang('user.admin.table.id')</th>
+            <th>@lang('user.admin.table.name')</th>
+            <th>@lang('user.admin.table.email')</th>
+            <th>@lang('user.admin.table.address')</th>
+            <th>@lang('user.admin.table.delete')</th>
+            <th>@lang('user.admin.table.edit')</th>
           </tr>
         </thead>
         <tbody>
@@ -31,7 +29,7 @@
                   <button class="btn btn-danger" type="submit"><i class="fa fa-trash-o  fa-fw" ></i></button>
               </form>
             </td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="">Edit</a></td>
+            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="">@lang('user.admin.table.edit')</a></td>
           </tr>
           <tr>
             <td>2</td>
@@ -45,7 +43,7 @@
                   <button class="btn btn-danger" type="submit"><i class="fa fa-trash-o  fa-fw" ></i></button>
               </form>
             </td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="">Edit</a></td>
+            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="">@lang('user.admin.table.edit')</a></td>
           </tr>
         </tbody>
       </table>
