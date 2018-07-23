@@ -1,0 +1,59 @@
+# PHP CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-php/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/php:7.1-jessie-node-browsers
+
+    working_directory: ~/code
+
+    steps:
+      - checkout
+      
+      # Install PHP Extension
+      - run: sudo apt-get update && sudo apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev && sudo docker-php-ext-install -j$(nproc) iconv mcrypt && sudo docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && sudo docker-php-ext-install -j$(nproc) gd pdo_mysql 
+    #   - run: sudo docker-php-ext-install gd
+      
+      - run: chmod -R 777 storage
+      - run: cp .env.example .env
+
+      # Download and cache dependencies
+      # Composer
+      - restore_cache:
+          name: Restore composer cache
+          keys:
+          - composer-{{ checksum "composer.json" }}
+          - composer-
+      - run: composer install -n --prefer-dist
+      - save_cache:
+          name: Store composer cache
+          key: composer-{{ checksum "composer.json" }}
+          paths:
+            - vendor
+      # NPM
+      - restore_cache:
+          name: Restore node modules cache
+          keys:
+          - node_modules-{{ checksum "package.json" }}
+          - node_modules-
+      - run: npm install
+      - save_cache:
+          name: store node module cache
+          key: node_modules-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      
+      # - run: php artisan migrate
+      # run tests!
+      - run: php artisan key:generate
+      - run: ./vendor/bin/phpcs -n --standard=phpcs.xml
+      - run: ./vendor/bin/phpmd app text phpmd.xml
+      - run: ./vendor/bin/phpunit -d memory_limit=-1 tests
+      - store_test_results:
+          path: tests/_output
+      - store_artifacts:
+          path: tests/_output
