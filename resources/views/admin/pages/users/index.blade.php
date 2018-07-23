@@ -14,8 +14,8 @@
             <th>Email</th>
             <th>Fullname</th>
             <th>Address</th>
-            <th>Edit</th>
             <th>Delete</th>
+            <th>Edit</th>
           </tr>
         </thead>
         <tbody>
@@ -24,32 +24,28 @@
             <td>Mark</td>
             <td>Otto</td>
             <td>@mdo</td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#">Delete</a></td>
+            <td class="center">
+              <form class="col-md-4" method="POST" action="#">
+                  @method('DELETE')
+                  {{ csrf_field() }}
+                  <button class="btn btn-danger" type="submit"><i class="fa fa-trash-o  fa-fw" ></i></button>
+              </form>
+            </td>
+            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="">Edit</a></td>
           </tr>
           <tr>
             <td>2</td>
             <td>Jacob</td>
             <td>Thornton</td>
             <td>@fat</td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#">Delete</a></td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#">Delete</a></td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#">Delete</a></td>
+            <td class="center">
+              <form class="col-md-4" method="POST" action="#">
+                  @method('DELETE')
+                  {{ csrf_field() }}
+                  <button class="btn btn-danger" type="submit"><i class="fa fa-trash-o  fa-fw" ></i></button>
+              </form>
+            </td>
+            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="">Edit</a></td>
           </tr>
         </tbody>
       </table>

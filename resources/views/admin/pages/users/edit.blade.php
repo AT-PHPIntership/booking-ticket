@@ -1,14 +1,14 @@
 @extends('admin.layout.master')
 @section('title')
-    Information user
+    Edit user
 @endsection
 @section('content')
 <div class="col-md-12">
   <div class="col-md-10">
       <div class="tile">
-        <h3 class="tile-title">Information</h3>
+        <h3 class="tile-title">Edit</h3>
         <div class="tile-body">
-          <form class="form-horizontal">
+          <form class="form-horizontal" action="" method="POST">
             <div class="form-group row">
               <label class="control-label col-md-3">Name</label>
               <div class="col-md-8">
@@ -42,14 +42,14 @@
                 </div>
               </div>
             </div>
-          </form>
-        </div>
-        <div class="tile-footer">
-          <div class="row">
-            <div class="col-md-8 col-md-offset-3">
-              <button class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Edit</button>
+            <div class="tile-footer">
+              <div class="row">
+                <div class="col-md-8 col-md-offset-3">
+                  <button class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Edit</button>
+                </div>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
   </div>

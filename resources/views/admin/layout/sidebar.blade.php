@@ -14,7 +14,6 @@
         <ul class="treeview-menu">
           <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> List Category</a></li>
           <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Add Category</a></li>
-          <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Edit Category</a></li>
         </ul>
       </li>
       <li class="treeview">
@@ -22,7 +21,6 @@
         <ul class="treeview-menu">
             <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> List Film</a></li>
             <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Add Film</a></li>
-            <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Edit Film</a></li>
         </ul>
       </li>
       <li class="treeview">
@@ -30,13 +28,12 @@
         <ul class="treeview-menu">
           <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> List User</a></li>
           <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Add User</a></li>
-          <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Edit User</a></li>
         </ul>
       </li>
       <li class="treeview">
         <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Pages</span><i class="treeview-indicator fa fa-angle-right"></i></a>
         <ul class="treeview-menu">
-          <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Login Page</a></li>
+          <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Logout Page</a></li>
           <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> User Page</a></li>
           <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Mailbox</a></li>
         </ul>
