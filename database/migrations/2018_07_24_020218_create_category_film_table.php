@@ -18,10 +18,10 @@ class CreateCategoryFilmTable extends Migration
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('film_id');
             $table->foreign('category_id')
-                    ->reference('id')
+                    ->references('id')
                     ->on('categories');
             $table->foreign('film_id')
-                    ->reference('id')
+                    ->references('id')
                     ->on('films');
             $table->timestamps();
         });

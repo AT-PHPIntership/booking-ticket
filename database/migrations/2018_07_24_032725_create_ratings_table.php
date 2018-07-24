@@ -19,10 +19,10 @@ class CreateRatingsTable extends Migration
             $table->unsignedInteger('film_id');
             $table->unsignedInteger('rate');
             $table->foreign('user_id')
-                    ->reference('id')
+                    ->references('id')
                     ->on('users');
             $table->foreign('film_id')
-                    ->reference('id')
+                    ->references('id')
                     ->on('films');
             $table->timestamps();
         });

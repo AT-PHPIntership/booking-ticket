@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->boolean('role')->default(0)->comment('0: user, 1: admin');
             $table->rememberToken();
             $table->timestamps();
-            $table->softDeletes();
+            $table->softDeletes('delete_at');
         });
     }
 

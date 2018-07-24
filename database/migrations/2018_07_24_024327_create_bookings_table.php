@@ -18,10 +18,10 @@ class CreateBookingsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('payment_method')->nullable();
             $table->foreign('user_id')
-                    ->reference('id')
+                    ->references('id')
                     ->on('users');
             $table->timestamps();
-            $table->softDelete();
+            $table->softDeletes('delete_at');
         });
     }
 

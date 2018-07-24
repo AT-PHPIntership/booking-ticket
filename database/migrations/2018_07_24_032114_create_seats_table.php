@@ -18,7 +18,7 @@ class CreateSeatsTable extends Migration
             $table->unsignedInteger('room_id');
             $table->string('name')->charset('utf8')->collation('utf8_unicode_ci');
             $table->foreign('room_id')
-                    ->reference('id')
+                    ->references('id')
                     ->on('rooms');
             $table->timestamps();
         });

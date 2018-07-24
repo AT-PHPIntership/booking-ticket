@@ -21,13 +21,13 @@ class CreateBookingDetailsTable extends Migration
             $table->unsignedInteger('price');
             $table->unsignedInteger('seat_id');
             $table->foreign('booking_id')
-                    ->reference('id')
+                    ->references('id')
                     ->on('bookings');
             $table->foreign('schedule_id')
-                    ->reference('id')
+                    ->references('id')
                     ->on('schedules');
             $table->timestamps();
-            $table->softDelete();
+            $table->softDeletes('delete_at');
         });
     }
 

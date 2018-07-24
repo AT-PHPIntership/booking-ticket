@@ -19,13 +19,13 @@ class CreateSchedulesTable extends Migration
             $table->unsignedInteger('room_id');
             $table->datetime('datetime');
             $table->foreign('film_id')
-                    ->reference('id')
+                    ->references('id')
                     ->on('films');
             $table->foreign('room_id')
-                    ->reference('id')
+                    ->references('id')
                     ->on('rooms');
             $table->timestamps();
-            $table->softDelete();
+            $table->softDeletes('delete_at');
         });
     }
 
