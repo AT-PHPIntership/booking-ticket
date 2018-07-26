@@ -16,7 +16,7 @@ class Film extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'actor', 'producer', 'director', 'duration', 'describe', 'country', 'price', 'start_date', 'end_date'
+        'name', 'actor', 'producer', 'director', 'duration', 'describe', 'country'
     ];
 
     /**

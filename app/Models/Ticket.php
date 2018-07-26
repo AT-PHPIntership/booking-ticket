@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Seat extends Model
+class Ticket extends Model
 {
-    protected $table = 'seats';
+    protected $table = 'tickets';
 
     /**
      * The attributes that are mass assignable.
@@ -14,26 +14,27 @@ class Seat extends Model
      * @var array
      */
     protected $fillable = [
-        'room_id', 'name', 'status'
+        'price', 'schedule_id', 'type'
     ];
 
     /**
-     * Get room detail of schedule.
+     * Get schedule of ticket.
      *
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
-    public function room()
+    public function schedule()
     {
-        return $this->belongsTo('App\Models\Room', 'room_id', 'id');
+        return $this->belongsTo('App\Models\Schedule', 'schedule_id', 'id');
     }
 
     /**
-     * Get booking detail of seat.
+     * Get booking detail of ticket.
      *
      * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
     public function bookingDetails()
     {
-        return $this->hasMany('App\Models\BookingDetail', 'seat_id', 'id');
+        return $this->hasMany('App\Models\BookingDetail', 'ticket_id', 'id');
     }
+
 }

@@ -16,7 +16,7 @@ class BookingDetail extends Model
      * @var array
      */
     protected $fillable = [
-        'booking_id', 'quantity', 'schedule_id', 'price', 'seat_id'
+        'booking_id', 'ticket_id', 'seat_id'
     ];
 
     /**
@@ -30,13 +30,23 @@ class BookingDetail extends Model
     }
 
     /**
-     * Get schedule detail of booking detail.
+     * Get ticket detail of booking detail.
      *
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
-    public function schedule()
+    public function ticket()
     {
-        return $this->belongsTo('App\Models\Schedule', 'schedule_id', 'id');
+        return $this->belongsTo('App\Models\Ticket', 'ticket_id', 'id');
+    }
+
+    /**
+     * Get seat of booking detail.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
+     */
+    public function seat()
+    {
+        return $this->belongsTo('App\Models\Seat', 'seat_id', 'id');
     }
 
     /**

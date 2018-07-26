@@ -16,7 +16,7 @@ class Schedule extends Model
      * @var array
      */
     protected $fillable = [
-        'room_id', 'film_id', 'datetime'
+        'room_id', 'film_id', 'start_time', 'end_time'
     ];
 
     /**
@@ -40,13 +40,13 @@ class Schedule extends Model
     }
 
     /**
-     * Get booking detail of schedule.
+     * Get ticket of schedule.
      *
      * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function bookingDetails()
+    public function tickets()
     {
-        return $this->hasMany('App\Models\BookingDetail', 'schedule_id', 'id');
+        return $this->hasMany('App\Models\Ticket', 'schedule_id', 'id');
     }
 
     /**
