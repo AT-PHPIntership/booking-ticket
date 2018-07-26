@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoomsTable extends Migration
+class CreateTicketsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateRoomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rooms', function (Blueprint $table) {
+        Schema::create('tickets', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->charset('utf8')->collation('utf8_unicode_ci');
-            $table->boolean('status')->default(0)->comment('0: Available, 1: Unavailable');
+            $table->unsignedInteger('schedule_id');
+            $table->unsignedInteger('price');
+            $table->string('type');
+            $table->foreign('schedule_id')
+                    ->references('id')
+                    ->on('schedules');
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ class CreateRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rooms');
+        Schema::dropIfExists('tickets');
     }
 }

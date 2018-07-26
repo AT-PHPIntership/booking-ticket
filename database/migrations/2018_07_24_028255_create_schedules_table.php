@@ -17,7 +17,8 @@ class CreateSchedulesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('film_id');
             $table->unsignedInteger('room_id');
-            $table->datetime('datetime');
+            $table->datetime('start_time');
+            $table->datetime('end_time');
             $table->foreign('film_id')
                     ->references('id')
                     ->on('films');
@@ -25,7 +26,7 @@ class CreateSchedulesTable extends Migration
                     ->references('id')
                     ->on('rooms');
             $table->timestamps();
-            $table->softDeletes('delete_at');
+            $table->softDeletes('deleted_at');
         });
     }
 

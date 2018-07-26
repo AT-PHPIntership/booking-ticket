@@ -17,6 +17,7 @@ class CreateSeatsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('room_id');
             $table->string('name')->charset('utf8')->collation('utf8_unicode_ci');
+            $table->boolean('status')->default(0)->comment('0: Available, 1: Unavailable');
             $table->foreign('room_id')
                     ->references('id')
                     ->on('rooms');

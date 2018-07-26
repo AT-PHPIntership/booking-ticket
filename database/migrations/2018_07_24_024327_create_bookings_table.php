@@ -16,12 +16,11 @@ class CreateBookingsTable extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->string('payment_method')->nullable();
             $table->foreign('user_id')
                     ->references('id')
                     ->on('users');
             $table->timestamps();
-            $table->softDeletes('delete_at');
+            $table->softDeletes('deleted_at');
         });
     }
 

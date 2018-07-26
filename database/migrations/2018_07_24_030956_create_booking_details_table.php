@@ -16,18 +16,19 @@ class CreateBookingDetailsTable extends Migration
         Schema::create('booking_details', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('booking_id');
-            $table->unsignedInteger('schedule_id');
-            $table->unsignedInteger('quantity');
-            $table->unsignedInteger('price');
+            $table->unsignedInteger('ticket_id');
             $table->unsignedInteger('seat_id');
             $table->foreign('booking_id')
                     ->references('id')
                     ->on('bookings');
-            $table->foreign('schedule_id')
+            $table->foreign('ticket_id')
                     ->references('id')
-                    ->on('schedules');
+                    ->on('tickets');
+            $table->foreign('seat_id')
+                    ->references('id')
+                    ->on('seats');        
             $table->timestamps();
-            $table->softDeletes('delete_at');
+            $table->softDeletes('deleted_at');
         });
     }
 
