@@ -36,5 +36,4 @@ class Ticket extends Model
     {
         return $this->hasMany('App\Models\BookingDetail', 'ticket_id', 'id');
     }
-
 }
