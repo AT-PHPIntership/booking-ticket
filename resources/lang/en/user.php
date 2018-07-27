@@ -17,8 +17,10 @@ return [
         ],
         'add' => [
             'title' => 'Add User',
-            'name' => 'Fullname',
+            'name' => 'Full name',
             'email' => 'Email',
+            'password' => 'Password',
+            'phone' => 'Phone',
             'address' => 'Address',
             'gender' => 'Gender',
             'male' => 'Male',
@@ -28,8 +30,10 @@ return [
             'reset' => 'Reset',
             'back' => 'Back',
             'cancel' => 'Cancel',
-            'placeholder_name' => 'Enter fullname',
+            'placeholder_name' => 'Enter full name',
             'placeholder_email' => 'Enter email address',
+            'placeholder_password' => 'Enter password',
+            'placeholder_phone' => 'Enter phone',
             'placeholder_address' => 'Enter your address',
         ],
         'edit' => [
