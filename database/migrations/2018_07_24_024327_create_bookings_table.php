@@ -20,7 +20,7 @@ class CreateBookingsTable extends Migration
                     ->references('id')
                     ->on('users');
             $table->timestamps();
-            $table->softDeletes('deleted_at');
+            $table->softDeletes();
         });
     }
 
