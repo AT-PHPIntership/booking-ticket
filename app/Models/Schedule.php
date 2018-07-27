@@ -7,8 +7,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Schedule extends Model
 {
-    protected $table = 'schedules';
     use SoftDeletes;
+    protected $table = 'schedules';
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -48,11 +55,4 @@ class Schedule extends Model
     {
         return $this->hasMany('App\Models\Ticket', 'schedule_id', 'id');
     }
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = ['deleted_at'];
 }
