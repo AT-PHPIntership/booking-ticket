@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('film_id');
-            $table->text('content')->charset('utf8')->collation('utf8_unicode_ci')->nullable();
+            $table->text('content')->nullable();
             $table->foreign('user_id')
                     ->references('id')
                     ->on('users');

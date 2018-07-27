@@ -18,7 +18,7 @@ class CreateImagesTable extends Migration
             $table->unsignedInteger('film_id');
             $table->string('path');
             $table->timestamps();
-            $table->softDeletes('deleted_at');
+            $table->softDeletes();
         });
     }
 

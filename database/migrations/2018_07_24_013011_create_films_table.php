@@ -15,15 +15,15 @@ class CreateFilmsTable extends Migration
     {
         Schema::create('films', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->charset('utf8')->collation('utf8_unicode_ci');
-            $table->string('actor')->charset('utf8')->collation('utf8_unicode_ci')->nullable();
-            $table->string('producer')->charset('utf8')->collation('utf8_unicode_ci')->nullable();
-            $table->string('director')->charset('utf8')->collation('utf8_unicode_ci')->nullable();
+            $table->string('name');
+            $table->string('actor')->nullable();
+            $table->string('producer')->nullable();
+            $table->string('director')->nullable();
             $table->unsignedInteger('duration');
-            $table->string('describe')->charset('utf8')->collation('utf8_unicode_ci')->nullable();
-            $table->string('country')->charset('utf8')->collation('utf8_unicode_ci')->nullable();
+            $table->string('describe')->nullable();
+            $table->string('country')->nullable();
             $table->timestamps();
-            $table->softDeletes('deleted_at');
+            $table->softDeletes();
         });
     }
 

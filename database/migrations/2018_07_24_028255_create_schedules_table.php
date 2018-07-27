@@ -26,7 +26,7 @@ class CreateSchedulesTable extends Migration
                     ->references('id')
                     ->on('rooms');
             $table->timestamps();
-            $table->softDeletes('deleted_at');
+            $table->softDeletes();
         });
     }
 

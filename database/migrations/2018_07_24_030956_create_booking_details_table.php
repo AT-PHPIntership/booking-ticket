@@ -28,7 +28,7 @@ class CreateBookingDetailsTable extends Migration
                     ->references('id')
                     ->on('seats');        
             $table->timestamps();
-            $table->softDeletes('deleted_at');
+            $table->softDeletes();
         });
     }
 
