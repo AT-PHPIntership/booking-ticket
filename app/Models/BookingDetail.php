@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BookingDetail extends Model
 {
-    protected $table = 'booking_detail';
+    protected $table = 'booking_details';
     use SoftDeletes;
 
     /**
