@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('/dashboard', function() {
+      return view('admin.pages.home.index');
+  });
+});
