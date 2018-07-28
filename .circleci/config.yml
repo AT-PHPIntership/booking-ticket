@@ -8,6 +8,11 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/php:7.1-jessie-node-browsers
+      - image: circleci/mysql:5.7.18
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_DATABASE: circle_test
 
     working_directory: ~/code
 
@@ -18,8 +23,9 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev && sudo docker-php-ext-install -j$(nproc) iconv mcrypt && sudo docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && sudo docker-php-ext-install -j$(nproc) gd pdo_mysql 
     #   - run: sudo docker-php-ext-install gd
       
+      - run: sudo apt-get install -y libsqlite3-dev
       - run: chmod -R 777 storage
-      - run: cp .env.example .env
+      - run: cp .env.testing .env
 
       # Download and cache dependencies
       # Composer
@@ -52,7 +58,18 @@ jobs:
       - run: php artisan key:generate
       - run: ./vendor/bin/phpcs -n --standard=phpcs.xml
       - run: ./vendor/bin/phpmd app text phpmd.xml
-      - run: ./vendor/bin/phpunit -d memory_limit=-1 tests
+      # - run: ./vendor/bin/phpunit -d memory_limit=-1 tests
+      - run:
+          name: Start Chrome Driver
+          command: ./vendor/laravel/dusk/bin/chromedriver-linux
+          background: true
+      - run:
+          name: Run Laravel Server
+          command: php artisan serve
+          background: true
+      - run:
+          name: Run Laravel Dusk Tests
+          command: php artisan dusk
       - store_test_results:
           path: tests/_output
       - store_artifacts:

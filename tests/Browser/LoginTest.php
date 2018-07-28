@@ -22,15 +22,15 @@ class LoginTest extends DuskTestCase
     }
 
     /**
-     * A Dusk test example.
+     * A basic browser test example.
      *
      * @return void
      */
-    public function testExample()
+    public function testBasicExample()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
-                    ->assertSee('Laravel');
+                ->assertSee('Laravel');
         });
     }
 
