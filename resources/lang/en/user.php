@@ -17,8 +17,10 @@ return [
         ],
         'add' => [
             'title' => 'Add User',
-            'name' => 'Fullname',
+            'name' => 'Full name',
             'email' => 'Email',
+            'password' => 'Password',
+            'phone' => 'Phone',
             'address' => 'Address',
             'gender' => 'Gender',
             'male' => 'Male',
@@ -28,9 +30,19 @@ return [
             'reset' => 'Reset',
             'back' => 'Back',
             'cancel' => 'Cancel',
-            'placeholder_name' => 'Enter fullname',
+            'placeholder_name' => 'Enter full name',
             'placeholder_email' => 'Enter email address',
+            'placeholder_password' => 'Enter password',
+            'placeholder_phone' => 'Enter phone',
             'placeholder_address' => 'Enter your address',
+            'message' => [
+                'msg_require_full_name' => 'Please enter full name.',
+                'msg_require_email' => 'Please enter email.',
+                'msg_require_password' => 'Please enter password.',
+                'msg_unique_email' => 'This email linked to another account.',
+                'msg_add_invalid_phone' => 'Please enter valid phone.',
+                'require_address' => 'Please enter address.'
+            ],
         ],
         'edit' => [
             'title' => 'Edit User',
