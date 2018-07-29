@@ -44,7 +44,7 @@
           <span class="app-menu__label">@lang('master.pages')</span><i class="treeview-indicator fa fa-angle-right"></i>
         </a>
         <ul class="treeview-menu">
-          <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> @lang('master.logout_page')</a></li>
+          <li><a class="treeview-item" href="{{ route('admin.logout') }}"><i class="icon fa fa-circle-o"></i> @lang('master.logout_page')</a></li>
           <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> @lang('master.user_page')</a></li>
           <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> @lang('master.mailbox')</a></li>
         </ul>
