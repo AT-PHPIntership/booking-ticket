@@ -20,4 +20,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
       return view('admin.pages.home.index');
   });
     Route::resource('users', 'UserController');
+    Route::resource('films', 'FilmController');
 });
