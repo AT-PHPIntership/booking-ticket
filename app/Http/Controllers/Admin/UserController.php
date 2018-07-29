@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
+
 class UserController extends Controller
 {
     /**
@@ -34,10 +35,9 @@ class UserController extends Controller
             'phone' => $request->phone,
             'address' => $request->address
         ];
-        if(User::create($data)) {
+        if (User::create($data)) {
             return view('admin.pages.users.index')->with('message', trans('user.admin.add.message.msg_add_success'));
-        }
-        else {
+        } else {
             return redirect()->back()->with('message', trans('user.admin.add.message.msg_add_error'));
         }
     }
