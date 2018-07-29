@@ -80,7 +80,6 @@ class CreateUserTest extends DuskTestCase
                 $this->assertDatabaseHas('users',[
                     'full_name' => 'Nguyen Huu Khanh',
                     'email' => 'butchicun1236@gmail.com',
-                    'password' => bcrypt('passwordIsSecret'),
                     'phone' => '01695114846',
                     'address' => 'Da Nang'
                 ]);

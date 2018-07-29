@@ -41,7 +41,8 @@ return [
                 'msg_require_password' => 'Please enter password.',
                 'msg_unique_email' => 'This email linked to another account.',
                 'msg_add_invalid_phone' => 'Please enter valid phone.',
-                'require_address' => 'Please enter address.'
+                'require_address' => 'Please enter address.',
+                'msg_add_error' => 'Create user fail, try again.'
             ],
         ],
         'edit' => [
