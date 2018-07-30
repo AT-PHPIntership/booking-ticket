@@ -1,6 +1,7 @@
 <?php
 return [
     'title' => 'Login',
+    'content' => 'Booking-Ticket',
     'email' => 'E-Mail Address',
     'password' => 'Password',
     'remember' => 'Remember me',
