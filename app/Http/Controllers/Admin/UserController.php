@@ -36,9 +36,22 @@ class UserController extends Controller
             'address' => $request->address
         ];
         if (User::create($data)) {
-            return view('admin.pages.users.index')->with('message', trans('user.admin.add.message.msg_add_success'));
+            return redirect()->route('admin.users.index')
+                        ->with('message', trans('user.admin.add.message.msg_add_success'));
         } else {
-            return redirect()->back()->with('message', trans('user.admin.add.message.msg_add_error'));
+            return redirect()->back()
+                        ->with('message', trans('user.admin.add.message.msg_add_error'));
         }
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $datas = User::orderBy('id', 'ASC')->paginate(10);
+        return view('admin.pages.users.index', compact('datas'));
     }
 }
