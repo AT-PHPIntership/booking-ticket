@@ -20,6 +20,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
       return view('admin.pages.home.index');
   });
     Route::resource('users', 'UserController');
+    Route::resource('categories', 'CategoryController');
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Auth'], function() {

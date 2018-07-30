@@ -22,6 +22,11 @@ return [
             'cancel' => 'Cancel',
             'edit' => 'Edit',
             'placeholder_name' => 'Category Name',
+            'message' => [
+                'msg_require_name' => 'Please enter name.',
+                'msg_unique_name' => 'Category name exits please enter another name.',
+                'msg_size_name' => 'Please enter name less than 255 character.',
+            ],
         ],
         'edit' => [
             'title' => 'Edit Category',
