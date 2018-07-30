@@ -40,6 +40,8 @@ return [
                 'msg_require_duration' => 'Please enter duration.',
                 'msg_require_describe' => 'Please enter describe.',
                 'msg_require_country' => 'Please enter country.',
+                'msg_require_image' => 'Please enter image.',
+                'msg_size_image' => 'The image has size too big.',
                 'msg_unique_name' => 'Name film existed please enter another name.',
             ],
         ],
