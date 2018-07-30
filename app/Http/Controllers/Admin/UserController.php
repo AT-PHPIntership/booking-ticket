@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
+use PHPUnit\Framework\MockObject\Stub\Exception;
 
 class UserController extends Controller
 {
@@ -53,5 +54,45 @@ class UserController extends Controller
     {
         $datas = User::orderBy('id', 'ASC')->paginate(10);
         return view('admin.pages.users.index', compact('datas'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $datas = User::find($id);
+        return view('admin.pages.users.edit', compact('datas', 'id'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request request
+     * @param int                      $id      id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update(CreateUserRequest $request, $id)
+    {
+        $data = [
+            'full_name' => $request->full_name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'phone' => $request->phone,
+            'address' => $request->address
+        ];
+        try {
+            User::find($id)->update($data);
+            return redirect()->route('admin.users.index')
+                            ->with('message', trans('user.admin.edit.message.msg_edit_success'));
+        } catch (Exception $e) {
+            return redirect()->back()
+                            ->with('message', trans('user.admin.edit.message.msg_edit_error'));
+        }
     }
 }
