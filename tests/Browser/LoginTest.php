@@ -22,19 +22,6 @@ class LoginTest extends DuskTestCase
     }
 
     /**
-     * A basic browser test example.
-     *
-     * @return void
-     */
-    public function testBasicExample()
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                ->assertSee('Laravel');
-        });
-    }
-
-    /**
      * Test Login as admin
      *
      * @return void
