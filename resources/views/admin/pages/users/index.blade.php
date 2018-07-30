@@ -40,7 +40,7 @@
                   <button class="btn btn-danger" type="submit"><i class="fa fa-trash-o  fa-fw" ></i></button>
               </form>
             </td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="">@lang('user.admin.table.edit')</a></td>
+            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{ URL::to('admin/users/'.$data->id.'/edit') }}">@lang('user.admin.table.edit')</a></td>
           </tr>
           @endforeach
         </tbody>

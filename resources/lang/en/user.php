@@ -51,11 +51,15 @@ return [
                 'msg_add_invalid_phone' => 'Please enter valid phone.',
                 'require_address' => 'Please enter address.',
                 'msg_add_error' => 'Create user fail, try again.',
-                'msg_add_success' => 'Create New User Successfull!'
+                'msg_add_success' => 'Create new user successfully!'
             ],
         ],
         'edit' => [
             'title' => 'Edit User',
+            'message' => [
+                'msg_edit_success' => 'Update user successfully!',
+                'msg_edit_error' => 'Edit user fail, try again.'
+            ]
         ],
         'message' => [
             'add' => 'Create New User Successfull!',
