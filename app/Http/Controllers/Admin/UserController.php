@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use PHPUnit\Framework\MockObject\Stub\Exception;
+use Illuminate\Support\Facades\DB;
+
 
 class UserController extends Controller
 {
@@ -89,6 +91,29 @@ class UserController extends Controller
         } catch (Exception $e) {
             return redirect()->back()
                             ->with('message', trans('user.admin.edit.message.edit_error'));
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param User $user user
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(User $user)
+    {
+        DB::beginTransaction();
+        try {
+            $user->bookings()->delete();
+            $user->comments()->delete();
+            $user->ratings()->delete();
+            $user->delete();
+            DB::commit();
+            return redirect()->back()->with('message', trans('user.admin.message.del_success'));
+        } catch (Exception $ex) {
+            DB::rollBack();
+            return redirect()->back()->with('message', trans('user.admin.message.del_fail'));
         }
     }
 }

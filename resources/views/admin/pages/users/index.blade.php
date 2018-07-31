@@ -34,10 +34,10 @@
             <td>{{ $data->last_login_at }}</td>
             <td>{{ $data->role ? __('user.admin.table.admin') : __('user.admin.table.user') }}</td>
             <td class="center">
-              <form class="col-md-4" method="POST" action="#">
+              <form class="col-md-4" method="POST" action="{{ route('admin.users.destroy', ['id' => $data->id]) }}">
                   @method('DELETE')
-                  {{ csrf_field() }}
-                  <button class="btn btn-danger" type="submit"><i class="fa fa-trash-o  fa-fw" ></i></button>
+                  @csrf
+                  <button class="btn btn-danger" onclick="return confirm('@lang('user.admin.message.del')')" type="submit"><i class="fa fa-trash-o  fa-fw" ></i></button>
               </form>
             </td>
             <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{ route('admin.users.edit', $data->id) }}">@lang('user.admin.table.edit')</a></td>
