@@ -49,9 +49,6 @@ class LoginTest extends DuskTestCase
                     ->type('email', $this->admin->email)
                     ->type('password', '12345')
                     ->press('Login');
-            $this->assertDatabaseHas('users',[
-                'role' => 1,
-            ]);
             $browser->assertPathIs('/admin/dashboard');
         });
     }
@@ -74,23 +71,4 @@ class LoginTest extends DuskTestCase
                    ->assertPathIs('/admin/login');
        });
    }
-
-    /**
-     * Test Login as user
-     *
-     * @return void
-     */
-    public function testLoginUserSuccess()
-    {
-        $this->browse(function ($browser) {
-            $browser->visit('/admin/login')
-                    ->type('email', $this->user->email)
-                    ->type('password', '12345')
-                    ->press('Login');
-            $this->assertDatabaseHas('users',[
-                'role' => 0,
-            ]);
-            $browser->assertPathIs('/home');
-        });
-    }
 }

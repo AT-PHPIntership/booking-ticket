@@ -25,15 +25,7 @@ abstract class DuskTestCase extends BaseTestCase
             'full_name' => 'nam hoang tran',
             'email' => 'taylor@laravel.com',
             'password' => bcrypt('12345'), 
-            'role' => 1,
-            'remember_token' => str_random(10),
-        ]);
-
-        $this->user = factory('App\Models\User')->create([
-            'full_name' => 'nam hoang ',
-            'email' => 'taylor1@laravel.com',
-            'password' => bcrypt('12345'), 
-            'role' => 0,
+            'role' => User::ROLE_ADMIN,
             'remember_token' => str_random(10),
         ]);
     }
