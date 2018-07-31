@@ -9,7 +9,6 @@ use App\Models\User;
 use PHPUnit\Framework\MockObject\Stub\Exception;
 use Illuminate\Support\Facades\DB;
 
-
 class UserController extends Controller
 {
     /**
