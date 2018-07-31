@@ -40,14 +40,14 @@
                   <button class="btn btn-danger" type="submit"><i class="fa fa-trash-o  fa-fw" ></i></button>
               </form>
             </td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="">@lang('user.admin.table.edit')</a></td>
+            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{ route('admin.users.edit', $data->id) }}">@lang('user.admin.table.edit')</a></td>
           </tr>
           @endforeach
         </tbody>
-      {{ $datas->links() }}
       </table>
       @endif
     </div>
   </div>
 </div>
+<div class="col-md-12"> {{ $datas->links() }}</div>
 @endsection
