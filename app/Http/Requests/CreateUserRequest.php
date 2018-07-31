@@ -40,11 +40,11 @@ class CreateUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'full_name.required' => trans('user.admin.add.message.msg_require_full_name'),
-            'email.required' => trans('user.admin.add.message.msg_require_email'),
-            'password.required' => trans('user.admin.add.message.msg_require_password'),
-            'email.unique' => trans('user.admin.add.message.msg_unique_email'),
-            'phone' => trans('user.admin.add.message.msg_add_invalid_phone'),
+            'full_name.required' => trans('user.admin.add.message.require_full_name'),
+            'email.required' => trans('user.admin.add.message.require_email'),
+            'password.required' => trans('user.admin.add.message.require_password'),
+            'email.unique' => trans('user.admin.add.message.unique_email'),
+            'phone' => trans('user.admin.add.message.add_invalid_phone'),
             'address' => trans('user.admin.message.require_address')
         ];
     }

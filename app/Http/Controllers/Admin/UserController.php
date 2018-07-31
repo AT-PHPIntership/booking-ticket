@@ -38,10 +38,10 @@ class UserController extends Controller
         ];
         if (User::create($data)) {
             return redirect()->route('admin.users.index')
-                        ->with('message', trans('user.admin.add.message.msg_add_success'));
+                        ->with('message', trans('user.admin.add.message.add_success'));
         } else {
             return redirect()->back()
-                        ->with('message', trans('user.admin.add.message.msg_add_error'));
+                        ->with('message', trans('user.admin.add.message.add_error'));
         }
     }
 
@@ -63,10 +63,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $datas = User::find($id);
-        return view('admin.pages.users.edit', compact('datas', 'id'));
+        return view('admin.pages.users.edit', compact('user'));
     }
 
     /**
@@ -77,7 +76,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(CreateUserRequest $request, $id)
+    public function update(CreateUserRequest $request, User $user)
     {
         $data = [
             'full_name' => $request->full_name,
@@ -87,12 +86,12 @@ class UserController extends Controller
             'address' => $request->address
         ];
         try {
-            User::find($id)->update($data);
+            $user->update($data);
             return redirect()->route('admin.users.index')
-                            ->with('message', trans('user.admin.edit.message.msg_edit_success'));
+                            ->with('message', trans('user.admin.edit.message.edit_success'));
         } catch (Exception $e) {
             return redirect()->back()
-                            ->with('message', trans('user.admin.edit.message.msg_edit_error'));
+                            ->with('message', trans('user.admin.edit.message.edit_error'));
         }
     }
 }
