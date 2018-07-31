@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
+use PHPUnit\Framework\MockObject\Stub\Exception;
 
 class UserController extends Controller
 {
@@ -37,11 +38,10 @@ class UserController extends Controller
         ];
         if (User::create($data)) {
             return redirect()->route('admin.users.index')
-                        ->with('message', trans('user.admin.add.message.msg_add_success'));
-        } else {
-            return redirect()->back()
-                        ->with('message', trans('user.admin.add.message.msg_add_error'));
+                        ->with('message', trans('user.admin.add.message.add_success'));
         }
+        return redirect()->back()
+                        ->with('message', trans('user.admin.add.message.msg_add_error'));
     }
 
     /**
@@ -51,7 +51,46 @@ class UserController extends Controller
      */
     public function index()
     {
-        $datas = User::orderBy('id', 'ASC')->paginate(10);
+        $datas = User::orderBy('id')->paginate(config('define.user.limit_rows'));
         return view('admin.pages.users.index', compact('datas'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param User $user user
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(User $user)
+    {
+        return view('admin.pages.users.edit', compact('user'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request request
+     * @param User                     $user    user
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update(CreateUserRequest $request, User $user)
+    {
+        $data = [
+            'full_name' => $request->full_name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'phone' => $request->phone,
+            'address' => $request->address
+        ];
+        try {
+            $user->update($data);
+            return redirect()->route('admin.users.index')
+                            ->with('message', trans('user.admin.edit.message.edit_success'));
+        } catch (Exception $e) {
+            return redirect()->back()
+                            ->with('message', trans('user.admin.edit.message.edit_error'));
+        }
     }
 }

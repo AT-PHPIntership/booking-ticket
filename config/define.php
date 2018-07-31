@@ -7,6 +7,9 @@ return [
         'limit_rows' => 5,
         'upload_image_url' => 'images/upload/',
     ],
+    'user' => [
+        'limit_rows' => 10,
+    ],
     'category' => [
         'limit_rows' => 5,
     ],
