@@ -16,7 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $datas = Category::orderBy('id', 'desc')->paginate(5);
+        return view('admin.pages.categories.index', compact('datas'));
     }
 
     /**
@@ -42,5 +43,62 @@ class CategoryController extends Controller
             return redirect()->route('admin.categories.index')->with('message', trans('category.admin.message.add'));
         }
         return redirect()->back()->with('message', trans('category.admin.message.add_fail'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Category $category Category
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Category $category)
+    {
+        try {
+            return view('admin.pages.categories.edit', compact('category'));
+        } catch (Exception $e) {
+            return redirect()->route('admin.categories.index')
+                             ->with('message', trans('category.admin.message.edit_fail'));
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request  Request
+     * @param Category                 $category Category
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update(CreateCategoryRequest $request, Category $category)
+    {
+        try {
+            $category->name = $request->name;
+            $category->save();
+            return redirect()->route('admin.categories.index')
+                             ->with('message', trans('category.admin.message.edit'));
+        } catch (Exception $e) {
+            return redirect()->route('admin.categories.index')
+                             ->with('message', trans('category.admin.message.edit_fail'));
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Category $category Category
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Category $category)
+    {
+        try {
+            $category->delete();
+            return redirect()->route('admin.categories.index')
+                             ->with('message', trans('category.admin.message.del'));
+        } catch (Exception $e) {
+            return redirect()->route('admin.categories.index')
+                             ->with('message', trans('category.admin.message.del_fail'));
+        }
     }
 }

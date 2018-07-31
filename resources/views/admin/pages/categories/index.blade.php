@@ -5,6 +5,7 @@
   <div class="tile">
     <h3 class="tile-title">@lang('category.admin.list.title')</h3>
     <div class="table-responsive">
+      @include('admin.layout.message')
       <table class="table">
         <thead>
           <tr>
@@ -17,37 +18,31 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td class="center">
-              <form class="col-md-4" method="POST" action="#">
-                  @method('DELETE')
-                  {{ csrf_field() }}
-                  <button class="btn btn-danger" type="submit"><i class="fa fa-trash-o  fa-fw" ></i></button>
-              </form>
-            </td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="">@lang('category.admin.table.edit')</a></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td class="center">
-              <form class="col-md-4" method="POST" action="#">
-                  @method('DELETE')
-                  {{ csrf_field() }}
-                  <button class="btn btn-danger" type="submit"><i class="fa fa-trash-o  fa-fw" ></i></button>
-              </form>
-            </td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="">@lang('category.admin.table.edit')</a></td>
-          </tr>
+          @if ($datas)
+            @foreach ($datas as $item)
+              <tr>
+                <td>{{ $item->id }}</td>
+                <td>{{ $item->name }}</td>
+                <td>{{ $item->created_at }}</td>
+                <td>{{ $item->updated_at }}</td>
+                <td class="center">
+                  <form class="col-md-4" method="POST" onclick="return confirm('@lang('category.admin.message.msg_del')')"
+                   action="{{ route('admin.categories.destroy', $item->id) }}">
+                      @method('DELETE')
+                      {{ csrf_field() }}
+                      <button class="btn btn-danger" type="submit"><i class="fa fa-trash-o  fa-fw" ></i></button>
+                  </form>
+                </td>
+                <td class="center"><i class="fa fa-pencil fa-fw"></i> 
+                  <a href="{{ route('admin.categories.edit', $item->id) }}">@lang('category.admin.table.edit')</a>
+                </td>
+              </tr>
+            @endforeach
+          @endif
         </tbody>
       </table>
     </div>
   </div>
 </div>
+<div class="col-md-12">{{ $datas->links()}}</div>
 @endsection
