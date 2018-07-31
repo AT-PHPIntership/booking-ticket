@@ -18,8 +18,8 @@
           </tr>
         </thead>
         <tbody>
-          @if ($datas)
-            @foreach ($datas as $item)
+          @if ($categories)
+            @foreach ($categories as $item)
               <tr>
                 <td>{{ $item->id }}</td>
                 <td>{{ $item->name }}</td>
@@ -44,5 +44,5 @@
     </div>
   </div>
 </div>
-<div class="col-md-12">{{ $datas->links()}}</div>
+<div class="col-md-12">{{ $categories->links()}}</div>
 @endsection
