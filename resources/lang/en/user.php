@@ -7,13 +7,21 @@ return [
         ],
         'table' => [
             'id' => 'ID',
-            'name' => 'Fullname',
+            'name' => 'Full name',
             'email' => 'Email',
             'address' => 'Address',
+            'phone' => 'Phone',
+            'is_active' => 'Status',
+            'last_login' => 'Last logged',
+            'role' => 'Role',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'delete' => 'Delete',
             'edit' => 'Edit',
+            'admin' => 'Admin',
+            'user' => 'User',
+            'active' => 'Active',
+            'inactive' => 'Inactive'
         ],
         'add' => [
             'title' => 'Add User',
@@ -41,7 +49,9 @@ return [
                 'msg_require_password' => 'Please enter password.',
                 'msg_unique_email' => 'This email linked to another account.',
                 'msg_add_invalid_phone' => 'Please enter valid phone.',
-                'require_address' => 'Please enter address.'
+                'require_address' => 'Please enter address.',
+                'msg_add_error' => 'Create user fail, try again.',
+                'msg_add_success' => 'Create New User Successfull!'
             ],
         ],
         'edit' => [

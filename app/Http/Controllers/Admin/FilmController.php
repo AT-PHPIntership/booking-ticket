@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Film;
 
 class FilmController extends Controller
 {
@@ -24,6 +26,8 @@ class FilmController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.films.create');
+        $categories = Category::all();
+        $data['categories'] = $categories;
+        return view('admin.pages.films.create', $data);
     }
 }

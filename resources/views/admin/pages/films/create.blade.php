@@ -10,6 +10,18 @@
           <form class="form-horizontal" action="{{ route('admin.films.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group row">
+              <label class="control-label col-md-3">@lang('category.admin.title')</label>
+              <div class="col-md-8">
+                <select name="category_id" class="form-control col-md-8">
+                  @if ($categories)
+                    @foreach ( $categories as $category )
+                      <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                  @endif
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
               <label class="control-label col-md-3">@lang('film.admin.table.name')</label>
               <div class="col-md-8">
                 <input class="form-control col-md-8" name="name" type="text" value="{{ old('name') }}" placeholder="@lang('film.admin.add.placeholder_name')">
@@ -42,7 +54,7 @@
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('film.admin.add.describe')</label>
               <div class="col-md-8">
-                <textarea class="form-control col-md-8 ckeditor" name="describe" type="text" value="{{ old('describe') }}" placeholder="@lang('film.admin.add.placeholder_describe')"></textarea>
+                <textarea class="form-control col-md-8" name="describe" type="text" value="{{ old('describe') }}" placeholder="@lang('film.admin.add.placeholder_describe')"></textarea>
               </div>
             </div>
             <div class="form-group row">

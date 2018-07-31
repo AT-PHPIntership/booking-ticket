@@ -17,8 +17,8 @@
           <i class="treeview-indicator fa fa-angle-right"></i>
         </a>
         <ul class="treeview-menu">
-          <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> @lang('master.list_category')</a></li>
-          <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> @lang('master.add_category')</a></li>
+          <li><a class="treeview-item" href="{{ route('admin.categories.index') }}"><i class="icon fa fa-circle-o"></i> @lang('master.list_category')</a></li>
+          <li><a class="treeview-item" href="{{ route('admin.categories.create') }}"><i class="icon fa fa-circle-o"></i> @lang('master.add_category')</a></li>
         </ul>
       </li>
       <li class="treeview">
@@ -35,7 +35,7 @@
           <span class="app-menu__label">@lang('master.users')</span><i class="treeview-indicator fa fa-angle-right"></i>
         </a>
         <ul class="treeview-menu">
-          <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> @lang('master.list_user')</a></li>
+          <li><a class="treeview-item" href="{{ route('admin.users.index') }}"><i class="icon fa fa-circle-o"></i> @lang('master.list_user')</a></li>
           <li><a class="treeview-item" href="{{ route('admin.users.create') }}"><i class="icon fa fa-circle-o"></i> @lang('master.add_user')</a></li>
         </ul>
       </li>
