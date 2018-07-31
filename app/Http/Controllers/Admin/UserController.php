@@ -59,7 +59,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id id
+     * @param User $user user
      *
      * @return \Illuminate\Http\Response
      */
@@ -72,7 +72,7 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request request
-     * @param int                      $id      id
+     * @param User                     $user    user
      *
      * @return \Illuminate\Http\Response
      */
