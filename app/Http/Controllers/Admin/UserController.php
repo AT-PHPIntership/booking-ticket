@@ -41,6 +41,8 @@ class UserController extends Controller
             return redirect()->route('admin.users.index')
                         ->with('message', trans('user.admin.add.message.add_success'));
         }
+        return redirect()->back()
+                        ->with('message', trans('user.admin.add.message.msg_add_error'));
     }
 
     /**
@@ -50,7 +52,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $datas = User::orderBy('id', 'ASC')->paginate(10);
+        $datas = User::orderBy('id')->paginate(config('define.user.limit_rows'));
         return view('admin.pages.users.index', compact('datas'));
     }
 
