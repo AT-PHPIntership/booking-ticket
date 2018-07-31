@@ -39,9 +39,6 @@ class UserController extends Controller
         if (User::create($data)) {
             return redirect()->route('admin.users.index')
                         ->with('message', trans('user.admin.add.message.add_success'));
-        } else {
-            return redirect()->back()
-                        ->with('message', trans('user.admin.add.message.add_error'));
         }
     }
 
