@@ -68,6 +68,8 @@ return [
             'del' => 'Delete Category Successfull!',
             'del_fail' => 'Can not Delete User. Please check connect database!',
             'del' => 'Do you want to delete this User?',
+            'del_success' => 'Delete user successfully!',
+            'del_fail' => 'Delete user failed.'
         ]
     ]
 ];
