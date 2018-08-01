@@ -27,7 +27,7 @@
         </a>
         <ul class="treeview-menu">
             <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> @lang('master.list_film')</a></li>
-            <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> @lang('master.add_film')</a></li>
+            <li><a class="treeview-item" href="{{ route('admin.films.create') }}"><i class="icon fa fa-circle-o"></i> @lang('master.add_film')</a></li>
         </ul>
       </li>
       <li class="treeview">
