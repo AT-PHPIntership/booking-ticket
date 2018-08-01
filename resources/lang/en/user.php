@@ -47,7 +47,7 @@ return [
                 'require_full_name' => 'Please enter full name.',
                 'require_email' => 'Please enter email.',
                 'require_password' => 'Please enter password.',
-                'max_pasword' => 'The password must be at least 8 characters.', 
+                'max_pasword' => 'The password must be at least 8 characters.',
                 'unique_email' => 'This email linked to another account.',
                 'add_invalid_phone' => 'Please enter valid phone.',
                 'require_address' => 'Please enter address.',

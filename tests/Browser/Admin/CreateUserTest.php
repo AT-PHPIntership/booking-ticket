@@ -14,6 +14,11 @@ class CreateUserTest extends DuskTestCase
 
     protected $admin;
 
+    /**
+     * Override function setup
+     *
+     * @return void
+     */
     public function setUp()
     {
         parent::setUp();
