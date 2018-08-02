@@ -43,9 +43,10 @@ class CreateUserRequest extends FormRequest
             'full_name.required' => trans('user.admin.add.message.require_full_name'),
             'email.required' => trans('user.admin.add.message.require_email'),
             'password.required' => trans('user.admin.add.message.require_password'),
+            'password.min' => trans('user.admin.add.message.max_password'),
             'email.unique' => trans('user.admin.add.message.unique_email'),
-            'phone' => trans('user.admin.add.message.add_invalid_phone'),
-            'address' => trans('user.admin.message.require_address')
+            'phone.*' => trans('user.admin.add.message.add_invalid_phone'),
+            'address.*' => trans('user.admin.message.require_address')
         ];
     }
 }
