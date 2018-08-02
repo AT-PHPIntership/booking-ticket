@@ -31,6 +31,7 @@ class CreateFilmRequest extends FormRequest
             'duration' => 'required|integer|min:90|max:180',
             'describe' => 'required|string',
             'categories' => 'required',
+            'categories.*' => 'required',
             'photos' => 'required',
             'photos.*' => 'image|mimes:jpg,png,jpeg|max:2048',
             'country' => 'required|string'

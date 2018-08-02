@@ -44,21 +44,15 @@ class FilmController extends Controller
     {
         $film = Film::create($request->all());
         foreach (request()->file('photos') as $img) {
-            $imgName = time() . '-' . $img->getClientOriginalName();
+            $imgName = time() . '-' . str_random(5) . '-' . $img->getClientOriginalName();
             $img->move(public_path(config('define.film.upload_image_url')), $imgName);
             $imagesData[] = [
                 'film_id' => $film->id,
                 'path' => config('define.film.upload_image_url').$imgName
             ];
         }
-        foreach (request()->categories as $category) {
-            $categoryFilms[] = [
-                'film_id' => $film->id,
-                'category_id' => $category
-            ];
-        }
         $film->images()->createMany($imagesData);
-        $film->cateroryFilms()->createMany($categoryFilms);
+        $film->categories()->sync($request->categories);
         return redirect()->route('admin.films.index')->with('message', trans('film.admin.message.add'));
     }
 }

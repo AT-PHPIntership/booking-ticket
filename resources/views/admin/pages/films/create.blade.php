@@ -11,13 +11,11 @@
             @csrf
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('category.admin.title')</label>
-              <div class="col-md-8">
+              <div class="col-md-8" >
                 <select name="categories[]" id="multiple_dropdown_select" class="form-control col-md-8" multiple>
-                  @if ($categories)
-                    @foreach ( $categories as $category )
-                      <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                  @endif
+                  @foreach ( $categories as $category )
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                  @endforeach
                 </select>
               </div>
             </div>
@@ -89,22 +87,4 @@
       </div>
   </div>
 </div>
-@endsection
-@section('script')
-  <script type="text/javascript">
-   var selText;
-    $('select').on('change', function() {
-      selText = "";
-      $("#multiple_dropdown_select option:selected").each(function () {
-        var $this = $(this);   
-        if(selText != ""){
-          selText = selText.concat(","); 
-          selText = selText.concat($this.text());
-        }
-        else
-          selText = $this.text();
-      });
-      document.getElementById("selected_values").value = selText;
-    });
-  </script>
 @endsection
