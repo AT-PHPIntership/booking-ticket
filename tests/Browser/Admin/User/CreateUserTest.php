@@ -1,18 +1,16 @@
 <?php
 
-namespace Tests\Browser\Admin;
+namespace Tests\Browser\Admin\User;
 
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\Models\User;
-use Tests\Browser\Pages\Admin\CreateUserPage;
+use Tests\Browser\Pages\Admin\User\CreateUserPage;
 
 class CreateUserTest extends DuskTestCase
 {
     use DatabaseMigrations;
-
-    protected $admin;
 
     /**
      * Override function setup
@@ -22,10 +20,6 @@ class CreateUserTest extends DuskTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->admin = factory(User::class)->create([
-            'role' => 1,
-            'email' => 'duplicate@gmail.com'
-        ]);
     }
 
     /**
@@ -64,7 +58,7 @@ class CreateUserTest extends DuskTestCase
             $browser->loginAs($this->admin)
                     ->visit(new CreateUserPage)
                     ->type('full_name', '')
-                    ->type('email', 'duplicate@gmail.com')
+                    ->type('email', 'taylor@laravel.com')
                     ->type('password', '1236')
                     ->type('phone', '0169')
                     ->type('address', 'Da Nang')
