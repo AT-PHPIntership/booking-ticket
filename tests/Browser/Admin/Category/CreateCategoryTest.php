@@ -26,7 +26,8 @@ class CreateCategoryTest extends DuskTestCase
     public function test_it_can_add_new_caterory()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit(new CreateCategoryPage)
+            $browser->loginAs($this->admin)
+                    ->visit(new CreateCategoryPage)
                     ->type('name', 'Phim Hành Động')
                     ->press('Submit')
                     ->assertPathIs('/admin/categories');
@@ -42,7 +43,8 @@ class CreateCategoryTest extends DuskTestCase
     public function test_it_can_add_new_caterory_fail()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit(new CreateCategoryPage)
+            $browser->loginAs($this->admin)
+                    ->visit(new CreateCategoryPage)
                     ->type('name', '')
                     ->press('Submit')
                     ->assertPathIs('/admin/categories/create')
