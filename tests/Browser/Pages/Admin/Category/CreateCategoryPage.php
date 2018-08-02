@@ -26,9 +26,9 @@ class CreateCategoryPage extends Page
     public function assert(Browser $browser)
     {
         $browser->assertPathIs($this->url())
-                ->assertTitleContains('Add Category')
-                ->assertSee('Add Category')
-                ->assertSee('Name');
+                ->assertTitleContains(trans('category.admin.add.title'))
+                ->assertSee(trans('category.admin.add.title'))
+                ->assertSee(trans('category.admin.table.name'));
     }
 
     /**

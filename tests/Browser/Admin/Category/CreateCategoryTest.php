@@ -15,7 +15,6 @@ class CreateCategoryTest extends DuskTestCase
     public function setUp()
     {
         parent::setUp();
-        factory(Category::class, 5)->create();
     }
 
     /**
