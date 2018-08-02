@@ -47,7 +47,7 @@ class CreateCategoryTest extends DuskTestCase
                     ->type('name', '')
                     ->press('Submit')
                     ->assertPathIs('/admin/categories/create')
-                    ->assertSee('Please enter name');
+                    ->assertSee(trans('category.admin.add.message.msg_require_name'));
         });
     }
 }
