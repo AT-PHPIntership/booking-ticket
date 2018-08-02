@@ -44,18 +44,22 @@ return [
             'placeholder_phone' => 'Enter phone',
             'placeholder_address' => 'Enter your address',
             'message' => [
-                'msg_require_full_name' => 'Please enter full name.',
-                'msg_require_email' => 'Please enter email.',
-                'msg_require_password' => 'Please enter password.',
-                'msg_unique_email' => 'This email linked to another account.',
-                'msg_add_invalid_phone' => 'Please enter valid phone.',
+                'require_full_name' => 'Please enter full name.',
+                'require_email' => 'Please enter email.',
+                'require_password' => 'Please enter password.',
+                'unique_email' => 'This email linked to another account.',
+                'add_invalid_phone' => 'Please enter valid phone.',
                 'require_address' => 'Please enter address.',
-                'msg_add_error' => 'Create user fail, try again.',
-                'msg_add_success' => 'Create New User Successfull!'
+                'add_error' => 'Create user fail, try again.',
+                'add_success' => 'Create new user successfully!'
             ],
         ],
         'edit' => [
             'title' => 'Edit User',
+            'message' => [
+                'edit_success' => 'Update user successfully!',
+                'edit_error' => 'Edit user fail, try again.'
+            ]
         ],
         'message' => [
             'add' => 'Create New User Successfull!',
@@ -63,7 +67,9 @@ return [
             'edit' => 'Update User Successfull!',
             'del' => 'Delete Category Successfull!',
             'del_fail' => 'Can not Delete User. Please check connect database!',
-            'msg_del' => 'Do you want to delete this User?',
+            'del' => 'Do you want to delete this User?',
+            'del_success' => 'Delete user successfully!',
+            'del_fail' => 'Delete user failed.'
         ]
     ]
 ];
