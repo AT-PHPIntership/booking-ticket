@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\CategoryFilm;
 use App\Models\Film;
+use App\Models\Image;
 use App\Http\Requests\CreateFilmRequest;
 
 class FilmController extends Controller
@@ -18,7 +19,8 @@ class FilmController extends Controller
      */
     public function index()
     {
-        //
+        $films = Film::orderBy('id', config('define.dir_desc'))->paginate(config('define.film.limit_rows'));
+        return view('admin.pages.films.index', compact('films'));
     }
 
     /**
