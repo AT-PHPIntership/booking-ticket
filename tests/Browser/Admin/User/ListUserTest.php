@@ -32,20 +32,23 @@ class ListUserTest extends DuskTestCase
      */
     public function test_list_user_show_in_first_and_last_page()
     {
-        $numOfPage = ceil(self::CREATED_USER / config('define.user.limit_rows'));
-        $lastPage = self::CREATED_USER % config('define.user.limit_rows');
-        
-        $this->browse(function (Browser $browser) use ($numOfPage, $lastPage) {
-            $browser->loginAs($this->admin)
-                    ->visit(new ListUserPage);
-                $userPageOne = $browser->elements('table.table tbody tr');
-                $this->assertEquals(count($userPageOne), config('define.user.limit_rows'));
+        $userPerPage = config('define.user.limit_rows');
+        $numOfPage = ceil(self::CREATED_USER / $userPerPage);
+        $lastPage = self::CREATED_USER % $userPerPage;
 
-                $browser->visit('/admin/users?page=' . $numOfPage)
-                        ->assertSee(trans('user.admin.list.title'));
-                        
-                $userLastPage = $browser->elements('table.table tbody tr');
-                $this->assertEquals(count($userLastPage), ($lastPage + 1));
+        $this->browse(function (Browser $browser) use ($userPerPage, $numOfPage, $lastPage) {
+            $browser->loginAs($this->admin)
+                ->visit(new ListUserPage);
+
+            // Test user per page
+            $userPageOne = $browser->elements('@elementGetUser');
+            $this->assertEquals(count($userPageOne), $userPerPage);
+
+            // Test user in last page
+            $browser->visit('/admin/users?page=' . $numOfPage)
+                ->assertSee(trans('user.admin.list.title'));
+            $userLastPage = $browser->elements('@elementGetUser');
+            $this->assertEquals(count($userLastPage), ($lastPage + 1));
         });
     }
 }

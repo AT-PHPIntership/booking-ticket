@@ -47,7 +47,7 @@ class ListUserPage extends Page
     public function elements()
     {
         return [
-            '@element' => '#selector',
+            '@elementGetUser' => 'table.table tbody tr',
         ];
     }
 }
