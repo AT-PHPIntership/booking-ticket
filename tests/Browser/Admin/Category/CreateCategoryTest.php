@@ -22,7 +22,7 @@ class CreateCategoryTest extends DuskTestCase
      *
      * @return void
      */
-    public function test_it_can_add_new_caterory()
+    public function test_it_can_add_new_category()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->admin)
@@ -39,7 +39,7 @@ class CreateCategoryTest extends DuskTestCase
      *
      * @return void
      */
-    public function test_it_can_add_new_caterory_fail()
+    public function test_it_can_add_new_category_fail()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->admin)
@@ -48,6 +48,26 @@ class CreateCategoryTest extends DuskTestCase
                     ->press('Submit')
                     ->assertPathIs('/admin/categories/create')
                     ->assertSee(trans('category.admin.add.message.msg_require_name'));
+        });
+    }
+
+    /**
+     * A Dusk test it can add fail category
+     *
+     * @return void
+     */
+    public function test_it_can_add_new_category_unique_fail()
+    {
+        factory('App\Models\Category')->create([
+            'name' => 'Phim hài'
+        ]);
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs($this->admin)
+                    ->visit(new CreateCategoryPage)
+                    ->type('name', 'Phim hài')
+                    ->press('Submit')
+                    ->assertPathIs('/admin/categories/create')
+                    ->assertSee(trans('category.admin.add.message.msg_unique_name'));
         });
     }
 }
