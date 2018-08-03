@@ -20,7 +20,6 @@
           </tr>
         </thead>
         <tbody>
-          @if ($films)
             @foreach ($films as $film)
               <tr>
                 <td>{{ $film->id }}</td>
@@ -28,22 +27,20 @@
                 <td>{{ $film->actor }}</td>
                 <td>{{ $film->duration }}</td>
                 <td>
-                  @if ($film->images->count() > 0)
-                    @foreach ($film->images as $image)
-                      <img width="100px" src="{{ $image->path }}" alt="Film Image"><br>
-                      <br>
-                    @endforeach
-                  @else
+                  @foreach ($film->images as $image)
+                    <img width="100px" src="{{ $image->path }}" alt="Film Image"><br>
+                    <br>
+                  @endforeach
+                  @if (!$film->images->count())
                     <strong>No picture</strong>
                   @endif
                 </td>
                 <td>{{ $film->country }}</td>
                 <td class="center">
-                  <form class="col-md-4" method="POST" onclick="return confirm('@lang('film.admin.message.msg_del')')"
-                   action="{{ route('admin.films.destroy', $film->id) }}">
+                  <form class="col-md-4" method="POST" action="{{ route('admin.films.destroy', $film->id) }}">
                       @method('DELETE')
                       {{ csrf_field() }}
-                      <button class="btn btn-danger" type="submit"><i class="fa fa-trash-o  fa-fw" ></i></button>
+                      <button class="btn btn-danger" type="submit" data-confirm="{{ trans('film.admin.message.msg_del') }}"><i class="fa fa-trash-o  fa-fw" ></i></button>
                   </form>
                 </td>
                 <td class="center"><i class="fa fa-pencil fa-fw"></i> 
@@ -51,11 +48,13 @@
                 </td>
               </tr>
             @endforeach
-          @endif
         </tbody>
       </table>
     </div>
   </div>
 </div>
 <div class="col-md-12">{{ $films->links()}}</div>
+@endsection
+@section('script')
+  <script src="js/admin/list_film.js"></script>
 @endsection
