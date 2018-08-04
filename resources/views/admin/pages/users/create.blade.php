@@ -8,17 +8,7 @@
         <div class="tile-body">
           <div class="x_content">
           <br>
-          @if (count($errors))
-            <div class="form-group">
-              <div class="alert alert-error">
-                <ul>
-                  @foreach ($errors->all() as $error)
-                    <li class="alert alert-danger">{{ $error }}</li>
-                  @endforeach
-                </ul>
-              </div>
-            </div>
-          @endif
+          @include('admin.layout.error')
           <form class="form-horizontal" action="{{ route('admin.users.store') }}" method="POST">
             @csrf
             <div class="form-group row">

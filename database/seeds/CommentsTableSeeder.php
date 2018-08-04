@@ -11,6 +11,13 @@ class CommentsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Models\Comment', 10)->create();
+        $faker = Faker\Factory::create();
+        for ($i = 0; $i < 10; $i++) { 
+            DB::table('comments')->insert([
+                'user_id' => App\Models\User::all()->random()->id,
+                'film_id' => App\Models\Film::all()->random()->id,
+                'content' => $faker->text($maxNbChars = 200)
+            ]);
+        }
     }
 }

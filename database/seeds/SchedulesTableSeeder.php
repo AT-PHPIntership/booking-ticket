@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class SchedulesTableSeeder extends Seeder
 {
@@ -11,6 +12,17 @@ class SchedulesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Models\Schedule', 10)->create();
+        $faker = Faker\Factory::create();
+        $startTime = Carbon::createFromTimestamp($faker->dateTimeBetween($startDate = '+1 days', $endDate = '+1 days')
+                    ->getTimeStamp());
+        $endTime = Carbon::createFromFormat('Y-m-d H:i:s', $startTime)->addHours(2);
+        for ($i = 0; $i < 10; $i++) { 
+            DB::table('schedules')->insert([
+                'film_id' => App\Models\Film::all()->random()->id,
+                'room_id' => App\Models\Room::all()->random()->id,
+                'start_time' => $startTime,
+                'end_time' => $endTime
+            ]);
+        }
     }
 }

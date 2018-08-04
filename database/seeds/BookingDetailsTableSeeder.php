@@ -11,6 +11,12 @@ class BookingDetailsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Models\BookingDetail', 10)->create();
+        for ($i = 0; $i < 10; $i++) { 
+            DB::table('booking_details')->insert([
+                'booking_id' => App\Models\Booking::all()->random()->id,
+                'ticket_id' => App\Models\Ticket::all()->random()->id,
+                'seat_id' => App\Models\Seat::all()->random()->id,
+            ]);
+        }
     }
 }

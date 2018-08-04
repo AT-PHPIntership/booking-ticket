@@ -11,6 +11,10 @@ class BookingsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Models\Booking', 10)->create();
+        for ($i = 0; $i < 10; $i++) { 
+            DB::table('bookings')->insert([
+                'user_id' => App\Models\User::all()->random()->id,
+            ]);
+        }
     }
 }

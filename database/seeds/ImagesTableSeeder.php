@@ -11,6 +11,6 @@ class ImagesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Models\Image', 10)->create();
+        factory('App\Models\Image', 2)->create();
     }
 }

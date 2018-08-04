@@ -11,6 +11,11 @@ class CategoryFilmsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Models\CategoryFilm', 10)->create();
+        for ($i = 0; $i < 10; $i++) { 
+            DB::table('category_film')->insert([
+                'category_id' => App\Models\Category::all()->random()->id,
+                'film_id' => App\Models\Film::all()->random()->id
+            ]);
+        }
     }
 }

@@ -11,6 +11,15 @@ class TicketsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Models\Ticket', 10)->create();
+        $typeTicket = array(array("Adult", 60000), array("Childrent", 45000)
+                            , array("Student", 45000));
+        for ($i = 0; $i < 10; $i++) { 
+            $ticket = $typeTicket[array_rand($typeTicket)];
+            DB::table('tickets')->insert([
+                'schedule_id' => App\Models\Schedule::all()->random()->id,
+                'price' => $ticket[1],
+                'type' => $ticket[0]
+            ]);
+        }
     }
 }
