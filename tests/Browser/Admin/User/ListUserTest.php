@@ -13,6 +13,7 @@ class ListUserTest extends DuskTestCase
     use DatabaseMigrations;
 
     private const CREATED_USER = 23;
+    private $listTestPage;
 
     /**
      * Override function setup
@@ -23,6 +24,7 @@ class ListUserTest extends DuskTestCase
     {
         parent::setUp();
         factory(User::class, self::CREATED_USER)->create();
+        $this->listTestPage = new ListUserPage;
     }
 
     /**
@@ -38,14 +40,14 @@ class ListUserTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($userPerPage, $numOfPage, $lastPage) {
             $browser->loginAs($this->admin)
-                ->visit(new ListUserPage);
+                ->visit($this->listTestPage);
 
             // Test user per page
             $userPageOne = $browser->elements('@elementGetUser');
             $this->assertEquals(count($userPageOne), $userPerPage);
 
             // Test user in last page
-            $browser->visit('/admin/users?page=' . $numOfPage)
+            $browser->visit($this->listTestPage->url() .'?page=' . $numOfPage)
                 ->assertSee(trans('user.admin.list.title'));
             $userLastPage = $browser->elements('@elementGetUser');
             $this->assertEquals(count($userLastPage), ($lastPage + 1));
