@@ -9,6 +9,7 @@ use App\Models\CategoryFilm;
 use App\Models\Film;
 use App\Models\Image;
 use App\Http\Requests\CreateFilmRequest;
+use App\Http\Requests\EditFilmRequest;
 
 class FilmController extends Controller
 {
@@ -56,5 +57,72 @@ class FilmController extends Controller
         $film->images()->createMany($imagesData);
         $film->categories()->sync($request->categories);
         return redirect()->route('admin.films.index')->with('message', trans('film.admin.message.add'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Film $film Film
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Film $film)
+    {
+        try {
+            $categories = Category::all();
+            return view('admin.pages.films.edit', compact('film', 'categories'));
+        } catch (Exception $e) {
+            return redirect()->route('admin.films.index')
+                             ->with('message', trans('film.admin.message.edit_fail'));
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request  Request
+     * @param Film                 $film Film
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update(EditFilmRequest $request, Film $film)
+    {
+        try {
+            $film->update($request->all());
+            
+            $images = Image::where('film_id', $film->id)->get();
+            $name = $request->del_image;
+            $imagesDel = explode(",", $name);
+            $imagesDataDel = array();
+            for ($i = 0; $i < count($imagesDel)-1; $i++) { 
+                array_push($imagesDataDel, (int)$imagesDel[$i]);
+            }
+
+            for ($i = 0; $i < count($images); $i++) {
+                for ($j = 0; $j < count($imagesDataDel); $j++) { 
+                    if ($images[$i]->id == $imagesDataDel[$j]) {
+                        Image::where('id', $images[$i]->id)->delete();
+                    }
+                }
+            }
+
+            if (request()->file('photos')) {
+                foreach (request()->file('photos') as $img) {
+                    $imgName = time() . '-' . str_random(5) . '-' . $img->getClientOriginalName();
+                    $img->move(public_path(config('define.film.upload_image_url')), $imgName);
+                    $imagesData[] = [
+                        'film_id' => $film->id,
+                        'path' => config('define.film.upload_image_url').$imgName
+                    ];
+                }
+                $film->images()->createMany($imagesData);
+            }
+           
+            $film->categories()->sync($request->categories);
+            return redirect()->route('admin.films.index')->with('message', trans('film.admin.message.edit'));
+        } catch (Exception $e) {
+            return redirect()->route('admin.films.index')
+                             ->with('message', trans('category.admin.message.edit_fail'));
+        }
     }
 }
