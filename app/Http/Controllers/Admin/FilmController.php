@@ -10,6 +10,7 @@ use App\Models\Film;
 use App\Models\Image;
 use App\Http\Requests\CreateFilmRequest;
 use App\Http\Requests\EditFilmRequest;
+use DB;
 
 class FilmController extends Controller
 {
@@ -80,8 +81,8 @@ class FilmController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request  Request
-     * @param Film                 $film Film
+     * @param \Illuminate\Http\Request $request Request
+     * @param Film                     $film    Film
      *
      * @return \Illuminate\Http\Response
      */
@@ -94,12 +95,12 @@ class FilmController extends Controller
             $name = $request->del_image;
             $imagesDel = explode(",", $name);
             $imagesDataDel = array();
-            for ($i = 0; $i < count($imagesDel)-1; $i++) { 
-                array_push($imagesDataDel, (int)$imagesDel[$i]);
+            for ($i = 0; $i < count($imagesDel)-1; $i++) {
+                array_push($imagesDataDel, (int) $imagesDel[$i]);
             }
 
             for ($i = 0; $i < count($images); $i++) {
-                for ($j = 0; $j < count($imagesDataDel); $j++) { 
+                for ($j = 0; $j < count($imagesDataDel); $j++) {
                     if ($images[$i]->id == $imagesDataDel[$j]) {
                         Image::where('id', $images[$i]->id)->delete();
                     }
@@ -123,6 +124,31 @@ class FilmController extends Controller
         } catch (Exception $e) {
             return redirect()->route('admin.films.index')
                              ->with('message', trans('category.admin.message.edit_fail'));
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Film $film Film
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Film $film)
+    {
+        DB::beginTransaction();
+        try {
+            $film->cateroryFilms()->delete();
+            $film->images()->delete();
+            $film->schedules()->delete();
+            $film->comments()->delete();
+            $film->ratings()->delete();
+            $film->delete();
+            DB::commit();
+            return redirect()->back()->with('message', trans('film.admin.message.del'));
+        } catch (Exception $ex) {
+            DB::rollBack();
+            return redirect()->back()->with('message', trans('film.admin.message.del_fail'));
         }
     }
 }
