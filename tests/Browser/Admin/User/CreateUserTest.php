@@ -60,7 +60,7 @@ class CreateUserTest extends DuskTestCase
                     ->type('full_name', '')
                     ->type('email', 'taylor@laravel.com')
                     ->type('password', '1236')
-                    ->type('phone', '0169')
+                    ->type('phone', '016')
                     ->type('address', 'Da Nang')
                     ->press(trans('category.admin.add.submit'))
                     ->assertPathIs('/admin/users/create')
