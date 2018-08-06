@@ -17,6 +17,16 @@ class Category extends Model
         'name'
     ];
 
+     /**
+     * Get many category film detail of film.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     */
+    public function films()
+    {
+        return $this->belongsToMany('App\Models\Film', 'category_film', 'category_id', 'film_id')->withTimestamps();
+    }
+
     /**
      * Get category film detail of category.
      *
