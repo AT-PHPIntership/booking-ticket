@@ -10,12 +10,15 @@ use App\Models\User;
 
 class UpdateUserTest extends DuskTestCase
 {
+    private $updateUserPage;
+
     use DatabaseMigrations;
 
     public function setUp()
     {
         parent::setUp();
         factory(User::class, 5)->create();
+        $this->updateUserPage = new UpdateUserPage($this->admin);
     }
 
     /**
@@ -27,18 +30,18 @@ class UpdateUserTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->admin)
-                    ->visit(new UpdateUserPage($this->admin))
-                    ->clear('email')
-                    ->clear('full_name')
-                    ->clear('phone')
-                    ->clear('address')
-                    ->type('email', 'emailedited@example.com')
-                    ->type('full_name', 'editedname')
-                    ->type('password', 'PasswordIsSecret')
-                    ->type('phone', '01695112225')
-                    ->type('address', 'Viet Nam')
-                    ->press('Submit')
-                    ->assertPathIs('/admin/users');
+                ->visit($this->updateUserPage)
+                ->clear('email')
+                ->clear('full_name')
+                ->clear('phone')
+                ->clear('address')
+                ->type('email', 'emailedited@example.com')
+                ->type('full_name', 'editedname')
+                ->type('password', 'PasswordIsSecret')
+                ->type('phone', '01695112225')
+                ->type('address', 'Viet Nam')
+                ->press('Submit')
+                ->assertPathIs($this->updateUserPage->successPath);
             $this->assertDatabaseHas('users', [
                 'id' => (string)$this->admin->id,
                 'email' => 'emailedited@example.com'
@@ -50,18 +53,18 @@ class UpdateUserTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->admin)
-                    ->visit(new UpdateUserPage($this->admin))
-                    ->clear('email')
-                    ->clear('full_name')
-                    ->clear('phone')
-                    ->clear('address')
-                    ->press('Submit')
-                    ->assertPathIs('/admin/users/' . $this->admin->id . '/edit')
-                    ->assertSee(trans('user.admin.add.message.require_full_name'))
-                    ->assertSee(trans('user.admin.add.message.require_email'))
-                    ->assertSee(trans('user.admin.add.message.require_password'))
-                    ->assertSee(trans('user.admin.add.message.add_invalid_phone'))
-                    ->assertSee(trans('user.admin.message.require_address'));
+                ->visit($this->updateUserPage)
+                ->clear('email')
+                ->clear('full_name')
+                ->clear('phone')
+                ->clear('address')
+                ->press('Submit')
+                ->assertPathIs($this->updateUserPage->url())
+                ->assertSee(trans('user.admin.add.message.require_full_name'))
+                ->assertSee(trans('user.admin.add.message.require_email'))
+                ->assertSee(trans('user.admin.add.message.require_password'))
+                ->assertSee(trans('user.admin.add.message.add_invalid_phone'))
+                ->assertSee(trans('user.admin.add.message.require_address'));
             $this->assertDatabaseHas('users', [
                 'id' => (string)$this->admin->id,
                 'email' => 'taylor@laravel.com'

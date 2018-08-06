@@ -9,6 +9,7 @@ use Laravel\Dusk\Page;
 class UpdateUserPage extends Page
 {
     protected $user;
+    public $successPath = '/admin/users';
 
     /**
      * Contructor
