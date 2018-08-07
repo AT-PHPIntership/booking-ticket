@@ -13,4 +13,7 @@ return [
     'category' => [
         'limit_rows' => 5,
     ],
+    'schedule'=> [
+        'limit_rows' => 10
+    ]
 ];
