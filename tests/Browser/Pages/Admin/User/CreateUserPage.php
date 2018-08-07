@@ -45,7 +45,12 @@ class CreateUserPage extends Page
     public function elements()
     {
         return [
-            '@element' => '#selector',
+            '@full_name' => 'full_name',
+            '@email' => 'email',
+            '@password' => 'password',
+            '@phone' => 'phone',
+            '@address' => 'address',
+            '@submit' => 'Submit'
         ];
     }
 }
