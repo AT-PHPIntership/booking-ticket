@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
+use DB;
 
 class ScheduleController extends Controller
 {
@@ -16,14 +16,14 @@ class ScheduleController extends Controller
     public function index()
     {
         $getField = [
-                    'schedules.id as id',
-                     'rooms.status',
-                     'rooms.name as name',
-                     'schedules.start_time',
-                     'schedules.end_time',
-                     'films.name as fname',
-                     DB::raw('COUNT(booking_details.seat_id) as numSeatBooked')
-                     ];
+            'schedules.id as id',
+            'rooms.status',
+            'rooms.name as name',
+            'schedules.start_time',
+            'schedules.end_time',
+            'films.name as fname',
+            DB::raw('COUNT(booking_details.seat_id) as numSeatBooked')
+            ];
 
         $schedules = DB::table('schedules')
                 ->join('films', 'schedules.film_id', 'films.id')

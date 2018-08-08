@@ -30,13 +30,13 @@
             <td>{{ $schedule->start_time }}</td>
             <td>{{ $schedule->end_time}}</td>
             <td class="center">
-              <form class="col-md-4" method="POST" action="{{ route('admin.users.destroy', ['id' => $schedule->id]) }}">
+              <form class="col-md-4" method="POST" action="{{ route('admin.schedules.destroy', ['id' => $schedule->id]) }}">
                   @method('DELETE')
                   @csrf
-                  <button class="btn btn-danger" onclick="return confirm('@lang('user.admin.message.del')')" type="submit"><i class="fa fa-trash-o  fa-fw" ></i></button>
+                  <button class="btn btn-danger" type="submit" data-confirm="{{ trans('schedule.admin.message.msg_del') }}"><i class="fa fa-trash-o  fa-fw" ></i></button>
               </form>
             </td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{ route('admin.users.edit', $schedule->id) }}">@lang('user.admin.table.edit')</a></td>
+            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{ route('admin.schedules.edit', $schedule->id) }}">@lang('user.admin.table.edit')</a></td>
           </tr>
           @endforeach
         </tbody>
@@ -45,4 +45,7 @@
     </div>
   </div>
 </div>
+@endsection
+@section('script')
+  <script src="js/admin/list_film.js"></script>
 @endsection
