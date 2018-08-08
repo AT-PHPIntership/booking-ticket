@@ -30,7 +30,7 @@
             <td>{{ $schedule->start_time }}</td>
             <td>{{ $schedule->end_time}}</td>
             <td class="center">
-              <form class="col-md-4" method="POST" action="{{ route('admin.users.destroy', ['id' => $schedule->id]) }}">
+              <form class="col-md-4" method="POST" action="{{ route('admin.schedules.destroy', ['id' => $schedule->id]) }}">
                   @method('DELETE')
                   @csrf
                   <button class="btn btn-danger" onclick="return confirm('@lang('user.admin.message.del')')" type="submit"><i class="fa fa-trash-o  fa-fw" ></i></button>
