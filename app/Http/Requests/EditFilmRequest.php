@@ -30,6 +30,8 @@ class EditFilmRequest extends FormRequest
             'director' => 'required|string',
             'duration' => 'required|integer|min:90|max:180',
             'describe' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'date|after:start_date',
             'categories' => 'required',
             'categories.*' => 'required',
             'photos.*' => 'image|mimes:jpg,png,jpeg|max:2048',
@@ -52,6 +54,8 @@ class EditFilmRequest extends FormRequest
             'director.required' => trans('film.admin.add.message.require_director'),
             'duration.required' => trans('film.admin.add.message.require_duration'),
             'describe.required' => trans('film.admin.add.message.require_describe'),
+            'start_date.required' => trans('film.admin.add.message.require_start_date'),
+            'end_date.required' => trans('film.admin.add.message.require_end_date'),
             'photos.max' => trans('film.admin.add.message.size_image'),
             'country.required' => trans('film.admin.add.message.require_country')
         ];

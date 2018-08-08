@@ -47,29 +47,40 @@
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('film.admin.add.producer')</label>
               <div class="col-md-8">
-                <input class="form-control col-md-8" name="producer" value="{{ $film->producer }}" type="text" value="{{ old('producer') }}" placeholder="@lang('film.admin.add.placeholder_producer')">
+                <input class="form-control col-md-8" name="producer" value="{{ $film->producer }}" type="text" placeholder="@lang('film.admin.add.placeholder_producer')">
               </div>
             </div>
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('film.admin.add.director')</label>
               <div class="col-md-8">
                 <input class="form-control col-md-8" name="director" value="{{ $film->director }}"
-                 type="text" value="{{ old('director') }}" placeholder="@lang('film.admin.add.placeholder_director')">
+                 type="text" placeholder="@lang('film.admin.add.placeholder_director')">
               </div>
             </div>
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('film.admin.table.duration')</label>
               <div class="col-md-8">
                 <input class="form-control col-md-8" name="duration" value="{{ $film->duration }}" 
-                type="text" value="{{ old('duration') }}" placeholder="@lang('film.admin.add.placeholder_duration')">
+                type="text" placeholder="@lang('film.admin.add.placeholder_duration')">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="control-label col-md-3">@lang('film.admin.add.start_date')</label>
+              <div class="col-md-8">
+                <input class="form-control col-md-8" name="start_date" type="date" value="{{ $film->start_date }}" value="{{ old('start_date') }}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="control-label col-md-3">@lang('film.admin.add.end_date')</label>
+              <div class="col-md-8">
+                <input class="form-control col-md-8" name="end_date" type="date" value="{{ $film->end_date }}" value="{{ old('end_date') }}">
               </div>
             </div>
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('film.admin.add.describe')</label>
               <div class="col-md-8">
                 <textarea class="form-control col-md-8" name="describe" type="text" id="describe" 
-                value="{{ old('describe') }}" placeholder="@lang('film.admin.add.placeholder_describe')">
-                  {{ old('describe') }}
+                 placeholder="@lang('film.admin.add.placeholder_describe')">
                   {{ $film->describe }}
                 </textarea>
               </div>
@@ -107,7 +118,7 @@
               <label class="control-label col-md-3">@lang('film.admin.table.country')</label>
               <div class="col-md-8">
                 <input class="form-control col-md-8" name="country" value="{{ $film->country }}"
-                 type="text" value="{{ old('country') }}" placeholder="@lang('film.admin.add.placeholder_country')">
+                 type="text" placeholder="@lang('film.admin.add.placeholder_country')">
               </div>
             </div>
             <div class="tile-footer">

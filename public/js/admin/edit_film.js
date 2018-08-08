@@ -20,6 +20,11 @@ $(document).ready(function(){
             $('button[type="submit"]').removeAttr('disabled');
         }
     });
+    $('input[type="date"]').change(function(){
+        if($(this).val != ''){
+            $('button[type="submit"]').removeAttr('disabled');
+        }
+    });
     $('input[type=file]').change(function(){
         if($(this).val != ''){
             $('button[type="submit"]').removeAttr('disabled');
