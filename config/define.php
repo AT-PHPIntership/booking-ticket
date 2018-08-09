@@ -13,4 +13,7 @@ return [
     'category' => [
         'limit_rows' => 5,
     ],
+    'ticket' => [
+        'limit_rows' => 5,
+    ],
 ];
