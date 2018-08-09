@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class EditFilmTable extends Migration
+class EditFilmsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class EditFilmTable extends Migration
     public function up()
     {
         Schema::table('films', function (Blueprint $table) {
-            $table->datetime('start_date')->after('country');
-            $table->datetime('end_date')->after('start_date');
+            $table->date('start_date')->after('country');
+            $table->date('end_date')->after('start_date');
         });
     }
 
