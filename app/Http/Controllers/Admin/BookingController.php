@@ -20,12 +20,13 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $getField = ['bookings.id as id',
-                    'users.full_name as name',
-                    'users.email as email',
-                    DB::raw('count(booking_details.id) as quantity'),
-                    DB::raw('sum(tickets.price) as price'),
-                    ];
+        $getField = [
+            'bookings.id as id',
+            'users.full_name as name',
+            'users.email as email',
+            DB::raw('count(booking_details.id) as quantity'),
+            DB::raw('sum(tickets.price) as price'),
+        ];
 
         $bookings = DB::table('bookings')
             ->join('users', 'users.id', '=', 'bookings.user_id')
@@ -48,16 +49,17 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        $getField = ['bookings.id as id',
-                    'users.full_name as name',
-                    'users.email as email',
-                    'films.name as film',
-                    'schedules.start_time as start',
-                    'schedules.end_time as end',
-                    'rooms.name as room',
-                    'seats.name as seat',
-                    DB::raw('sum(tickets.price) as price'),
-                    ];
+        $getField = [
+            'bookings.id as id',
+            'users.full_name as name',
+            'users.email as email',
+            'films.name as film',
+            'schedules.start_time as start',
+            'schedules.end_time as end',
+            'rooms.name as room',
+            'seats.name as seat',
+            DB::raw('sum(tickets.price) as price'),
+        ];
 
         $bookings = DB::table('bookings')
             ->join('users', 'users.id', '=', 'bookings.user_id')
