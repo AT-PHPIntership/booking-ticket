@@ -45,6 +45,7 @@ class ListCategoryPage extends Page
     {
         return [
             '@element' => '#selector',
+            '@form' => '.table-responsive table tbody tr'
         ];
     }
 }

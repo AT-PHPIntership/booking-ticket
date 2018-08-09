@@ -16,6 +16,7 @@ class ListCategoryTest extends DuskTestCase
     public function setUp()
     {
         parent::setUp();
+        $this->listTestPage = new ListCategoryPage;
     }
 
     /**
@@ -27,9 +28,9 @@ class ListCategoryTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->admin)
-                    ->visit(new ListCategoryPage)
+                    ->visit($this->listTestPage)
                     ->assertSee(__('category.admin.list.title'));
-            $elements = $browser->elements('.table-responsive table tbody tr');
+            $elements = $browser->elements('@form');
             $numRecord = count($elements);
             $this->assertTrue($numRecord == 0);
         });
@@ -46,11 +47,11 @@ class ListCategoryTest extends DuskTestCase
             factory(Category::class, self::CREATED_CATEGORY)->create();
             $browser->loginAs($this->admin);
             $elements = $browser->visit(new ListCategoryPage)
-                                ->elements('.table-responsive table tbody tr');
+                                ->elements('@form');
             $numRecord = count($elements);
             $this->assertTrue($numRecord == config('define.category.limit_rows'));
-            $elements = $browser->visit('/admin/categories?page=4')
-                ->elements('.table-responsive table tbody tr');
+            $elements = $browser->visit($this->listTestPage->url().'?page=4')
+                ->elements('@form');
             $numRecord = count($elements);
             $this->assertTrue($numRecord == 2);
         });
