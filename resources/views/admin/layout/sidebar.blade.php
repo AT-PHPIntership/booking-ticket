@@ -45,7 +45,7 @@
         </a>
         <ul class="treeview-menu">
           <li><a class="treeview-item" href="{{ route('admin.schedules.index') }}"><i class="icon fa fa-circle-o"></i> @lang('master.list_schedule')</a></li>
-          <li><a class="treeview-item" href="{{ route('admin.users.create') }}"><i class="icon fa fa-circle-o"></i> @lang('master.add_user')</a></li>
+          <li><a class="treeview-item" href="{{ route('admin.schedules.create') }}"><i class="icon fa fa-circle-o"></i> @lang('master.add_schedule')</a></li>
         </ul>
       </li>
       <li class="treeview">

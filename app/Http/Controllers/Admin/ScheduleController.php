@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
+use DB;
 use Carbon\Carbon;
 use App\Models\Schedule;
-use App\Models\BookingDetail;
-use App\Models\Booking;
-use Symfony\Component\Config\Definition\Exception\Exception;
-use App\Models\Ticket;
+use App\Models\Film;
+use App\Models\Room;
+use App\Http\Requests\CreateScheduleRequest;
 
 class ScheduleController extends Controller
 {
@@ -27,23 +26,76 @@ class ScheduleController extends Controller
             'rooms.name as name',
             'schedules.start_time',
             'schedules.end_time',
-            'films.name as fname',
-            DB::raw('COUNT(booking_details.seat_id) as numSeatBooked')
+            'films.name as film_name',
         ];
 
         $schedules = DB::table('schedules')
             ->join('films', 'schedules.film_id', 'films.id')
             ->join('rooms', 'schedules.room_id', 'rooms.id')
-            ->join('tickets', 'schedules.id', 'tickets.schedule_id')
-            ->join('booking_details', 'tickets.id', 'booking_details.ticket_id')
             ->select($getField)
             ->where('films.deleted_at', null)
             ->where('schedules.deleted_at', null)
-            ->groupBy('schedule_id')
             ->orderBy('schedules.id')
             ->paginate(config('define.schedule.limit_rows'));
 
         return view('admin.pages.schedules.index', compact('schedules'));
+    }
+
+    /**
+     * This function return view when create schedule
+     *
+     * @return void
+     */
+    public function create()
+    {
+        $data['films'] = Film::where('end_date', '>=', now())->get();
+        $data['rooms'] = Room::all();
+        return view('admin.pages.schedules.create', $data);
+    }
+
+    /**
+     * This function store schedule
+     *
+     * @param CreateScheduleRequest $request request
+     *
+     * @return void
+     */
+    public function store(CreateScheduleRequest $request)
+    {
+        $startSchedule = new Carbon($request->starttime);
+        $endSchedule = new Carbon($request->endtime);
+        $film = Film::find($request->film);
+
+        // if set time when film not release or out of date
+        if ($startSchedule < $film->start_date || $endSchedule > $film->end_date) {
+            return redirect()->back()
+                        ->with('message', trans('schedule.admin.message.invalid_time_film') . 
+                        $film->start_date . trans('schedule.admin.message.and') . $film->end_date);
+        } else {
+            
+            // if set time between start or end time of another schedule 
+            $scheduleValids = Schedule::where('schedules.room_id', $request->room)->get();
+            foreach ($scheduleValids as $scheduleValid) {
+                $scheduleValidStartTime = $scheduleValid->start_time;
+                $scheduleValidEndTime = $scheduleValid->end_time;
+
+                if (($startSchedule >= $scheduleValidStartTime && $startSchedule <= $scheduleValidEndTime)
+                    || ($endSchedule >= $scheduleValidStartTime && $endSchedule <= $scheduleValidEndTime)
+                    ) {
+                        return redirect()->back()->with('message', trans('schedule.admin.message.room_invalid'));
+                    }
+            }
+
+            // insert schedule to databases
+            $data = [
+                'film_id' => $request->film,
+                'room_id' => $request->room,
+                'start_time' => $startSchedule,
+                'end_time' => $endSchedule
+            ];
+            Schedule::create($data);
+            return redirect()->route('admin.schedules.index')->with('message', trans('schedule.admin.message.add'));
+        }
     }
 
     /**

@@ -1,0 +1,61 @@
+@extends('admin.layout.master') @section('title', __('schedule.admin.add.title')) @section('content')
+<div class="col-md-12">
+	<div class="col-md-10">
+		<div class="tile">
+			<h3 class="tile-title">@lang('schedule.admin.add.title')</h3>
+			<div class="tile-body">
+				<div class="x_content">
+					<br>
+					@include('admin.layout.message')
+					@include('admin.layout.error')
+					<form class="form-horizontal" action="{{ route('admin.schedules.store') }}" method="POST">
+						@csrf
+						<div class="form-group row">
+							<label class="control-label col-md-3">@lang('schedule.admin.add.choose_film')</label>
+							<div class="col-md-8">
+								<select class="form-control" id="select-film" name="film">
+									@foreach ($films as $film)
+									<option value="{{ $film->id }}">{{ $film->name }}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="control-label col-md-3">@lang('schedule.admin.add.choose_room')</label>
+							<div class="col-md-8">
+								<select class="form-control" id="select-room" name="room">
+									@foreach ($rooms as $room)
+									<option value="{{ $room->id }}">{{ $room->name }}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-5">
+								<div class="form-group">
+									<label for="starttime">@lang('schedule.admin.add.start_time')</label>
+									<input class="form-control" type="text" name="starttime" value="{{ old('starttime') }}" placeholder="@lang('schedule.admin.add.placeholder_time')">
+								</div>
+							</div>
+							<div class="col-lg-5 offset-lg-1">
+								<div class="form-group">
+									<fieldset>
+										<label for="endtime">@lang('schedule.admin.add.end_time')</label>
+										<input class="form-control" type="text" name="endtime" value="{{ old('endtime') }}" placeholder="@lang('schedule.admin.add.placeholder_time')">
+									</fieldset>
+								</div>
+							</div>
+						</div>
+						<div class="tile-footer">
+							<div class="row">
+								<div class="col-md-8 col-md-offset-3">
+									<button class="btn btn-primary" type="submit">
+										<i class="fa fa-fw fa-lg fa-check-circle"></i>@lang('schedule.admin.add.submit')</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		@endsection
