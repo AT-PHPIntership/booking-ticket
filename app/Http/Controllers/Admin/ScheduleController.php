@@ -62,36 +62,35 @@ class ScheduleController extends Controller
      */
     public function store(CreateScheduleRequest $request)
     {
-        $startSchedule = new Carbon($request->starttime);
-        $endSchedule = new Carbon($request->endtime);
+        $startTime = new Carbon($request->starttime);
+        $endTime = new Carbon($request->endtime);
         $film = Film::find($request->film);
 
         // if set time when film not release or out of date
-        if ($startSchedule < $film->start_date || $endSchedule > $film->end_date) {
+        if (($startTime < $film->start_date) || ($endTime > $film->end_date)) {
             return redirect()->back()
-                        ->with('message', trans('schedule.admin.message.invalid_time_film') . 
+                        ->with('message', trans('schedule.admin.message.invalid_time_film') .
                         $film->start_date . trans('schedule.admin.message.and') . $film->end_date);
         } else {
-            
-            // if set time between start or end time of another schedule 
-            $scheduleValids = Schedule::where('schedules.room_id', $request->room)->get();
-            foreach ($scheduleValids as $scheduleValid) {
-                $scheduleValidStartTime = $scheduleValid->start_time;
-                $scheduleValidEndTime = $scheduleValid->end_time;
+            // if set time between start or end time of another schedule
+            $schedules = Schedule::where('schedules.room_id', $request->room)->get();
+            foreach ($schedules as $schedule) {
+                $scheduleStartTime = $schedule->start_time;
+                $scheduleEndTime = $schedule->end_time;
 
-                if (($startSchedule >= $scheduleValidStartTime && $startSchedule <= $scheduleValidEndTime)
-                    || ($endSchedule >= $scheduleValidStartTime && $endSchedule <= $scheduleValidEndTime)
+                if (($startTime >= $scheduleStartTime && $startTime <= $scheduleEndTime)
+                    || ($endTime >= $scheduleStartTime && $endTime <= $scheduleEndTime)
                     ) {
                         return redirect()->back()->with('message', trans('schedule.admin.message.room_invalid'));
-                    }
+                }
             }
 
             // insert schedule to databases
             $data = [
                 'film_id' => $request->film,
                 'room_id' => $request->room,
-                'start_time' => $startSchedule,
-                'end_time' => $endSchedule
+                'start_time' => $startTime,
+                'end_time' => $endTime
             ];
             Schedule::create($data);
             return redirect()->route('admin.schedules.index')->with('message', trans('schedule.admin.message.add'));

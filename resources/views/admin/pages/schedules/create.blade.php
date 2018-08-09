@@ -1,4 +1,6 @@
-@extends('admin.layout.master') @section('title', __('schedule.admin.add.title')) @section('content')
+@extends('admin.layout.master')
+@section('title', __('schedule.admin.add.title'))
+@section('content')
 <div class="col-md-12">
 	<div class="col-md-10">
 		<div class="tile">
