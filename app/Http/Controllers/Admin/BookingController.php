@@ -43,11 +43,11 @@ class BookingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id int
+     * @param Booking $booking Booking
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Booking $booking)
     {
         $getField = [
             'bookings.id as id',
@@ -70,27 +70,26 @@ class BookingController extends Controller
             ->join('films', 'films.id', '=', 'schedules.film_id')
             ->join('rooms', 'rooms.id', '=', 'schedules.room_id')
             ->select($getField)
-            ->where('booking_details.booking_id', $id)
+            ->where('booking_details.booking_id', $booking->id)
             ->where('bookings.deleted_at', null)
             ->where('booking_details.deleted_at', null)
             ->groupBy('booking_details.id')
             ->orderBy('id', config('define.dir_desc'))
             ->paginate(config('define.booking.limit_rows'));
-            return view('admin.pages.bookings.show', compact('bookings'));
+        return view('admin.pages.bookings.show', compact('bookings', 'booking'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id int
+     * @param Booking $booking Booking
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Booking $booking)
     {
         DB::beginTransaction();
         try {
-            $booking = Booking::findOrFail($id);
             $booking->bookingDetails()->delete();
             $booking->delete();
             DB::commit();

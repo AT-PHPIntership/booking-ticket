@@ -41,6 +41,11 @@
               </td>
             </tr>
           @endforeach
+          @if (!$bookings)
+            <tr>
+              <td colspan="7">@lang('booking.admin.message.empty_data')</td>
+            </tr>
+          @endif
         </tbody>
       </table>
     </div>

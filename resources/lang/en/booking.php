@@ -31,6 +31,7 @@ return [
             'del' => 'Delete Booking Successfull!',
             'del_fail' => 'Can not Delete Booking. Please check connect database!',
             'msg_del' => 'Do you want to delete this Booking?',
+            'empty_data' => 'No data are bookings',
         ]
     ]
 ];

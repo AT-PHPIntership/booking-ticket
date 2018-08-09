@@ -12,13 +12,13 @@
           <div class="form-group row">
             <label class="control-label col-md-3">@lang('booking.admin.table.name')</label>
             <div class="col-md-8">
-              <input class="form-control col-md-8" value="{{$bookings[0]->name}}" disabled type="text" >
+              <input class="form-control col-md-8" value="{{$booking->user->full_name}}" disabled type="text" >
             </div>
           </div>
           <div class="form-group row">
             <label class="control-label col-md-3">@lang('booking.admin.table.email')</label>
             <div class="col-md-8">
-              <input class="form-control col-md-8" type="text" value="{{$bookings[0]->email}}" disabled>
+              <input class="form-control col-md-8" type="text" value="{{$booking->user->email}}" disabled>
             </div>
           </div>
           @foreach ($bookings as $booking)
