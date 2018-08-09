@@ -13,7 +13,6 @@
             <th>@lang('schedule.admin.table.id')</th>
             <th>@lang('schedule.admin.table.name')</th>
             <th>@lang('schedule.admin.table.room')</th>
-            <th>@lang('schedule.admin.table.booked')</th>
             <th>@lang('schedule.admin.table.start_time')</th>
             <th>@lang('schedule.admin.table.end_time')</th>
             <th>@lang('schedule.admin.table.delete')</th>
@@ -21,12 +20,11 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($schedules->all() as $index=>$schedule)
+          @foreach ($schedules as $index=>$schedule)
           <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>{{ $schedule->fname }}</td>
+            <td>{{ ++$index }}</td>
+            <td>{{ $schedule->film_name }}</td>
             <td>{{ $schedule->name }}</td>
-            <td>{{ $schedule->numSeatBooked }}</td>
             <td>{{ $schedule->start_time }}</td>
             <td>{{ $schedule->end_time}}</td>
             <td class="center">
