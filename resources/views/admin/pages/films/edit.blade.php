@@ -13,14 +13,12 @@
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('category.admin.title')</label>
               <div class="col-md-8" >
-                <select name="categories[]" id="multiple_dropdown_select" class="form-control col-md-8" multiple>
+                <select name="categories[]" id="multiple_dropdown_select" class="form-control col-md-8 active" multiple>
                   @foreach ( $categories as $category )
                     <option value="{{ $category->id }}"
-                      @foreach ($film->cateroryFilms as $cateroryFilm)
-                        @if ($cateroryFilm->category_id == $category->id)
-                          {{ "selected" }}
-                        @endif
-                      @endforeach
+                      @if (in_array($category->id, $categoryIds))
+                        {{ "selected" }}
+                      @endif
                     >{{ $category->name }}</option>   
                   @endforeach
                 </select>
@@ -29,72 +27,72 @@
             <div class="form-group row">
               <label class="control-label col-md-3"></label>
               <div class="col-md-8">
-                <input class="form-control col-md-8" type="text" id="selected_values" name="multiple_selected_values" disabled>
+                <input class="form-control col-md-8 active" type="text" id="selected_values" name="multiple_selected_values" disabled>
               </div>
             </div>
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('film.admin.table.name')</label>
               <div class="col-md-8">
-                <input class="form-control col-md-8" name="name" value="{{ $film->name }}" type="text" value="{{ old('name') }}" placeholder="@lang('film.admin.add.placeholder_name')">
+                <input class="form-control col-md-8 active" name="name" value="{{ $film->name }}" type="text" value="{{ old('name') }}" placeholder="@lang('film.admin.add.placeholder_name')">
               </div>
             </div>
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('film.admin.table.actor')</label>
               <div class="col-md-8">
-                <input class="form-control col-md-8" name="actor" value="{{ $film->actor }}" type="text" value="{{ old('actor') }}" placeholder="@lang('film.admin.add.placeholder_actor')">
+                <input class="form-control col-md-8 active" name="actor" value="{{ $film->actor }}" type="text" value="{{ old('actor') }}" placeholder="@lang('film.admin.add.placeholder_actor')">
               </div>
             </div>
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('film.admin.add.producer')</label>
               <div class="col-md-8">
-                <input class="form-control col-md-8" name="producer" value="{{ $film->producer }}" type="text" placeholder="@lang('film.admin.add.placeholder_producer')">
+                <input class="form-control col-md-8 active" name="producer" value="{{ $film->producer }}" type="text" placeholder="@lang('film.admin.add.placeholder_producer')">
               </div>
             </div>
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('film.admin.add.director')</label>
               <div class="col-md-8">
-                <input class="form-control col-md-8" name="director" value="{{ $film->director }}"
+                <input class="form-control col-md-8 active" name="director" value="{{ $film->director }}"
                  type="text" placeholder="@lang('film.admin.add.placeholder_director')">
               </div>
             </div>
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('film.admin.table.duration')</label>
               <div class="col-md-8">
-                <input class="form-control col-md-8" name="duration" value="{{ $film->duration }}" 
+                <input class="form-control col-md-8 active" name="duration" value="{{ $film->duration }}" 
                 type="text" placeholder="@lang('film.admin.add.placeholder_duration')">
               </div>
             </div>
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('film.admin.add.start_date')</label>
               <div class="col-md-8">
-                <input class="form-control col-md-8" name="start_date" type="date" value="{{ $film->start_date }}" value="{{ old('start_date') }}">
+                <input class="form-control col-md-8 active" name="start_date" type="date" value="{{ $film->start_date }}" value="{{ old('start_date') }}">
               </div>
             </div>
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('film.admin.add.end_date')</label>
               <div class="col-md-8">
-                <input class="form-control col-md-8" name="end_date" type="date" value="{{ $film->end_date }}" value="{{ old('end_date') }}">
+                <input class="form-control col-md-8 active" name="end_date" type="date" value="{{ $film->end_date }}" value="{{ old('end_date') }}">
               </div>
             </div>
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('film.admin.add.describe')</label>
               <div class="col-md-8">
-                <textarea class="form-control col-md-8" name="describe" type="text" id="describe" 
+                <textarea class="form-control col-md-8 active" name="describe" type="text" id="describe" 
                  placeholder="@lang('film.admin.add.placeholder_describe')">
                   {{ $film->describe }}
                 </textarea>
               </div>
             </div>
             <div class="form-group row">
-                <label class="control-label col-md-3">@lang('film.admin.table.image')</label>
+                <label class="control-label col-md-3 active">@lang('film.admin.table.image')</label>
                 <div class="col-md-8">
-                  <input class="form-control col-md-8" name="photos[]" type="file" 
+                  <input class="form-control col-md-8 active" name="photos[]" type="file" 
                   placeholder="@lang('film.admin.add.placeholder_image')" multiple>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-8">
-                  <input class="form-control col-md-8" name="del_image" hidden type="text" id="del_image">
+                  <input class="form-control col-md-8 active" name="del_image" hidden type="text" id="del_image">
                 </div>
             </div>
             <div class="form-group row">
@@ -117,7 +115,7 @@
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('film.admin.table.country')</label>
               <div class="col-md-8">
-                <input class="form-control col-md-8" name="country" value="{{ $film->country }}"
+                <input class="form-control col-md-8 active" name="country" value="{{ $film->country }}"
                  type="text" placeholder="@lang('film.admin.add.placeholder_country')">
               </div>
             </div>

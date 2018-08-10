@@ -72,7 +72,8 @@ class FilmController extends Controller
     {
         try {
             $categories = Category::all();
-            return view('admin.pages.films.edit', compact('film', 'categories'));
+            $categoryIds = $film->cateroryFilms->pluck('category_id')->toArray();
+            return view('admin.pages.films.edit', compact('film', 'categories', 'categoryIds'));
         } catch (Exception $e) {
             return redirect()->route('admin.films.index')
                              ->with('message', trans('film.admin.message.edit_fail'));
@@ -91,23 +92,18 @@ class FilmController extends Controller
     {
         try {
             $film->update($request->all());
-            
-            $images = Image::where('film_id', $film->id)->get();
             $name = $request->del_image;
-            $imagesDel = explode(",", $name);
-            $imagesDataDel = array();
-            for ($i = 0; $i < count($imagesDel)-1; $i++) {
-                array_push($imagesDataDel, (int) $imagesDel[$i]);
-            }
-
-            for ($i = 0; $i < count($images); $i++) {
-                for ($j = 0; $j < count($imagesDataDel); $j++) {
-                    if ($images[$i]->id == $imagesDataDel[$j]) {
-                        Image::where('id', $images[$i]->id)->delete();
-                    }
+            if ($name) {
+                $imagesDel = explode(",", $name);
+                $imagesDataDel = array();
+                for ($i = 0; $i < count($imagesDel)-1; $i++) {
+                    array_push($imagesDataDel, (int) $imagesDel[$i]);
+                }
+                for ($i = 0; $i < count($imagesDataDel) ; $i++) { 
+                    Image::where('id', $imagesDataDel[$i])->delete();
                 }
             }
-
+          
             if (request()->file('photos')) {
                 foreach (request()->file('photos') as $img) {
                     $imgName = time() . '-' . str_random(5) . '-' . $img->getClientOriginalName();
@@ -151,7 +147,6 @@ class FilmController extends Controller
                     $bookingDetail->delete();
                 }
                 $schedule->tickets()->delete();
-
                 $schedule->delete();
             }
             $film->delete();

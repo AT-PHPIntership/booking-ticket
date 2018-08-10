@@ -15,27 +15,7 @@ $( window ).on( "load", function() {
 
 $(document).ready(function(){
     $('button[type="submit"]').attr('disabled','disabled');
-    $('input[type="text"]').change(function(){
-        if($(this).val != ''){
-            $('button[type="submit"]').removeAttr('disabled');
-        }
-    });
-    $('input[type="date"]').change(function(){
-        if($(this).val != ''){
-            $('button[type="submit"]').removeAttr('disabled');
-        }
-    });
-    $('input[type=file]').change(function(){
-        if($(this).val != ''){
-            $('button[type="submit"]').removeAttr('disabled');
-        }
-    });
-    $('select').on('change', function() {
-        if($(this).val != ''){
-            $('button[type="submit"]').removeAttr('disabled');
-        }
-    });
-    $('#descibe').on('change', function() {
+    $('.active').change(function(){
         if($(this).val != ''){
             $('button[type="submit"]').removeAttr('disabled');
         }
