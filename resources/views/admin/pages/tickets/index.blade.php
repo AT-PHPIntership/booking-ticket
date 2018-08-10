@@ -27,11 +27,13 @@
               <td>{{ $ticket->film_name }}</td>
               <td>{{ $ticket->schedule_id }}</td>
               <td class="center">
-                <form class="col-md-4" method="POST" onclick="return confirm('@lang('category.admin.message.msg_del')')"
+                <form class="col-md-4" method="POST"
                   action="{{ route('admin.tickets.destroy', $ticket->id) }}">
                     @method('DELETE')
                     {{ csrf_field() }}
-                    <button class="btn btn-danger" type="submit"><i class="fa fa-trash-o  fa-fw" ></i></button>
+                    <button class="btn btn-danger" type="submit" data-confirm="{{ trans('ticket.admin.message.msg_del') }}">
+                      <i class="fa fa-trash-o  fa-fw" ></i>
+                    </button>
                 </form>
               </td>
               <td class="center"><i class="fa fa-pencil fa-fw"></i> 
@@ -45,4 +47,7 @@
   </div>
 </div>
 <div class="col-md-12">{{ $tickets->links()}}</div>
+@endsection
+@section('script')
+  <script src="js/admin/list_film.js"></script>
 @endsection
