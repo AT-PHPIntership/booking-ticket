@@ -16,6 +16,7 @@ return [
     'users' => 'Users',
     'schedules' => 'Schedules',
     'schedule' => 'Schedule',
+    'add_schedule' => 'Add Schedule',
     'list_schedule' => 'List Schedules',
     'list_category' => 'List Categories',
     'add_category' => 'Add Category',

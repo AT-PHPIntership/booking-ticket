@@ -24,7 +24,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('films', 'FilmController');
     Route::resource('schedules', 'ScheduleController');
     Route::resource('bookings', 'BookingController');
-
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Auth'], function() {
