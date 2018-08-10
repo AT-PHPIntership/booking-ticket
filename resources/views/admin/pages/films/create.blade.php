@@ -56,6 +56,18 @@
               </div>
             </div>
             <div class="form-group row">
+              <label class="control-label col-md-3">@lang('film.admin.add.start_date')</label>
+              <div class="col-md-8">
+                <input class="form-control col-md-8" name="start_date" type="date" value="{{ old('start_date') }}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="control-label col-md-3">@lang('film.admin.add.end_date')</label>
+              <div class="col-md-8">
+                <input class="form-control col-md-8" name="end_date" type="date" value="{{ old('end_date') }}">
+              </div>
+            </div>
+            <div class="form-group row">
               <label class="control-label col-md-3">@lang('film.admin.add.describe')</label>
               <div class="col-md-8">
                 <textarea class="form-control col-md-8" name="describe" type="text" value="{{ old('describe') }}" placeholder="@lang('film.admin.add.placeholder_describe')">
