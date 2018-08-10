@@ -22,9 +22,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('users', 'UserController');
     Route::resource('categories', 'CategoryController');
     Route::resource('films', 'FilmController');
+    Route::resource('tickets', 'TicketController');
     Route::resource('schedules', 'ScheduleController');
     Route::resource('bookings', 'BookingController');
-
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Auth'], function() {
