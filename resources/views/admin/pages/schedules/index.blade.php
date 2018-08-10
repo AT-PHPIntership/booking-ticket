@@ -31,10 +31,10 @@
               <form class="col-md-4" method="POST" action="{{ route('admin.schedules.destroy', ['id' => $schedule->id]) }}">
                   @method('DELETE')
                   @csrf
-                  <button class="btn btn-danger" onclick="return confirm('@lang('user.admin.message.del')')" type="submit"><i class="fa fa-trash-o  fa-fw" ></i></button>
+                  <button class="btn btn-danger" onclick="return confirm('@lang('schudule.admin.message.del')')" type="submit"><i class="fa fa-trash-o  fa-fw" ></i></button>
               </form>
             </td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{ route('admin.users.edit', $schedule->id) }}">@lang('user.admin.table.edit')</a></td>
+            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{ route('admin.schedules.edit', $schedule->id) }}">@lang('user.admin.table.edit')</a></td>
           </tr>
           @endforeach
         </tbody>

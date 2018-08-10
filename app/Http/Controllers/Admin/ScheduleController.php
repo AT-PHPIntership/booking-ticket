@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use DB;
 use Carbon\Carbon;
 use App\Models\Schedule;
+use App\Models\BookingDetail;
+use App\Models\Ticket;
 use App\Models\Film;
 use App\Models\Room;
 use App\Http\Requests\CreateScheduleRequest;
@@ -48,7 +50,7 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        $data['films'] = Film::where('end_date', '>=', now())->get();
+        $data['films'] = Film::where('end_date', '>=', now())->where('start_date', '<=', now())->get();
         $data['rooms'] = Room::all();
         return view('admin.pages.schedules.create', $data);
     }
@@ -94,6 +96,76 @@ class ScheduleController extends Controller
             ];
             Schedule::create($data);
             return redirect()->route('admin.schedules.index')->with('message', trans('schedule.admin.message.add'));
+        }
+    }
+
+    /**
+     * This function return view for edit
+     *
+     * @param Schedule $schedule schedule
+     *
+     * @return void
+     */
+    public function edit(Schedule $schedule)
+    {
+        $data['schedule'] = [
+          'id' => $schedule->id,
+          'start_time' => Carbon::parse($schedule->start_time)->format('d-m-Y H:i'),
+          'end_time' => Carbon::parse($schedule->end_time)->format('d-m-Y H:i'),
+          'room_id' => $schedule->room_id,
+          'film_id' => $schedule->film_id
+        ];
+        $data['films'] = Film::where('end_date', '>=', now())->where('start_date', '<=', now())->get();
+        $data['rooms'] = Room::all();
+
+        return view('admin.pages.schedules.edit', $data);
+    }
+
+    /**
+     * This function save data update
+     *
+     * @param CreateScheduleRequest $request  request
+     * @param Schedule              $schedule request
+     *
+     * @return void
+     */
+    public function update(CreateScheduleRequest $request, Schedule $schedule)
+    {
+            // dd($schedule);
+        $startTime = new Carbon($request->starttime);
+        $endTime = new Carbon($request->endtime);
+        $film = Film::find($request->film);
+
+        // if set time when film not release or out of date
+        if (($startTime < $film->start_date) || ($endTime > $film->end_date)) {
+            return redirect()->back()
+                        ->with('message', trans('schedule.admin.message.invalid_time_film') .
+                        $film->start_date . trans('schedule.admin.message.and') . $film->end_date);
+        } else {
+            // if set time between start or end time of another schedule
+            $schedules = Schedule::where('schedules.room_id', $request->room)
+                ->where('schedules.id', '<>', $schedule->id)->get();
+
+            foreach ($schedules as $schedule) {
+                $scheduleStartTime = $schedule->start_time;
+                $scheduleEndTime = $schedule->end_time;
+
+                if (($startTime >= $scheduleStartTime && $startTime <= $scheduleEndTime)
+                    || ($endTime >= $scheduleStartTime && $endTime <= $scheduleEndTime)
+                    ) {
+                        return redirect()->back()->with('message', trans('schedule.admin.message.room_invalid'));
+                }
+            }
+
+            $data = [
+                'film_id' => $request->film,
+                'room_id' => $request->room,
+                'start_time' => $startTime,
+                'end_time' => $endTime
+            ];
+            $schedule->update($data);
+
+            return redirect()->route('admin.schedules.index')->with('message', trans('schedule.admin.message.edit'));
         }
     }
 
