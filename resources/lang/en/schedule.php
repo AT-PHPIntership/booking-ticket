@@ -1,33 +1,34 @@
 <?php
 return [
     'admin' => [
-        'title' => 'Film',
+        'title' => 'Schedule',
         'list' => [
-            'title' => 'List Films'
+            'title' => 'List Schedules'
         ],
         'table' => [
             'id' => 'ID',
-            'name' => 'Name',
-            'actor' => 'Actor',
-            'duration' => 'Duration',
-            'image' => 'Image',
-            'country' => 'Country',
-            'delete' => 'Delete',
+            'name' => 'Film',
+            'room' => 'Room',
+            'status' => 'Status',
+            'booked' => 'Ticket Booked',
+            'start_time' => 'Start Time',
+            'end_time' => 'End Time',
+            'available' => 'Available',
+            'unavailable' => 'Unavailable',
             'edit' => 'Edit',
+            'delete' => 'Delete'
         ],
         'add' => [
-            'title' => 'Add Film',
+            'title' => 'Add Schedule',
             'producer' => 'Producer',
             'director' => 'Director',
             'describe' => 'Describe',
-            'start_date' => 'Start Date',
-            'end_date' => 'End Date',
             'submit' => 'Submit',
             'edit' => 'Edit',
             'reset' => 'Reset',
             'back' => 'Back',
             'cancel' => 'Cancel',
-            'placeholder_name' => 'Enter name film',
+            'placeholder_name' => 'Enter name Schedule',
             'placeholder_actor' => 'Enter name actor',
             'placeholder_producer' => 'Enter producer',
             'placeholder_director' => 'Enter director',
@@ -35,30 +36,26 @@ return [
             'placeholder_describe' => 'Enter describe',
             'placeholder_country' => 'Enter country',
             'message' => [
-                'require_name' => 'Please enter name film.',
-                'require_category' => 'Please enter name category.',
+                'require_name' => 'Please enter name Schedule.',
                 'require_actor' => 'Please enter actor.',
                 'require_producer' => 'Please enter producer.',
-                'require_start_date' => 'Please enter start date.',
-                'require_end_date' => 'Please enter end date.',
                 'require_director' => 'Please enter director.',
                 'require_duration' => 'Please enter duration.',
                 'require_describe' => 'Please enter describe.',
                 'require_country' => 'Please enter country.',
-                'require_image' => 'Please enter image.',
-                'unique_name' => 'Name film existed please enter another name.',
+                'unique_name' => 'Name Schedule existed please enter another name.',
             ],
         ],
         'edit' => [
-            'title' => 'Edit Film',
+            'title' => 'Edit Schedule',
         ],
         'message' => [
-            'add' => 'Create New Film Successfull!',
-            'add_fail' => 'Can not add New Film. Please check connect database!',
-            'edit' => 'Update Film Successfull!',
-            'del' => 'Delete Film Successfull!',
-            'del_fail' => 'Can not Delete Film. Please check connect database!',
-            'msg_del' => 'Do you want to delete this Film?',
+            'add' => 'Create New Schedule Successfull!',
+            'add_fail' => 'Can not add New Schedule. Please check connect database!',
+            'edit' => 'Update Schedule Successfull!',
+            'del' => 'Delete Schedule Successfull!',
+            'del_fail' => 'Can not Delete Schedule. Please check connect database!',
+            'msg_del' => 'Do you want to delete this Schedule?',
         ]
     ]
 ];

@@ -18,7 +18,9 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'full_name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => bcrypt('12345'), // secret
+        'address' => $faker->address,
+        'last_login_at' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'phone' => $faker->tollFreePhoneNumber(),
         'remember_token' => str_random(10),
-        //'role' => 1
     ];
 });
