@@ -13,4 +13,7 @@ return [
     'category' => [
         'limit_rows' => 5,
     ],
+    'booking' => [
+        'limit_rows' => 5,
+    ],
 ];

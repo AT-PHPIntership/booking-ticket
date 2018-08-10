@@ -18,6 +18,8 @@ return [
     'add_category' => 'Add Category',
     'list_film' => 'List Films',
     'add_film' => 'Add Film',
+    'bookings' => 'Bookings',
+    'list_booking' => 'List Bookings',
     'list_user' => 'List Users',
     'add_user' => 'Add User',
     'pages' => 'Pages',
