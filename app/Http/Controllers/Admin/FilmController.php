@@ -99,7 +99,7 @@ class FilmController extends Controller
                 for ($i = 0; $i < count($imagesDel)-1; $i++) {
                     array_push($imagesDataDel, (int) $imagesDel[$i]);
                 }
-                for ($i = 0; $i < count($imagesDataDel) ; $i++) { 
+                for ($i = 0; $i < count($imagesDataDel); $i++) {
                     Image::where('id', $imagesDataDel[$i])->delete();
                 }
             }
