@@ -104,7 +104,7 @@
                       <tr id="tr-{{$image->id}}">
                         <td style="width: 50%;"><img width="100px" height="75px" src="{{ $image->path }}" alt="Film Image" class="rounded"></td>
                         <td style="width: 25%;"><a style="font-size:24px" class="remove" id="remove-{{$image->id}}" >
-                          <i class="fa fa-remove" style="font-size:25px;color:red" onclick="return delImage('{{$image->id}}', '{{$image->id}}')"></i></a>
+                          <i class="fa fa-remove img-thumbnail" style="font-size:25px;color:red" data-id="{{$image->id}}" data-confirm="{{ trans('film.admin.message.msg_del') }}" ></i></a>
                         </td>
                       </tr>
                       @endforeach

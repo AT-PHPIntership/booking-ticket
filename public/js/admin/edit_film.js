@@ -20,13 +20,19 @@ $(document).ready(function(){
             $('button[type="submit"]').removeAttr('disabled');
         }
     });
+    tempImageIdsToDelete = [];
+    $('.img-thumbnail').on('click', function() {
+        if (confirm($(this).data('confirm'))) {
+        delImage($(this).attr('data-id'));
+        }  
+    });
 });
 
 var input = $( "#del_image" );
-function delImage(trId, ImageId) {
+function delImage(ImageId) {
     document.getElementById("remove-" + ImageId).addEventListener("click", function(){
         $('button[type="submit"]').removeAttr('disabled');
-        document.getElementById("tr-" + trId).remove();
-        input.val( input.val() + trId + "," );
+        document.getElementById("tr-" + ImageId).remove();
+        input.val( input.val() + ImageId + "," );
     });
 }
