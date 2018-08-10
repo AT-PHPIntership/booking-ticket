@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers\Admin;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
@@ -10,6 +11,7 @@ use App\Models\Ticket;
 use App\Models\Film;
 use App\Models\Room;
 use App\Http\Requests\CreateScheduleRequest;
+
 class ScheduleController extends Controller
 {
     /**
