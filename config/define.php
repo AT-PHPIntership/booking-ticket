@@ -16,4 +16,10 @@ return [
     'ticket' => [
         'limit_rows' => 5,
     ],
+    'schedule'=> [
+        'limit_rows' => 10
+    ],
+    'booking' => [
+        'limit_rows' => 5,
+    ],
 ];

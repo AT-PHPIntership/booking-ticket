@@ -12,6 +12,7 @@
             <th>@lang('ticket.admin.table.id')</th>
             <th>@lang('ticket.admin.table.type')</th>
             <th>@lang('ticket.admin.table.price')</th>
+            <th>@lang('ticket.admin.table.name_film')</th>
             <th>@lang('ticket.admin.table.schedule_id')</th>
             <th>@lang('category.admin.table.delete')</th>
             <th>@lang('category.admin.table.edit')</th>
@@ -23,6 +24,7 @@
               <td>{{ $ticket->id }}</td>
               <td>{{ $ticket->type }}</td>
               <td>{{ $ticket->price }}</td>
+              <td>{{ $ticket->film_name }}</td>
               <td>{{ $ticket->schedule_id }}</td>
               <td class="center">
                 <form class="col-md-4" method="POST" onclick="return confirm('@lang('category.admin.message.msg_del')')"

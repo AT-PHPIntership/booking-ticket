@@ -16,73 +16,23 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::orderBy('schedule_id', config('define.dir_desc'))->paginate(config('define.ticket.limit_rows'));
+        $getField = [
+            'tickets.id as id',
+            'tickets.type as type',
+            'tickets.price as price',
+            'tickets.schedule_id as schedule_id',
+            'films.name as film_name',
+        ];
+
+        $tickets = DB::table('tickets')
+                ->join('schedules', 'schedules.id', 'tickets.schedule_id')
+                ->join('films', 'schedules.film_id', 'films.id')
+                ->select($getField)
+                ->where('films.deleted_at', null)
+                ->where('schedules.deleted_at', null)
+                ->where('tickets.deleted_at', null)
+                ->orderBy('schedules.id', config('define.dir_desc'))
+                ->paginate(config('define.ticket.limit_rows'));
         return view('admin.pages.tickets.index', compact('tickets'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

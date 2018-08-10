@@ -9,6 +9,7 @@ return [
             'id' => 'ID',
             'type' => 'Type',
             'price' => 'Price',
+            'name_film' => 'Name Film',
             'schedule_id' => 'ID Schedule',
             'delete' => 'Delete',
             'edit' => 'Edit',
