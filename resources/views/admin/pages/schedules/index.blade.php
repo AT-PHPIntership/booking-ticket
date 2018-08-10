@@ -43,6 +43,7 @@
     </div>
   </div>
 </div>
+<div class="col-md-12">{{ $schedules->links()}}</div>
 @endsection
 @section('script')
   <script src="js/admin/list_film.js"></script>
