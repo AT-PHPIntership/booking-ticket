@@ -13,9 +13,9 @@ class RoomsTableSeeder extends Seeder
     {
         $rooms = array('Room 01', 'Room 02', 'Room 03', 'Room 04'
                         , 'Room 05', 'Room 06', 'Room 07');
-        for ($i = 0; $i < 10; $i++) { 
+        for ($i = 0; $i < count($rooms); $i++) { 
             DB::table('rooms')->insert([
-                'name' => $rooms[array_rand($rooms)]
+                'name' => $rooms[$i]
             ]);
         }
     }

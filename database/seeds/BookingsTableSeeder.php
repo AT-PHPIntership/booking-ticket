@@ -11,9 +11,10 @@ class BookingsTableSeeder extends Seeder
      */
     public function run()
     {
+        $users = App\Models\User::all();
         for ($i = 0; $i < 10; $i++) { 
             DB::table('bookings')->insert([
-                'user_id' => App\Models\User::all()->random()->id,
+                'user_id' => $users->random()->id,
             ]);
         }
     }
