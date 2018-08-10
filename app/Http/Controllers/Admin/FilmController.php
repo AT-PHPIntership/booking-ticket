@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\CategoryFilm;
 use App\Models\Film;
 use App\Models\Image;
+use App\Models\Ticket;
 use App\Http\Requests\CreateFilmRequest;
 use App\Http\Requests\EditFilmRequest;
 use DB;
@@ -140,9 +141,19 @@ class FilmController extends Controller
         try {
             $film->cateroryFilms()->delete();
             $film->images()->delete();
-            $film->schedules()->delete();
             $film->comments()->delete();
             $film->ratings()->delete();
+            foreach ($film->schedules() as $schedule) {
+                $bookingDetails = BookingDetail::with('ticket.schedule')
+                ->whereIn('ticket_id', $schedule->tickets()->get(['tickets.id']))
+                ->get();
+                foreach ($bookingDetails as $bookingDetail) {
+                    $bookingDetail->delete();
+                }
+                $schedule->tickets()->delete();
+
+                $schedule->delete();
+            }
             $film->delete();
             DB::commit();
             return redirect()->back()->with('message', trans('film.admin.message.del'));
