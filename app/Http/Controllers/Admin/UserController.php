@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use PHPUnit\Framework\MockObject\Stub\Exception;
-use Illuminate\Support\Facades\DB;
+use DB;
 
 class UserController extends Controller
 {

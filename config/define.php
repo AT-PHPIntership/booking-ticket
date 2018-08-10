@@ -15,5 +15,8 @@ return [
     ],
     'schedule'=> [
         'limit_rows' => 10
-    ]
+    ],
+    'booking' => [
+        'limit_rows' => 5,
+    ],
 ];
