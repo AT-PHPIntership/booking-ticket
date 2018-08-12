@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Models\Schedule;
 use App\Models\Film;
 use App\Models\Room;
+use App\Models\BookingDetail;
 use App\Http\Requests\CreateScheduleRequest;
 
 class ScheduleController extends Controller
@@ -74,6 +75,7 @@ class ScheduleController extends Controller
         } else {
             // if set time between start or end time of another schedule
             $schedules = Schedule::where('schedules.room_id', $request->room)->get();
+
             foreach ($schedules as $schedule) {
                 $scheduleStartTime = $schedule->start_time;
                 $scheduleEndTime = $schedule->end_time;
@@ -81,7 +83,8 @@ class ScheduleController extends Controller
                 if (($startTime >= $scheduleStartTime && $startTime <= $scheduleEndTime)
                     || ($endTime >= $scheduleStartTime && $endTime <= $scheduleEndTime)
                     ) {
-                        return redirect()->back()->with('message', trans('schedule.admin.message.room_invalid'));
+                        return redirect()->back()
+                            ->with('message', trans('schedule.admin.message.room_invalid'));
                 }
             }
 
@@ -93,7 +96,8 @@ class ScheduleController extends Controller
                 'end_time' => $endTime
             ];
             Schedule::create($data);
-            return redirect()->route('admin.schedules.index')->with('message', trans('schedule.admin.message.add'));
+            return redirect()->route('admin.schedules.index')
+                ->with('message', trans('schedule.admin.message.add'));
         }
     }
 
@@ -117,10 +121,10 @@ class ScheduleController extends Controller
             $schedule->tickets()->delete();
             $schedule->delete();
             DB::commit();
-            return redirect()->back()->with('message', 'Delete successfully');
+            return redirect()->back()->with('message', trans('schedule.admin.message.del'));
         } catch (Exception $ex) {
             DB::rollBack();
-            return redirect()->back()->with('message', 'Delete failed');
+            return redirect()->back()->with('message', trans('schedule.admin.message.del_fail'));
         }
     }
 }
