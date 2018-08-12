@@ -17,6 +17,9 @@ return [
         'add' => [
             'title' => 'Add Ticket',
             'type' => 'Ticket Type',
+            'price' => 'Ticket Price',
+            'choose_schedule' => 'Choose Schedule',
+            'choose_film' => 'Choose Film',
             'submit' => 'Submit',
             'reset' => 'Reset',
             'back' => 'Back',
