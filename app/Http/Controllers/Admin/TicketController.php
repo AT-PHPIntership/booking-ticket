@@ -74,15 +74,15 @@ class TicketController extends Controller
     {
         try {
             $ticket = new Ticket;
-            $ticket->type = $request->type;
-            $ticket->price = $request->price;
-            $ticket->schedule_id = $request->schedule_id;
-            $schedule = Schedule::findOrFail($ticket->schedule_id);
+            $schedule = Schedule::findOrFail($request->schedule_id);
             $tickets = $schedule->tickets->pluck('type')->toArray();
-            if (in_array($ticket->type, $tickets)) {
+            if (in_array($request->type, $tickets)) {
                 return redirect()->route('admin.tickets.create')
                                 ->with('message', trans('ticket.admin.message.valid_type'));
             }
+            $ticket->type = $request->type;
+            $ticket->price = $request->price;
+            $ticket->schedule_id = $request->schedule_id;
             $ticket->save();
             return redirect()->route('admin.tickets.index')
                              ->with('message', trans('ticket.admin.message.add'));
@@ -121,14 +121,14 @@ class TicketController extends Controller
     public function update(EditTicketRequest $request, Ticket $ticket)
     {
         try {
-            $ticket->type = $request->type;
-            $ticket->price = $request->price;
             $schedule = Schedule::findOrFail($ticket->schedule_id);
             $tickets = $schedule->tickets->pluck('type')->toArray();
-            if (in_array($ticket->type, $tickets)) {
+            if (in_array($request->type, $tickets)) {
                 return redirect()->route('admin.tickets.index')
                                 ->with('err', trans('ticket.admin.message.valid_type'));
             }
+            $ticket->type = $request->type;
+            $ticket->price = $request->price;
             $ticket->save();
             return redirect()->route('admin.tickets.index')
                              ->with('message', trans('ticket.admin.message.edit'));
