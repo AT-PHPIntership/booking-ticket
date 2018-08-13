@@ -56,6 +56,7 @@ return [
             'add' => 'Create New Film Successfull!',
             'add_fail' => 'Can not add New Film. Please check connect database!',
             'edit' => 'Update Film Successfull!',
+            'edit_fail' => 'Cannot update by film!',
             'del' => 'Delete Film Successfull!',
             'del_fail' => 'Can not Delete Film. Please check connect database!',
             'msg_del' => 'Do you want to delete this Film?',
