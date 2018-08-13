@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Browser\Pages\Admin\User;
 
 use Laravel\Dusk\Browser;
@@ -15,6 +16,7 @@ class ListUserPage extends Page
     {
         return '/admin/users';
     }
+  
     /**
      * Assert that the browser is on the page.
      *
@@ -36,6 +38,7 @@ class ListUserPage extends Page
             ->assertSee(trans('user.admin.table.delete'))
             ->assertSee(trans('user.admin.table.edit'));
     }
+  
     /**
      * Get the element shortcuts for the page.
      *
@@ -44,7 +47,8 @@ class ListUserPage extends Page
     public function elements()
     {
         return [
-            '@deleteUser' => 'tbody > tr:nth-child(2) > td:nth-child(9) > form > button'
+            '@deleteUser' => 'tbody > tr:nth-child(2) > td:nth-child(9) > form > button',
+            '@elementGetUser' => 'table.table tbody tr'
         ];
     }
 }

@@ -17,6 +17,7 @@ return [
     'schedules' => 'Schedules',
     'schedule' => 'Schedule',
     'list_schedule' => 'List Schedules',
+    'add_schedule' => 'Add Schedule',
     'list_category' => 'List Categories',
     'add_category' => 'Add Category',
     'list_film' => 'List Films',

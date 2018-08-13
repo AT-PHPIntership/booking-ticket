@@ -23,6 +23,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('categories', 'CategoryController');
     Route::resource('films', 'FilmController');
     Route::resource('tickets', 'TicketController');
+    Route::get('/tickets/film/{id}', 'TicketController@getFilm');
     Route::resource('schedules', 'ScheduleController');
     Route::resource('bookings', 'BookingController');
 });
