@@ -14,6 +14,7 @@ use App\Http\Requests\CreateScheduleRequest;
 
 class ScheduleController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -33,12 +34,12 @@ class ScheduleController extends Controller
             ->join('films', 'schedules.film_id', 'films.id')
             ->join('rooms', 'schedules.room_id', 'rooms.id')
             ->select($getField)
-            ->where('films.deleted_at', null)
             ->where('schedules.deleted_at', null)
             ->orderBy('schedules.id')
             ->paginate(config('define.schedule.limit_rows'));
         return view('admin.pages.schedules.index', compact('schedules'));
     }
+
     /**
      * This function return view when create schedule
      *
@@ -46,10 +47,14 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        $data['films'] = Film::where('end_date', '>=', now())->where('start_date', '<=', now())->get();
-        $data['rooms'] = Room::all();
-        return view('admin.pages.schedules.create', $data);
+        $films = Film::where('end_date', '>=', now())->where('start_date', '<=', now())->get();
+        $rooms = Room::all();
+        return view('admin.pages.schedules.create', [
+            'films' => $films,
+            'rooms' => $rooms
+        ]);
     }
+
     /**
      * This function store schedule
      *
@@ -93,6 +98,7 @@ class ScheduleController extends Controller
                 ->with('message', trans('schedule.admin.message.add'));
         }
     }
+
     /**
      * This function return view for edit
      *
@@ -102,17 +108,22 @@ class ScheduleController extends Controller
      */
     public function edit(Schedule $schedule)
     {
-        $data['schedule'] = [
-          'id' => $schedule->id,
-          'start_time' => Carbon::parse($schedule->start_time)->format('d-m-Y H:i'),
-          'end_time' => Carbon::parse($schedule->end_time)->format('d-m-Y H:i'),
-          'room_id' => $schedule->room_id,
-          'film_id' => $schedule->film_id
+        $schedule = [
+            'id' => $schedule->id,
+            'start_time' => Carbon::parse($schedule->start_time)->format('d-m-Y H:i'),
+            'end_time' => Carbon::parse($schedule->end_time)->format('d-m-Y H:i'),
+            'room_id' => $schedule->room_id,
+            'film_id' => $schedule->film_id
         ];
-        $data['films'] = Film::where('end_date', '>=', now())->where('start_date', '<=', now())->get();
-        $data['rooms'] = Room::all();
-        return view('admin.pages.schedules.edit', $data);
+        $films = Film::where('end_date', '>=', now())->where('start_date', '<=', now())->get();
+        $rooms = Room::all();
+        return view('admin.pages.schedules.edit', [
+            'schedule' => $schedule,
+            'films' => $films,
+            'rooms' => $rooms
+        ]);
     }
+
     /**
      * This function save data update
      *
@@ -158,6 +169,7 @@ class ScheduleController extends Controller
                 ->with('message', trans('schedule.admin.message.edit'));
         }
     }
+
     /**
      * Destroy schedule in admin dasboard
      *
