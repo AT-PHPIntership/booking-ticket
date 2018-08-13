@@ -20,15 +20,16 @@ return [
         ],
         'add' => [
             'title' => 'Add Schedule',
-            'producer' => 'Producer',
-            'director' => 'Director',
-            'describe' => 'Describe',
+            'choose_film' => 'Choose film',
+            'choose_room' => 'Choose room',
+            'start_time' => 'Start time',
+            'end_time' => 'End time',
             'submit' => 'Submit',
             'edit' => 'Edit',
             'reset' => 'Reset',
             'back' => 'Back',
             'cancel' => 'Cancel',
-            'placeholder_name' => 'Enter name Schedule',
+            'placeholder_time' => '25-06-1997 12:36',
             'placeholder_actor' => 'Enter name actor',
             'placeholder_producer' => 'Enter producer',
             'placeholder_director' => 'Enter director',
@@ -56,6 +57,9 @@ return [
             'del' => 'Delete Schedule Successfull!',
             'del_fail' => 'Can not Delete Schedule. Please check connect database!',
             'msg_del' => 'Do you want to delete this Schedule?',
+            'invalid_time_film' => 'Film available between: ',
+            'and' => ' and ',
+            'room_invalid' => 'Room is not available in this time',
         ]
     ]
 ];
