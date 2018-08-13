@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateFilmRequest extends FormRequest
+class EditFilmRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class CreateFilmRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255|unique:films,name',
+            'name' => 'required|max:255',
             'actor' => 'required|string',
             'producer' => 'required|max:100',
             'director' => 'required|string',
@@ -34,7 +34,6 @@ class CreateFilmRequest extends FormRequest
             'end_date' => 'date|after:start_date',
             'categories' => 'required',
             'categories.*' => 'required',
-            'photos' => 'required',
             'photos.*' => 'image|mimes:jpg,png,jpeg|max:2048',
             'country' => 'required|string'
         ];
@@ -50,15 +49,13 @@ class CreateFilmRequest extends FormRequest
         return [
             'name.required' => trans('film.admin.add.message.require_name'),
             'categories.required' => trans('film.admin.add.message.require_category'),
-            'name.unique' => trans('film.admin.add.message.unique_name'),
             'actor.required' => trans('film.admin.add.message.require_actor'),
             'producer.required' => trans('film.admin.add.message.require_producer'),
-            'start_date.required' => trans('film.admin.add.message.require_start_date'),
-            'end_date.required' => trans('film.admin.add.message.require_end_date'),
             'director.required' => trans('film.admin.add.message.require_director'),
             'duration.required' => trans('film.admin.add.message.require_duration'),
             'describe.required' => trans('film.admin.add.message.require_describe'),
-            'photos.required' => trans('film.admin.add.message.require_image'),
+            'start_date.required' => trans('film.admin.add.message.require_start_date'),
+            'end_date.required' => trans('film.admin.add.message.require_end_date'),
             'photos.max' => trans('film.admin.add.message.size_image'),
             'country.required' => trans('film.admin.add.message.require_country')
         ];
