@@ -28,7 +28,7 @@
 
 (function () {
 	var selText;
-    $('select').on('change', function() {
+    $('#multiple_dropdown_select').on('change', function() {
       selText = "";
       $("#multiple_dropdown_select option:selected").each(function () {
         var $this = $(this);   
