@@ -17,6 +17,7 @@ return [
         'add' => [
             'title' => 'Add Ticket',
             'type' => 'Ticket Type',
+            'choose' => 'Please choose ID Schedule',
             'submit' => 'Submit',
             'reset' => 'Reset',
             'back' => 'Back',
@@ -36,6 +37,7 @@ return [
         'message' => [
             'add' => 'Create New Ticket Successfull!',
             'add_fail' => 'Can not add New Ticket. Please check connect database!',
+            'valid_type' => 'The type Ticket existed into schedule ID',
             'edit' => 'Update Ticket Successfull!',
             'edit_fail' => 'Can not edit Ticket by this Child!',
             'del' => 'Delete Ticket Successfull!',

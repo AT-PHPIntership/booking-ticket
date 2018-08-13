@@ -6,6 +6,11 @@
     <h3 class="tile-title">@lang('ticket.admin.list.title')</h3>
     <div class="table-responsive">
       @include('admin.layout.message')
+      @if (session('err'))
+        <div class="alert alert-danger">
+          {{ session('err') }}
+        </div>
+      @endif
       <table class="table">
         <thead>
           <tr>
