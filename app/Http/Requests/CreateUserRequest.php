@@ -46,7 +46,7 @@ class CreateUserRequest extends FormRequest
             'password.min' => trans('user.admin.add.message.max_password'),
             'email.unique' => trans('user.admin.add.message.unique_email'),
             'phone.regex' => trans('user.admin.add.message.add_invalid_phone'),
-            'address' => trans('user.admin.add.message.require_address')
+            'address.required' => trans('user.admin.add.message.require_address')
         ];
     }
 }

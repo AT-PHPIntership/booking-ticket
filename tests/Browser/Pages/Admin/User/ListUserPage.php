@@ -26,17 +26,17 @@ class ListUserPage extends Page
     public function assert(Browser $browser)
     {
         $browser->assertPathIs($this->url())
-                ->assertSee(trans('user.admin.list.title'))
-                ->assertSee(trans('user.admin.table.id'))
-                ->assertSee(trans('user.admin.table.name'))
-                ->assertSee(trans('user.admin.table.email'))
-                ->assertSee(trans('user.admin.table.phone'))
-                ->assertSee(trans('user.admin.table.address'))
-                ->assertSee(trans('user.admin.table.is_active'))
-                ->assertSee(trans('user.admin.table.last_login'))
-                ->assertSee(trans('user.admin.table.role'))
-                ->assertSee(trans('user.admin.table.delete'))
-                ->assertSee(trans('user.admin.table.edit'));
+            ->assertSee(trans('user.admin.list.title'))
+            ->assertSee(trans('user.admin.table.id'))
+            ->assertSee(trans('user.admin.table.name'))
+            ->assertSee(trans('user.admin.table.email'))
+            ->assertSee(trans('user.admin.table.phone'))
+            ->assertSee(trans('user.admin.table.address'))
+            ->assertSee(trans('user.admin.table.is_active'))
+            ->assertSee(trans('user.admin.table.last_login'))
+            ->assertSee(trans('user.admin.table.role'))
+            ->assertSee(trans('user.admin.table.delete'))
+            ->assertSee(trans('user.admin.table.edit'));
     }
 
     /**
@@ -47,7 +47,8 @@ class ListUserPage extends Page
     public function elements()
     {
         return [
-            '@elementGetUser' => 'table.table tbody tr',
+            '@deleteUser' => 'tbody > tr:nth-child(2) > td:nth-child(9) > form > button',
+            '@elementGetUser' => 'table.table tbody tr'
         ];
     }
 }
