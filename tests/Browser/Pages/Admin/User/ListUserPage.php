@@ -16,7 +16,7 @@ class ListUserPage extends Page
     {
         return '/admin/users';
     }
-  
+
     /**
      * Assert that the browser is on the page.
      *
@@ -38,7 +38,7 @@ class ListUserPage extends Page
             ->assertSee(trans('user.admin.table.delete'))
             ->assertSee(trans('user.admin.table.edit'));
     }
-  
+
     /**
      * Get the element shortcuts for the page.
      *
