@@ -48,15 +48,8 @@
      <div class="header_bottom">
         <div class="header_bottom_left">
            <div class="categories">
-              <ul>
-                 <h3>@lang('user/layout.categories')</h3>
-                 <li><a href="#">All</a></li>
-                 <li><a href="#">Hindi</a></li>
-                 <li><a href="#">Telugu</a></li>
-                 <li><a href="#">English</a></li>
-                 <li><a href="#">Tamil</a></li>
-                 <li><a href="#">Malayalam</a></li>
-                 <li><a href="#">Kannada</a></li>
+              <h3>@lang('user/layout.categories')</h3>
+              <ul class="navbar-nav">
               </ul>
            </div>
         </div>
@@ -79,3 +72,4 @@
      </div>
   </div>
 </div>
+<script src="js/public/category.js"></script>
