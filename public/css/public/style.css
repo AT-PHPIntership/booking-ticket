@@ -819,6 +819,23 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-appearance: none;
 }
+.contact-form .textbox {
+	padding: 8px;
+	display: block;
+	width:98%;
+	background:none;
+	border:1px solid #CACACA;
+	outline: none;
+	color: #464646;
+	font-size:1em;
+	font-weight:bold;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-appearance: none;
+}
+
+.back-links h4 {
+	color: red;
+}
 .contact-form textarea {
 	resize: none;
 	height:120px;
