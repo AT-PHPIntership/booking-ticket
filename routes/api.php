@@ -23,3 +23,7 @@ Route::group(['as' => 'api.','namespace' => 'Api\User'], function () {
         Route::post('/logout', 'LoginController@logout');
     });
 });
+
+Route::group(['as' => 'api.', 'namespace' => 'Api\User'], function () {
+    Route::apiResource('categories', 'CategoryController');
+});
