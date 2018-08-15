@@ -14,10 +14,10 @@
          <div class="col span_2_of_3">
             <div class="contact-form">
                <h2>@lang('user/login.login_form')</h2>
-               <form method="post" action="contact-post.html">
+               <form novalidate>
                   <div>
                      <span><label>@lang('user/login.form.email')</label></span>
-                     <span><input name="email" type="text" class="textbox" placeholder="@lang('user/login.form.email_hint')" required=" "></span>
+                     <span><input name="email" type="email" class="textbox" placeholder="@lang('user/login.form.email_hint')" required=" "></span>
                   </div>
                   <div>
                      <span><label>@lang('user/login.form.password')</label></span>
@@ -55,4 +55,7 @@
       </div>
    </div>
 </div>
+@endsection
+@section('script')
+  <script src="js/public/login.js"></script>
 @endsection
