@@ -14,6 +14,7 @@
               <li><a href="{{ route('user.register') }}">@lang('user/layout.register')</a></li>
               <li><a href="#">@lang('user/layout.checkout')</a></li>
               <li><a href="#">@lang('user/layout.account')</a></li>
+              <li id="logout"><a>@lang('user/layout.logout')</a></li>
            </ul>
         </div>
         <div class="clear"></div>
@@ -48,3 +49,6 @@
      @yield('slide')
   </div>
 </div>
+@section('script')
+  <script src="js/public/logout.js"></script>
+@endsection

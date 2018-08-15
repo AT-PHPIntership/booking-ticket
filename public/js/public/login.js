@@ -1,11 +1,11 @@
 $(document).ready(function () {
     if (localStorage.getItem('login-token')) {
-        window.location.href = 'https://' + window.location.hostname;
+        window.location.href = 'http://' + window.location.hostname;
     }
     $(document).on('click', '.mybutton', function (event) {
         event.preventDefault();
         $.ajax({
-            url: "http://cinema.com/api/login",
+            url: "/api/login",
             type: "post",
             headers: {
                 'Accept': 'application/json',
