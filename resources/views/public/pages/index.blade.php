@@ -1,8 +1,9 @@
 @extends('public.layout.master')
 @section('title', __('user/title.title.index'))
+@section('slide')
+    @include('public.layout.header')
+@endsection
 @section('content')
-@include('public.layout.header')
-<div class="main">
    <div class="wrap">
       <div class="content">
          <div class="content_top">
@@ -151,5 +152,4 @@
          </div>
       </div>
    </div>
-</div>
 @endsection

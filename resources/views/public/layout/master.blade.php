@@ -9,6 +9,7 @@
       <link href="css/public/slider.css" rel="stylesheet" type="text/css" media="all"/>
    </head>
    <body>
+      @include('public.layout.top')
       <div class="main">
          @yield('content')
       </div>

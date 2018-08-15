@@ -45,5 +45,6 @@
         </div>
         <div class="clear"></div>
      </div>
+     @yield('slide')
   </div>
 </div>

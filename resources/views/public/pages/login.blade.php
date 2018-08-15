@@ -1,6 +1,5 @@
 @extends('public.layout.master')
 @section('title', __('user/title.title.login'))
-@include('public.layout.top')
 @section('content')
 <div class="wrap">
    <div class="content">
