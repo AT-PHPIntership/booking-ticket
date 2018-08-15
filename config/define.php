@@ -3,6 +3,9 @@ return [
     'dir_asc' => 'ASC',
     'dir_desc' => 'DESC',
     'limit_rows' => 6,
+    'login' => [
+        'unauthorised' => 'Authorization failed'
+    ],
     'film' => [
         'limit_rows' => 5,
         'upload_image_url' => 'images/upload/',
