@@ -11,8 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['as' => 'user.', 'namespace' => 'Home'], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/login', 'LoginController@showLoginForm')->name('login');
+    Route::get('/register', 'RegisterController@index')->name('register');
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => 'adminLogin'], function() {
