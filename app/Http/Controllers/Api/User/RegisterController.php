@@ -15,7 +15,7 @@ class RegisterController extends ApiController
      * Register user function
      *
      * @param RegisterUserRequest $request request
-     * 
+     *
      * @return void
      */
     public function register(RegisterUserRequest $request)
@@ -27,7 +27,7 @@ class RegisterController extends ApiController
         if ($user) {
             $data['user'] = User::find($user->id);
             $data['token'] = $user->createToken('token')->accessToken;
-            return $this->successResponse($data, Response::HTTP_OK); 
+            return $this->successResponse($data, Response::HTTP_OK);
         }
 
         return $this->errorResponse(config('define.register.fail'), Response::HTTP_UNAUTHORIZED);
