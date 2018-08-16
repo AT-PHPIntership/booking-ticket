@@ -6,6 +6,9 @@ return [
     'login' => [
         'unauthorised' => 'Unauthorised'
     ],
+    'register' => [
+        'fail' => 'Register failed'
+    ],
     'film' => [
         'limit_rows' => 5,
         'upload_image_url' => 'images/upload/',
