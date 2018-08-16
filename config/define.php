@@ -4,7 +4,7 @@ return [
     'dir_desc' => 'DESC',
     'limit_rows' => 6,
     'login' => [
-        'unauthorised' => 'Authorization failed'
+        'unauthorised' => 'Unauthorised'
     ],
     'film' => [
         'limit_rows' => 5,
