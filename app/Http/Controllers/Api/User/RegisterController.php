@@ -9,6 +9,7 @@ use App\Http\Requests\User\RegisterUserRequest;
 use App\Models\User;
 use App\Http\Controllers\Api\ApiController;
 use App\Jobs\SendMailJob;
+use PHPUnit\Framework\MockObject\Stub\Exception;
 
 class RegisterController extends ApiController
 {
