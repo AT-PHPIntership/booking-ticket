@@ -27,17 +27,15 @@ class RegisterController extends ApiController
             'password' => $user['password']
         ];
         $user['password'] = bcrypt($user['password']);
-        $user = User::create($user);
 
-        if ($user) {
+        try {
+            $user = User::create($user);
             $this->dispatch(new SendMailJob('admin.pages.users.mail', $user['email'], $datas));
             $data['user'] = User::find($user->id);
             $data['token'] = $user->createToken('token')->accessToken;
-            
             return $this->successResponse($data, Response::HTTP_OK);
+        } catch (Exception $ex) {
+            return $this->errorResponse(config('define.register.fail'), Response::HTTP_UNAUTHORIZED);
         }
-
-
-        return $this->errorResponse(config('define.register.fail'), Response::HTTP_UNAUTHORIZED);
     }
 }
