@@ -26,7 +26,6 @@ class LoginController extends ApiController
             $data['token'] =  $user->createToken('token')->accessToken;
             return $this->successResponse($data, Response::HTTP_OK);
         }
-        
         return $this->errorResponse(config('define.login.unauthorised'), Response::HTTP_UNAUTHORIZED);
     }
 
