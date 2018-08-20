@@ -182,7 +182,8 @@ Get list all feature films
                         ]
                     }
                 ]
-            },
-         "code": 200
+            }
+        }
+    "code": 200
 }
 ```
