@@ -112,48 +112,48 @@ Get list all feature films
 {
     "result": {
         "paginator": {
-            "current_page": 2,
+            "current_page": 1,
             "first_page_url": "http://cinema.com/api/feature/films?page=1",
-            "from": 6,
+            "from": 1,
             "last_page": 2,
             "last_page_url": "http://cinema.com/api/feature/films?page=2",
-            "next_page_url": null,
+            "next_page_url": "http://cinema.com/api/feature/films?page=2",
             "path": "http://cinema.com/api/feature/films",
             "per_page": 5,
-            "prev_page_url": "http://cinema.com/api/feature/films?page=1",
-            "to": 8,
+            "prev_page_url": null,
+            "to": 5,
             "total": 8
         },
         "data": [
             {
-                "id": 8,
-                "name": "Tabitha Parisian",
-                "actor": "Dr. Jakob Jacobi",
-                "producer": "Lauriane Littel",
-                "director": "Myrtle Reilly",
-                "duration": 153,
-                "describe": "Asperiores veritatis delectus vel ipsum voluptas ipsam aperiam nulla. Sed non impedit quibusdam sapiente. Aut quos facilis quod ad placeat. Ex illo ex quia quia consectetur.",
-                "country": "Hong Kong",
-                "start_date": "2018-08-15",
-                "end_date": "2018-08-25",
+                "id": 1,
+                "name": "Angeline Bernhard IV",
+                "actor": "Myron Swift",
+                "producer": "Gerald Marquardt",
+                "director": "Osborne Hodkiewicz DVM",
+                "duration": 141,
+                "describe": "Ut voluptate iure nesciunt rerum sed omnis non. Dicta et blanditiis est esse. Rerum optio earum incidunt aperiam sed recusandae. Non quidem numquam hic minus.",
+                "country": "New Zealand",
+                "start_date": "2018-08-16",
+                "end_date": "2018-08-31",
                 "created_at": "2018-08-13 08:28:47",
-                "updated_at": "2018-08-17 02:54:06",
+                "updated_at": "2018-08-17 02:56:56",
                 "deleted_at": null,
-                "image_path": "images/upload/74.jpg",
+                "image_path": "images/upload/778.jpg",
                 "price_formated": "60,000",
                 "images": [
                     {
-                        "id": 15,
-                        "film_id": 8,
-                        "path": "images/upload/74.jpg",
+                        "id": 1,
+                        "film_id": 1,
+                        "path": "images/upload/778.jpg",
                         "created_at": "2018-08-13 08:28:47",
                         "updated_at": "2018-08-13 08:28:47",
                         "deleted_at": null
                     },
                     {
-                        "id": 16,
-                        "film_id": 8,
-                        "path": "images/upload/59.jpg",
+                        "id": 2,
+                        "film_id": 1,
+                        "path": "images/upload/128.jpg",
                         "created_at": "2018-08-13 08:28:47",
                         "updated_at": "2018-08-13 08:28:47",
                         "deleted_at": null
@@ -161,29 +161,30 @@ Get list all feature films
                 ],
                 "schedules": [
                     {
-                        "id": 7,
-                        "film_id": 8,
-                        "room_id": 1,
-                        "start_time": "2018-08-15 17:52:15",
-                        "end_time": "2018-08-15 19:52:15",
+                        "id": 1,
+                        "film_id": 1,
+                        "room_id": 4,
+                        "start_time": "2018-08-21 20:06:20",
+                        "end_time": "2018-08-21 22:06:20",
                         "created_at": "2018-08-13 08:28:48",
                         "updated_at": "2018-08-13 08:28:48",
                         "deleted_at": null,
                         "tickets": [
                             {
-                                "id": 15,
-                                "schedule_id": 7,
+                                "id": 4,
+                                "schedule_id": 1,
                                 "price": 60000,
                                 "type": "Adult",
-                                "created_at": "2018-08-17 07:12:00",
-                                "updated_at": "2018-08-17 07:12:00",
+                                "created_at": null,
+                                "updated_at": null,
                                 "deleted_at": null
                             }
                         ]
                     }
                 ]
-            }
-        }
+            },
+        ]
+    },
     "code": 200
 }
 ```
