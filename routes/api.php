@@ -20,8 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['as' => 'api.','namespace' => 'Api\User'], function () {
     Route::post('/login', 'LoginController@login');
     Route::apiResource('categories', 'CategoryController');
-    Route::apiResource('films', 'FilmController');
     Route::get('/feature/films', 'FilmController@feature')->name('films.feature');
+    Route::get('/new/films', 'FilmController@new')->name('films.new');
     Route::group(['middleware' => 'auth:api'], function () {
         Route::post('/logout', 'LoginController@logout');
     });

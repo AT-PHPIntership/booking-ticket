@@ -18,20 +18,22 @@ class FilmController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function new()
     {
         try {
-            $films = Film::with(['images', 'schedules.tickets' => function ($query) { 
+            $perPage = isset($request->perpage) ? $request->perpage : config('define.film.limit_rows');
+            $films = Film::with(['images', 'schedules.tickets' => function ($query) {
                 $query->orderBy('price', config('define.dir_desc'));
-            }])->whereIn('id', function($query) {
+            }])->whereIn('id', function ($query) {
                 $query->select('film_id')
                       ->from('schedules');
-            })->orderBy('id', config('define.dir_desc'))->take(config('define.film.limit_rows'))->get();            
-    
+            })->orderBy('id', config('define.dir_desc'))->paginate($perPage);
+            
             foreach ($films as $film) {
                 $film['image_path'] = empty($film['images'][0]) ? ' ' : $film['images'][0]['path'];
                 $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? $this->TICKET_PRICE : number_format($film['schedules'][0]['tickets'][0]['price']);
             }
+            $films = $this->formatPaginate($films);
             return $this->showAll($films, Response::HTTP_OK);
         } catch (\Exception $e) {
             return $this->errorResponse($e->getMessage(), Response::HTTP_NO_CONTENT);
@@ -46,17 +48,19 @@ class FilmController extends ApiController
     public function feature()
     {
         try {
-            $films = Film::with(['images', 'schedules.tickets' => function ($query) { 
+            $perPage = isset($request->perpage) ? $request->perpage : config('define.film.limit_rows');
+            $films = Film::with(['images', 'schedules.tickets' => function ($query) {
                 $query->orderBy('price', config('define.dir_desc'));
-            }])->whereIn('id', function($query) {
+            }])->whereIn('id', function ($query) {
                 $query->select('film_id')
                       ->from('schedules');
-            })->take(config('define.film.limit_rows'))->get();            
+            })->paginate($perPage);
     
             foreach ($films as $film) {
                 $film['image_path'] = empty($film['images'][0]) ? ' ' : $film['images'][0]['path'];
                 $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? $this->TICKET_PRICE : number_format($film['schedules'][0]['tickets'][0]['price']);
             }
+            $films = $this->formatPaginate($films);
             return $this->showAll($films, Response::HTTP_OK);
         } catch (\Exception $e) {
             return $this->errorResponse($e->getMessage(), Response::HTTP_NO_CONTENT);
