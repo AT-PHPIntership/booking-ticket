@@ -15,10 +15,12 @@ class ListFilmTest extends DuskTestCase
     use DatabaseMigrations;
     private const CREATED_FILM = 17;
     private const CREATED_IMAGE = 2;
+
     public function setUp()
     {
         parent::setUp();
     }
+    
     /**
      * Test data empty.
      *
