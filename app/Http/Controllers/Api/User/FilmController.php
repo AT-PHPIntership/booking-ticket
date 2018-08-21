@@ -21,13 +21,12 @@ class FilmController extends ApiController
     public function new()
     {
         try {
-            $perPage = isset($request->perpage) ? $request->perpage : config('define.film.limit_rows');
             $films = Film::with(['images', 'schedules.tickets' => function ($query) {
                 $query->orderBy('price', config('define.dir_desc'));
             }])->whereIn('id', function ($query) {
                 $query->select('film_id')
                       ->from('schedules');
-            })->orderBy('id', config('define.dir_desc'))->paginate($perPage);
+            })->orderBy('id', config('define.dir_desc'))->paginate(config('define.film.limit_rows'));
             
             foreach ($films as $film) {
                 $film['image_path'] = empty($film['images'][0]) ? ' ' : $film['images'][0]['path'];
@@ -48,13 +47,12 @@ class FilmController extends ApiController
     public function feature()
     {
         try {
-            $perPage = isset($request->perpage) ? $request->perpage : config('define.film.limit_rows');
             $films = Film::with(['images', 'schedules.tickets' => function ($query) {
                 $query->orderBy('price', config('define.dir_desc'));
             }])->whereIn('id', function ($query) {
                 $query->select('film_id')
                       ->from('schedules');
-            })->paginate($perPage);
+            })->paginate(config('define.film.limit_rows'));
     
             foreach ($films as $film) {
                 $film['image_path'] = empty($film['images'][0]) ? ' ' : $film['images'][0]['path'];
