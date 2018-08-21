@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use App\Models\Film;
 use App\Models\Image;
 use App\Models\Schedule;
+use App\Models\Category;
 
 class FilmController extends ApiController
 {
@@ -21,13 +22,12 @@ class FilmController extends ApiController
     public function new()
     {
         try {
-            $perPage = isset($request->perpage) ? $request->perpage : config('define.film.limit_rows');
             $films = Film::with(['images', 'schedules.tickets' => function ($query) {
                 $query->orderBy('price', config('define.dir_desc'));
             }])->whereIn('id', function ($query) {
                 $query->select('film_id')
                       ->from('schedules');
-            })->orderBy('id', config('define.dir_desc'))->paginate($perPage);
+            })->orderBy('id', config('define.dir_desc'))->paginate(config('define.film.limit_rows'));
             
             foreach ($films as $film) {
                 $film['image_path'] = empty($film['images'][0]) ? ' ' : $film['images'][0]['path'];
@@ -48,13 +48,12 @@ class FilmController extends ApiController
     public function feature()
     {
         try {
-            $perPage = isset($request->perpage) ? $request->perpage : config('define.film.limit_rows');
             $films = Film::with(['images', 'schedules.tickets' => function ($query) {
                 $query->orderBy('price', config('define.dir_desc'));
             }])->whereIn('id', function ($query) {
                 $query->select('film_id')
                       ->from('schedules');
-            })->paginate($perPage);
+            })->paginate(config('define.film.limit_rows'));
     
             foreach ($films as $film) {
                 $film['image_path'] = empty($film['images'][0]) ? ' ' : $film['images'][0]['path'];
@@ -65,5 +64,29 @@ class FilmController extends ApiController
         } catch (\Exception $e) {
             return $this->errorResponse($e->getMessage(), Response::HTTP_NO_CONTENT);
         }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param \App\Models\Film $film show detail film
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Film $film)
+    {
+        $categories = Category::all();
+        $categoryIds = $film->cateroryFilms->pluck('category_id')->toArray();
+        $categoryFilm = [];
+        foreach ($categories as $category) {
+            if (in_array($category->id, $categoryIds)) {
+                array_push($categoryFilm, $category->name);
+            }
+        }
+        $film['categories'] = implode( ", ", $categoryFilm );
+        $film['image_path'] = empty($film['images'][0]) ? ' ' : $film['images'][0]['path'];
+        $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? number_format(self::TICKET_PRICE) : number_format($film['schedules'][0]['tickets'][0]['price']);
+        $film->images;
+        return $this->showOne($film, Response::HTTP_OK);
     }
 }
