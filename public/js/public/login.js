@@ -12,7 +12,7 @@ $(document).ready(function () {
             },
             data: {
                 email: $('input[type="email"]').val(),
-                password: $('input[type="password"]').val()
+                password: $('input[type="password"]').val() 
             },
             success: function (response) {
                 console.log(response.result.token);
