@@ -31,7 +31,7 @@ class FilmController extends ApiController
             
             foreach ($films as $film) {
                 $film['image_path'] = empty($film['images'][0]) ? ' ' : $film['images'][0]['path'];
-                $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? $this->TICKET_PRICE : number_format($film['schedules'][0]['tickets'][0]['price']);
+                $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? number_format(self::TICKET_PRICE) : number_format($film['schedules'][0]['tickets'][0]['price']);
             }
             $films = $this->formatPaginate($films);
             return $this->showAll($films, Response::HTTP_OK);
@@ -57,7 +57,7 @@ class FilmController extends ApiController
     
             foreach ($films as $film) {
                 $film['image_path'] = empty($film['images'][0]) ? ' ' : $film['images'][0]['path'];
-                $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? $this->TICKET_PRICE : number_format($film['schedules'][0]['tickets'][0]['price']);
+                $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? number_format(self::TICKET_PRICE) : number_format($film['schedules'][0]['tickets'][0]['price']);
             }
             $films = $this->formatPaginate($films);
             return $this->showAll($films, Response::HTTP_OK);
@@ -88,5 +88,24 @@ class FilmController extends ApiController
         $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? number_format(self::TICKET_PRICE) : number_format($film['schedules'][0]['tickets'][0]['price']);
         $film->images;
         return $this->showOne($film, Response::HTTP_OK);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $films = Film::filter($request)->with(['images', 'schedules.tickets' => function ($query) {
+            $query->orderBy('price', config('define.dir_desc'));
+        }])->paginate(config('define.film.limit_rows'));
+
+        foreach ($films as $film) {
+            $film['image_path'] = empty($film['images'][0]) ? ' ' : $film['images'][0]['path'];
+            $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? number_format(self::TICKET_PRICE) : number_format($film['schedules'][0]['tickets'][0]['price']);
+        }
+        $films = $this->formatPaginate($films);
+        return $this->showAll($films, Response::HTTP_OK);
     }
 }
