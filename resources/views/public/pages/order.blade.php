@@ -218,7 +218,7 @@
           <div class="container back-and-forward">
             <div class="row">
               <div class="col-xs-12">
-                <a onclick="Continue();" id="btnNext" class="pull-right btn-continue">Tiếp tục</a>
+                <a id="btnNext" class="pull-right btn-continue">Tiếp tục</a>
               </div>
             </div>
           </div>

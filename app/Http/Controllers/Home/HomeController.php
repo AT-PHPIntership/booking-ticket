@@ -14,7 +14,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //return view('public.pages.index');
-        return view('public.pages.order');
+        return view('public.pages.index');
     }
 }

@@ -1,28 +1,38 @@
 $(document).ready(function() {
+    var idSchedule;
+
+    var array = [1, 7, 18];
+    for (var i = 0; i < array.length; i++) {
+        bookedSeat(array[i]);
+    }
+
     $('#quantity').on('change', function() {
       $("#quantity option:selected").each(function () {
+        idSchedule = $(this).val();
         changeSeatTotal();
       });
     });
 
     $('.childitem').on('click', function() {
-        $("#quantity option:selected").each(function () {
-            var idSchedule = $(this).val();
-            if (idSchedule == 0) {
-                alert('Bạn vui lòng chọn ghế');
-            } else {
-                selectSeat($(this).attr('data-id'));
-            }
-        });
-       
+        var seatID = $(this).attr('data-id');
+        if (idSchedule && !array.includes(seatID)) {
+            selectSeat(seatID);
+            return;
+        }
+        alert('Bạn vui lòng chọn số lượng ghế');
+    });
+
+    $('#btnNext').on('click', function() {
+        if (idSchedule) {
+            Continue();
+            return;
+        }
+        alert('Bạn vui lòng chọn số lượng ghế');
     });
 });
 
 function startTimer(duration, display) {
-    var start = Date.now(),
-        diff,
-        minutes,
-        seconds;
+    var start = Date.now(), diff, minutes, seconds;
     function timer() {
         diff = duration - (((Date.now() - start) / 1000) | 0);
         minutes = (diff / 60) | 0;
@@ -42,9 +52,12 @@ function startTimer(duration, display) {
 }
 
 window.onload = function () {
-    var fiveMinutes = 60 * 10,
-        display = document.querySelector('#time');
-    startTimer(fiveMinutes, display);
+    var tenMinutes = 60 * 10,
+    display = document.querySelector('#time');
+    setTimeout(function(){
+        alert('aaa');
+    }, 600000);
+    startTimer(tenMinutes, display);
 };
 
 function changeSeatTotal() {
@@ -81,6 +94,13 @@ function selectSeat(seatID) {
     }
 }
 
+function bookedSeat(seatID) {
+    var seat = document.getElementById(seatID).className;
+    if (seat == "item-seat childitem") {
+        document.getElementById(seatID).className = "item-seat-booked childitem";
+    }
+}
+
 function GetListSeat() {
     var  seats = document.getElementById('sodoghe').getElementsByClassName('childitem');  
     var listSeat = "";
@@ -94,10 +114,8 @@ function GetListSeat() {
 
 function Continue() {
     var seatCount = 0;
-    var seatCoupleCount = 0;
-    var SeatNull=0;
     var seats = document.getElementById('sodoghe').getElementsByClassName('childitem');  
-    var countSeatNull=document.getElementsByClassName('item-seat').length;
+    var countSeatNull = document.getElementsByClassName('item-seat').length;
     var totaldiv = seats.length;
     for (i = 0; i < seats.length; i++) {               
         if (seats.item(i).className == "item-seat-selected childitem") {

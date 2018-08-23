@@ -1423,6 +1423,22 @@ body {
     text-align:center;
     display:table-cell
 }
+.div-seat-booing .item-seat-booked {
+    cursor:pointer;
+    width:25px;
+    height:25px;
+    position:absolute;
+    float:left;
+    background:url('/images/icon/seat_2.png') repeat scroll 0 0 transparent;
+    color:#000;
+    font-family:Verdana,Arial,Helvetica,sans-serif,"MS sans serif";
+    font-size:10px;
+    line-height:25px;
+    list-style:none outside none;
+    padding:0;
+    text-align:center;
+    display:table-cell
+}
 .div-seat-booing .item-seat-selected:hover,.div-seat-booing .item-seat-selected-show:hover,.div-seat-booing .item-seat-selected-vip:hover{
     cursor:pointer
 }
