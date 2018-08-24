@@ -23,5 +23,8 @@ Route::group(['as' => 'api.','namespace' => 'Api\User'], function () {
     Route::apiResource('categories', 'CategoryController');
     Route::group(['middleware' => 'auth:api'], function () {
         Route::post('/logout', 'LoginController@logout');
+        Route::get('user/booking', 'BookingController@getUserBooking');
+        Route::get('user/booking/{booking}', 'BookingController@getUserDetailBooking');
+        Route::post('user/booking', 'BookingController@userBooking');
     });
 });
