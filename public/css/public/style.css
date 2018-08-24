@@ -1132,7 +1132,19 @@ body {
 	}
 }
 /*seat*/
-
+.div-seat {
+	float: left;
+	padding-right: 20px;
+}
+.content-booked {
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 5px;
+}
+.content-type {
+	padding: 5px 0 0 335px;
+}
 .div-seat li{
     cursor:default;
     float:left;
@@ -1271,7 +1283,7 @@ body {
     cursor:pointer
 }
 .div-seat .item-seat-selected,.div-seat .item-seat-selected-show{
-    background:url('/images/icon/seat_0.png') repeat scroll 0 0 transparent;
+    background:url('/images/icon/seat_1.png') repeat scroll 0 0 transparent;
     color:#000;
     float:left;
     font-family:Verdana,Arial,Helvetica,sans-serif,"MS sans serif";
@@ -1287,33 +1299,7 @@ body {
     cursor:pointer
 }
 .div-seat .item-seat-booked{
-    background:url('/images/icon/seat_0.png') repeat scroll 0 0 transparent;
-    color:#000;
-    float:left;
-    font-family:Verdana,Arial,Helvetica,sans-serif,"MS sans serif";
-    font-size:10px;
-    height:25px;
-    line-height:25px;
-    list-style:none outside none;
-    padding:0;
-    text-align:center;
-    width:25px
-}
-.div-seat .item-seat-vip{
-    background:url('/images/icon/seat_0.png') repeat scroll 0 0 transparent;
-    color:#000;
-    float:left;
-    font-family:Verdana,Arial,Helvetica,sans-serif,"MS sans serif";
-    font-size:10px;
-    height:25px;
-    line-height:25px;
-    list-style:none outside none;
-    padding:0;
-    text-align:center;
-    width:25px
-}
-.div-seat .item-seat-couple{
-    background:url('/images/icon/seat_0.png') repeat scroll 0 0 transparent;
+    background:url('/images/icon/seat_2.png') repeat scroll 0 0 transparent;
     color:#000;
     float:left;
     font-family:Verdana,Arial,Helvetica,sans-serif,"MS sans serif";
@@ -1346,25 +1332,6 @@ body {
 	text-align: center;
 	font-weight: normal;
 	font-style: italic;
-}
-
-.div-seat-booing .item-seat-couple{
-    width:25px;
-    height:25px;
-    position:absolute;
-    float:left;
-    background:url('/images/icon/seat_0.png') repeat scroll 0 0 transparent;
-    color:#000;
-    font-family:Verdana,Arial,Helvetica,sans-serif,"MS sans serif";
-    font-size:10px;
-    line-height:25px;
-    list-style:none outside none;
-    padding:0;
-    text-align:center;
-    display:table-cell
-}
-.div-seat-booing .item-seat-couple:hover{
-    cursor:pointer
 }
 .div-seat-booing .item-seat{
     width:25px;
@@ -1513,7 +1480,7 @@ body {
 	color: #231f20;
 	padding: 0px 28px 0 0;
 	background-position-y: 3px;
-	background-position-x: 63px;
+	background-position-x: 74px;
   }
   .step-2-navigator .btn-continue:hover {
 	background-image: url('/images/icon/btn_total_next02.png');
@@ -1546,4 +1513,11 @@ body {
   }
   .col-xs-12 {
 	width: 98%;
+  }
+  .seat-selection-box .title-film {
+	float: left;
+	padding-right: 10px;
+  }
+  .seat-selection-box .title-film span {
+	color: #3B3B3B;
   }

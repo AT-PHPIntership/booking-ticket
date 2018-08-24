@@ -15,6 +15,7 @@ Route::group(['as' => 'user.', 'namespace' => 'Home'], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/login', 'LoginController@showLoginForm')->name('login');
     Route::get('/register', 'RegisterController@index')->name('register');
+    Route::get('/booking', 'BookingController@show')->name('booking');
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => 'adminLogin'], function() {
