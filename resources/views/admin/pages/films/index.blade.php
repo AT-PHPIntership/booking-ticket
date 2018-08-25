@@ -13,8 +13,8 @@
             <th>@lang('film.admin.table.name')</th>
             <th>@lang('film.admin.table.actor')</th>
             <th>@lang('film.admin.table.duration')</th>
-            <th>@lang('film.admin.table.image')</th>
             <th>@lang('film.admin.table.country')</th>
+            <th>@lang('film.admin.add.show')</th>
             <th>@lang('film.admin.table.delete')</th>
             <th>@lang('film.admin.table.edit')</th>
           </tr>
@@ -26,16 +26,10 @@
                 <td>{{ $film->name }}</td>
                 <td>{{ $film->actor }}</td>
                 <td>{{ $film->duration }}</td>
-                <td>
-                  @foreach ($film->images as $image)
-                    <img width="100px" src="{{ $image->path }}" alt="Film Image"><br>
-                    <br>
-                  @endforeach
-                  @if (!$film->images->count())
-                    <strong>No picture</strong>
-                  @endif
-                </td>
                 <td>{{ $film->country }}</td>
+                <td class="center"></i> 
+                  <a class="btn btn-primary" href="{{ route('admin.films.show', $film->id) }}"><i class="fa fa-eye icon-size" ></i></a>
+                </td>
                 <td class="center">
                   <form class="col-md-4" method="POST" action="{{ route('admin.films.destroy', $film->id) }}">
                       @method('DELETE')

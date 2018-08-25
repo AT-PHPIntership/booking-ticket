@@ -125,6 +125,31 @@ class FilmController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param Film $film Film
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Film $film)
+    {
+        try {
+            $categories = Category::all();
+            $categoryIds = $film->cateroryFilms->pluck('category_id')->toArray();
+            $categoryFilms = [];
+            foreach ($categories as $category) {
+                if (in_array($category->id, $categoryIds)) {
+                    array_push($categoryFilms, $category->name);
+                }
+            }
+            return view('admin.pages.films.show', compact('film', 'categoryFilms'));
+        } catch (Exception $e) {
+            return redirect()->route('admin.films.index')
+                             ->with('message', trans('film.admin.message.edit_fail'));
+        }
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param Film $film Film

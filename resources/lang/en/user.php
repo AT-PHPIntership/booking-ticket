@@ -16,6 +16,8 @@ return [
             'role' => 'Role',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'time_line' => 'Timeline',
+            'show' => 'Show',
             'delete' => 'Delete',
             'edit' => 'Edit',
             'admin' => 'Admin',
