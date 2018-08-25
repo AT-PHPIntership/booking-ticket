@@ -44,7 +44,7 @@ class ListUserPage extends Page
     public function elements()
     {
         return [
-            '@deleteUser' => 'tbody > tr:nth-child(2) > td:nth-child(9) > form > button',
+            '@deleteUser' => 'tbody > tr:nth-child(2) > td:nth-child(8) > form > button',
             '@elementGetUser' => 'table.table tbody tr'
         ];
     }
