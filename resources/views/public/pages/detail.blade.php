@@ -27,22 +27,59 @@
         <li><span>@lang('user/detail.end_date'):</span>&nbsp; 566</li>
         </ul>
     </div>
-  <div class="share-desc">
-    <div class="share">
-      <p>@lang('user/detail.number') :</p><input class="text_box" value="1" type="number" min="1" max="10">				
-    </div>
-    <div class="button"><span><a href="#">Add to Cart</a></span></div>					
-    <div class="clear"></div>
-  </div>
 </div>
 <div class="clear"></div>
 </div>
 <div class="product_desc">	
  <h2>@lang('user/detail.detail') :</h2>
-   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+     industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and 
+     scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
 </div>
+<div class="page-showtimes">
+<div id="sessiontimes" class="schedule-block-wrapper">
+  <h2>26/08/2018</h2>
+  <div class="time-wrapper">
+    <ul>
+      <li><a class="available" href="637">12:30 AM</a></li>
+    </ul>
+  </div>
+  <h2>27/08/2018</h2>
+  <div class="time-wrapper">
+    <ul>
+      <li><a class="available" href="#">10:45 AM</a></li>
+      <li><a class="available" href="#">12:50 PM</a></li>
+      <li><a class="available" href="#">02:55 PM</a></li>
+      <li><a class="available" href="#">05:00 PM</a></li>
+      <li><a class="available" href="#">06:35 PM</a></li>
+      <li><a class="available" href="#">07:05 PM</a></li>
+      <li><a class="available" href="#">08:10 PM</a></li>
+      <li><a class="available" href="#">09:10 PM</a></li>
+      <li><a class="available" href="#">10:15 PM</a></li>
+      <li><a class="available" href="#">11:15 PM</a></li>
+    </ul>
+  </div>
+  <h2>28/08/2018</h2>
+  <div class="time-wrapper">
+    <ul>
+      <li><a class="available" href="#">10:45 AM</a></li><li><a class="available" href="#">12:50 PM</a></li>
+      <li><a class="available" href="#">02:55 PM</a></li><li><a class="available" href="#">05:00 PM</a></li>
+      <li><a class="available" href="#">06:35 PM</a></li><li><a class="available" href="#">07:05 PM</a></li>
+      <li><a class="available" href="#">08:10 PM</a></li><li><a class="available" href="#">09:10 PM</a></li>
+      <li><a class="available" href="#">10:15 PM</a></li><li><a class="available" href="#">11:15 PM</a></li>
+    </ul>
+  </div>
+  <h2>29/08/2018</h2>
+  <div class="time-wrapper">
+    <ul>
+      <li><a class="available" href="#">10:00 AM</a></li>
+      <li><a class="available" href="#">12:05 PM</a></li>
+      <li><a class="available" href="#">02:10 PM</a></li>
+    </ul>
+  </div>
+  </div>
 </div>
+  </div>
   <div class="rightsidebar span_3_of_1 sidebar">
     <h2>@lang('user/detail.new_film')</h2>
        <div class="special_movies">
