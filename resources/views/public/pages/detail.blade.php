@@ -15,69 +15,35 @@
       <img src="images/banner/1.jpg" alt="" />
     </div>
   <div class="desc span_3_of_2">
-    <h2>Wrath of the Titans </h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>					
+    <h2 id="name_film"></h2>
+    <p id="description"></p>			
     <div class="price">
-      <p>@lang('user/detail.price'): <span>$500</span></p>
+      <p>@lang('user/detail.price'): <span id="price"></span></p>
     </div>
     <div class="available">
       <ul>
-        <li><span>@lang('user/detail.category'):</span> &nbsp; Model 1</li>
-        <li><span>@lang('user/detail.start_date'):</span>&nbsp; 5lbs</li>
-        <li><span>@lang('user/detail.end_date'):</span>&nbsp; 566</li>
-        </ul>
+        <li><span>@lang('user/detail.category'):</span> &nbsp; <span style="color: #FC7D01" id="category"></span></li>
+        <li><span>@lang('user/detail.duration'):</span> &nbsp; <span style="color: #FC7D01" id="duration"></span></li>
+        <li><span>@lang('user/detail.actor'):</span> &nbsp; <span style="color: #FC7D01" id="actor"></span></li>
+        <li><span>@lang('user/detail.director'):</span> &nbsp; <span style="color: #FC7D01" id="director"></span></li>
+        <li><span>@lang('user/detail.start_date'):</span>&nbsp; <span style="color: #FC7D01" id="start_date"></span></li>
+        <li><span>@lang('user/detail.end_date'):</span>&nbsp; <span style="color: #FC7D01" id="end_date"></span></li>
+      </ul>
     </div>
 </div>
 <div class="clear"></div>
 </div>
 <div class="product_desc">	
  <h2>@lang('user/detail.detail') :</h2>
-   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-     industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and 
-     scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+   <p id="describe"></p>
 </div>
+<div class="product_desc">	
+  <h2>@lang('user/detail.schedule') :</h2>
+ </div>
 <div class="page-showtimes">
 <div id="sessiontimes" class="schedule-block-wrapper">
-  <h2>26/08/2018</h2>
-  <div class="time-wrapper">
-    <ul>
-      <li><a class="available" href="637">12:30 AM</a></li>
-    </ul>
-  </div>
-  <h2>27/08/2018</h2>
-  <div class="time-wrapper">
-    <ul>
-      <li><a class="available" href="#">10:45 AM</a></li>
-      <li><a class="available" href="#">12:50 PM</a></li>
-      <li><a class="available" href="#">02:55 PM</a></li>
-      <li><a class="available" href="#">05:00 PM</a></li>
-      <li><a class="available" href="#">06:35 PM</a></li>
-      <li><a class="available" href="#">07:05 PM</a></li>
-      <li><a class="available" href="#">08:10 PM</a></li>
-      <li><a class="available" href="#">09:10 PM</a></li>
-      <li><a class="available" href="#">10:15 PM</a></li>
-      <li><a class="available" href="#">11:15 PM</a></li>
-    </ul>
-  </div>
-  <h2>28/08/2018</h2>
-  <div class="time-wrapper">
-    <ul>
-      <li><a class="available" href="#">10:45 AM</a></li><li><a class="available" href="#">12:50 PM</a></li>
-      <li><a class="available" href="#">02:55 PM</a></li><li><a class="available" href="#">05:00 PM</a></li>
-      <li><a class="available" href="#">06:35 PM</a></li><li><a class="available" href="#">07:05 PM</a></li>
-      <li><a class="available" href="#">08:10 PM</a></li><li><a class="available" href="#">09:10 PM</a></li>
-      <li><a class="available" href="#">10:15 PM</a></li><li><a class="available" href="#">11:15 PM</a></li>
-    </ul>
-  </div>
-  <h2>29/08/2018</h2>
-  <div class="time-wrapper">
-    <ul>
-      <li><a class="available" href="#">10:00 AM</a></li>
-      <li><a class="available" href="#">12:05 PM</a></li>
-      <li><a class="available" href="#">02:10 PM</a></li>
-    </ul>
-  </div>
-  </div>
+  
+</div>
 </div>
   </div>
   <div class="rightsidebar span_3_of_1 sidebar">
