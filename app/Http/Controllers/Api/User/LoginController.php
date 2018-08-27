@@ -24,6 +24,7 @@ class LoginController extends ApiController
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
             $data['token'] =  $user->createToken('token')->accessToken;
+            $data['user'] =  $user;
             return $this->successResponse($data, Response::HTTP_OK);
         }
         return $this->errorResponse(config('define.login.unauthorised'), Response::HTTP_UNAUTHORIZED);

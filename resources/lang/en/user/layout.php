@@ -28,5 +28,6 @@ return [
     'track_order' => 'Track Orders',
     'help' => 'Help',
     'follow' => 'Follow Us',
+    'follows' => 'Followers',
     'author' => 'Company Name © All rights Reseverd'
 ];

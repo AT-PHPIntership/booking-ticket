@@ -7,6 +7,7 @@
       <base href="{{ asset('') }}">
       <link href="css/public/style.css" rel="stylesheet" type="text/css" media="all"/>
       <link href="css/public/slider.css" rel="stylesheet" type="text/css" media="all"/>
+      @yield('css')
    </head>
    <body>
       @include('public.layout.top')
@@ -72,5 +73,6 @@
       <script type="text/javascript" src="js/public/jquery.nivo.slider.js"></script>
       <script type="text/javascript" src="js/public/main.js"></script>
       @yield('script')
+      @yield('js')
    </body>
 </html>

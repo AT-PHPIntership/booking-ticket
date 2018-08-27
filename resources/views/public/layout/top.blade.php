@@ -10,10 +10,9 @@
         </div>
         <div class="account_desc">
            <ul>
-              <li><a href="{{ route('user.login') }}">@lang('user/layout.login')</a></li>
-              <li><a href="{{ route('user.register') }}">@lang('user/layout.register')</a></li>
-              <li><a href="#">@lang('user/layout.checkout')</a></li>
-              <li><a href="#">@lang('user/layout.account')</a></li>
+              <li id="login"><a href="{{ route('user.login') }}">@lang('user/layout.login')</a></li>
+              <li id="register"><a href="{{ route('user.register') }}">@lang('user/layout.register')</a></li>
+              <li id="my-account"><a href="{{ route('user.profile') }}">@lang('user/layout.account')</a></li>
               <li id="logout"><a href="#">@lang('user/layout.logout')</a></li>
            </ul>
         </div>
@@ -51,4 +50,5 @@
 </div>
 @section('script')
   <script src="js/public/logout.js"></script>
+  <script src="js/public/sidebar.js"></script>
 @endsection
