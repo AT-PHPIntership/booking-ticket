@@ -7,8 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\ApiController;
 use Illuminate\Http\Response;
 use App\Models\Film;
-use App\Models\Image;
-use App\Models\Schedule;
 use App\Models\Category;
 
 class FilmController extends ApiController
