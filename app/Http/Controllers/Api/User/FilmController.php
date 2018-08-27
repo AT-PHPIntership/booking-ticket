@@ -14,58 +14,8 @@ use App\Models\Category;
 class FilmController extends ApiController
 {
     const TICKET_PRICE = 60000;
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function new()
-    {
-        try {
-            $films = Film::with(['images', 'schedules.tickets' => function ($query) {
-                $query->orderBy('price', config('define.dir_desc'));
-            }])->whereIn('id', function ($query) {
-                $query->select('film_id')
-                      ->from('schedules');
-            })->orderBy('id', config('define.dir_desc'))->paginate(config('define.film.limit_rows'));
-            
-            foreach ($films as $film) {
-                $film['image_path'] = empty($film['images'][0]) ? ' ' : $film['images'][0]['path'];
-                $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? number_format(self::TICKET_PRICE) : number_format($film['schedules'][0]['tickets'][0]['price']);
-            }
-            $films = $this->formatPaginate($films);
-            return $this->showAll($films, Response::HTTP_OK);
-        } catch (\Exception $e) {
-            return $this->errorResponse($e->getMessage(), Response::HTTP_NO_CONTENT);
-        }
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function feature()
-    {
-        try {
-            $films = Film::with(['images', 'schedules.tickets' => function ($query) {
-                $query->orderBy('price', config('define.dir_desc'));
-            }])->whereIn('id', function ($query) {
-                $query->select('film_id')
-                      ->from('schedules');
-            })->paginate(config('define.film.limit_rows'));
-    
-            foreach ($films as $film) {
-                $film['image_path'] = empty($film['images'][0]) ? ' ' : $film['images'][0]['path'];
-                $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? number_format(self::TICKET_PRICE) : number_format($film['schedules'][0]['tickets'][0]['price']);
-            }
-            $films = $this->formatPaginate($films);
-            return $this->showAll($films, Response::HTTP_OK);
-        } catch (\Exception $e) {
-            return $this->errorResponse($e->getMessage(), Response::HTTP_NO_CONTENT);
-        }
-    }
-
+    const IMAGE_PATH = "images/default/default.jpg";
+   
     /**
      * Display the specified resource.
      *
@@ -83,15 +33,17 @@ class FilmController extends ApiController
                 array_push($categoryFilm, $category->name);
             }
         }
-        $film['categories'] = implode( ", ", $categoryFilm );
-        $film['image_path'] = empty($film['images'][0]) ? ' ' : $film['images'][0]['path'];
+        $film['categories'] = implode(", ", $categoryFilm);
+        $film['image_path'] = empty($film['images'][0]) ? self::IMAGE_PATH : $film['images'][0]['path'];
         $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? number_format(self::TICKET_PRICE) : number_format($film['schedules'][0]['tickets'][0]['price']);
         $film->images;
         return $this->showOne($film, Response::HTTP_OK);
     }
 
-    /**
+     /**
      * Display a listing of the resource.
+     *
+     * @param \Illuminate\Http\Request $request request
      *
      * @return \Illuminate\Http\Response
      */
@@ -99,10 +51,13 @@ class FilmController extends ApiController
     {
         $films = Film::filter($request)->with(['images', 'schedules.tickets' => function ($query) {
             $query->orderBy('price', config('define.dir_desc'));
-        }])->paginate(config('define.film.limit_rows'));
+        }])->whereIn('id', function ($query) {
+            $query->select('film_id')
+                  ->from('schedules');
+        })->orderBy('id', config('define.dir_desc'))->paginate(config('define.film.limit_rows'));
 
         foreach ($films as $film) {
-            $film['image_path'] = empty($film['images'][0]) ? ' ' : $film['images'][0]['path'];
+            $film['image_path'] = empty($film['images'][0]) ? self::IMAGE_PATH : $film['images'][0]['path'];
             $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? number_format(self::TICKET_PRICE) : number_format($film['schedules'][0]['tickets'][0]['price']);
         }
         $films = $this->formatPaginate($films);

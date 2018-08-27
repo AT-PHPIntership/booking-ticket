@@ -21,8 +21,8 @@ trait FilterTrait
             if ($request->category) {
                 $query->whereIn('id', function ($query) use ($request) {
                     $query->select('film_id')
-                            ->from('category_film')
-                            ->where('category_id', $request->category);
+                          ->from('category_film')
+                          ->where('category_id', $request->category);
                 });
             }
             if ($request->name) {
