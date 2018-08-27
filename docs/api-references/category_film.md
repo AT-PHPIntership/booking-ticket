@@ -1,6 +1,6 @@
 ## Film Api
 
-### `GET` Films Category
+### `GET` Films 
 ```
 /api/films
 ```
