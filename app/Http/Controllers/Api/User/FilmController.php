@@ -11,9 +11,6 @@ use App\Models\Category;
 
 class FilmController extends ApiController
 {
-    const TICKET_PRICE = 60000;
-    const IMAGE_PATH = "images/default/default.jpg";
-   
     /**
      * Display the specified resource.
      *
@@ -23,18 +20,11 @@ class FilmController extends ApiController
      */
     public function show(Film $film)
     {
-        $categories = Category::all();
-        $categoryIds = $film->cateroryFilms->pluck('category_id')->toArray();
-        $categoryFilm = [];
-        foreach ($categories as $category) {
-            if (in_array($category->id, $categoryIds)) {
-                array_push($categoryFilm, $category->name);
-            }
-        }
-        $film['categories'] = implode(", ", $categoryFilm);
-        $film['image_path'] = empty($film['images'][0]) ? self::IMAGE_PATH : $film['images'][0]['path'];
-        $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? number_format(self::TICKET_PRICE) : number_format($film['schedules'][0]['tickets'][0]['price']);
+        $categoryFilms = $film->categories->pluck('name')->toArray();
+        $film['categoryFilms'] = implode(", ", $categoryFilms);
         $film->images;
+        $film['image_path'] = empty($film['images'][0]) ? config('define.film.image_default') : $film['images'][0]['path'];
+        $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? number_format(config('define.film.price_ticket_default')) : number_format($film['schedules'][0]['tickets'][0]['price']);
         return $this->showOne($film, Response::HTTP_OK);
     }
 
@@ -55,8 +45,8 @@ class FilmController extends ApiController
         })->orderBy('id', config('define.dir_desc'))->paginate(config('define.film.limit_rows'));
 
         foreach ($films as $film) {
-            $film['image_path'] = empty($film['images'][0]) ? self::IMAGE_PATH : $film['images'][0]['path'];
-            $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? number_format(self::TICKET_PRICE) : number_format($film['schedules'][0]['tickets'][0]['price']);
+            $film['image_path'] = empty($film['images'][0]) ? config('define.film.image_default') : $film['images'][0]['path'];
+            $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? number_format(config('define.film.price_ticket_default')) : number_format($film['schedules'][0]['tickets'][0]['price']);
         }
         $films = $this->formatPaginate($films);
         return $this->showAll($films, Response::HTTP_OK);
