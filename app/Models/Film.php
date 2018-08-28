@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\FilterTrait;
 
 class Film extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, FilterTrait;
     protected $table = 'films';
 
      /**

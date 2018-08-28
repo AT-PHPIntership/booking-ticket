@@ -15,8 +15,8 @@ $(document).ready(function () {
                 password: $('input[type="password"]').val()
             },
             success: function (response) {
-                console.log(response.result.token);
                 localStorage.setItem('login-token', response.result.token);
+                window.localStorage.setItem('user', JSON.stringify(response.result.user))
                 window.location.href = 'http://' + window.location.hostname;
             },
             statusCode: {

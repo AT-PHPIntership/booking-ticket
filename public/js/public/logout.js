@@ -11,6 +11,7 @@ $(document).ready(function () {
       },
       success: function (response) {
         localStorage.removeItem('login-token');
+        localStorage.removeItem('user');
         window.location.href = 'http://' + window.location.hostname;
       }
     });
