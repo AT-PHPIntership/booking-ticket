@@ -77,6 +77,7 @@
         </div>
       </div>
       <div class="tab-pane fade" id="user-settings">
+        @include('admin.layout.error')
         <div class="tile user-settings">
           <h4 class="line-head">@lang('master.setting')</h4>
           <form class="form-horizontal" action="{{ route('admin.users.update', $user->id) }}"  method="POST">
@@ -85,13 +86,13 @@
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('user.admin.add.name')</label>
               <div class="col-md-8">
-                <input class="form-control col-md-8" name="full_name" type="text" value="{{ $user->full_name }}" placeholder="@lang('user.admin.add.placeholder_name')">
+                <input class="form-control col-md-8" name="full_name" type="text" value="{{ old('full_name', $user->full_name) }}" placeholder="@lang('user.admin.add.placeholder_name')">
               </div>
             </div>
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('user.admin.add.email')</label>
               <div class="col-md-8">
-                <input class="form-control col-md-8" name="email" type="email" value="{{ $user->email }}" placeholder="@lang('user.admin.add.placeholder_email')">
+                <input class="form-control col-md-8" name="email" type="email" value="{{ old('email', $user->email) }}" placeholder="@lang('user.admin.add.placeholder_email')">
               </div>
             </div>
             @if (Auth::user()->id == $user->id)
@@ -105,13 +106,13 @@
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('user.admin.add.phone')</label>
               <div class="col-md-8">
-                <input class="form-control col-md-8" name="phone" type="text" value="{{ $user->phone }}" placeholder="@lang('user.admin.add.placeholder_phone')">
+                <input class="form-control col-md-8" name="phone" type="text" value="{{ old('phone', $user->phone) }}" placeholder="@lang('user.admin.add.placeholder_phone')">
               </div>
             </div>
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('user.admin.add.address')</label>
               <div class="col-md-8">
-                <input class="form-control col-md-8" name="address" type="text" value="{{ $user->address }}" placeholder="@lang('user.admin.add.placeholder_address')">
+                <input class="form-control col-md-8" name="address" type="text" value="{{ old('address', $user->address) }}" placeholder="@lang('user.admin.add.placeholder_address')">
               </div>
             </div>
             <div class="tile-footer">
