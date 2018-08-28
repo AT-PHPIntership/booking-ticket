@@ -34,6 +34,7 @@ class ScheduleController extends ApiController
             ->join('tickets', 'booking_details.ticket_id', 'tickets.id')
             ->join('schedules', 'tickets.schedule_id', 'schedules.id')
             ->select($bookedField)
+            ->distinct()
             ->where('schedules.id', $schedule->id)
             ->orderBy('seat_id')
             ->get();
@@ -42,6 +43,7 @@ class ScheduleController extends ApiController
             ->join('rooms', 'schedules.room_id', 'rooms.id')
             ->join('seats', 'rooms.id', 'seats.room_id')
             ->select($totalField)
+            ->distinct()
             ->where('schedules.id', $schedule->id)
             ->orderBy('seat_id')
             ->get();
