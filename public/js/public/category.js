@@ -10,3 +10,4 @@ $.ajax({
         $('.navbar-nav').append(html);
     }
  });
+ 
