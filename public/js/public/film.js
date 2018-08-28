@@ -43,7 +43,7 @@ $(document).ready(function () {
                     <p><span class="rupees">' + film.price_formated + 'VND </span></p>\
                     </div>\
                     <div class="add-cart">\
-                        <h4><a href="/films/'+ film.id +'">Add to cart</a></h4>\
+                        <h4><a href="/films/'+ film.id +'"> ' + Lang.get('user/index.add_cart') + ' </a></h4>\
                     </div>\
                     <div class="clear"></div>\
                 </div>\
@@ -55,10 +55,12 @@ $(document).ready(function () {
         var i;
         var x = document.getElementsByClassName("mySlides");
         for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none"; 
+            x[i].style.display = "none"; 
         }
         slideIndex++;
-        if (slideIndex > x.length) {slideIndex = 1} 
+        if (slideIndex > x.length) {
+            slideIndex = 1
+        } 
         x[slideIndex-1].style.display = "block"; 
         setTimeout(carousel, 5000); 
     }
