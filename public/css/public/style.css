@@ -296,11 +296,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	 -moz-box-shadow: 0px 0px 3px rgb(150, 150, 150);
 	 -o-box-shadow: 0px 0px 3px rgb(150, 150, 150);
  }
- .grid_1_of_5:first-child {
-	 margin-left: 0;
- }
  .images_1_of_5 {
-	 width: 15.72%;
+	 width: 14.95%;
 	 padding:1.5%; 
 	 text-align: center;
 	 position: relative;
@@ -754,6 +751,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
  }
  .next_film {
 	color: #FC7D01;
+	padding-left: 2%;
+ }
+ .w3-content {
+	 margin-top: 2%;
+ }
+ .mySlides {
+	 display: none;
  }
  /**** End Preview Page ******/
  /*  Contact Form  ============================================================================= */

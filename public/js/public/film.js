@@ -1,5 +1,7 @@
 $(document).ready(function () {
     var url = '';
+    var slideIndex = 0;
+    carousel();
     if (window.location.search == "") {
         url = '/api/films';
     } else {
@@ -26,15 +28,15 @@ $(document).ready(function () {
                     $('#next_new').hide();
                 }
                 response.result.data.forEach(film => {
-                    generateFilms(film);
+                    generateFilmsIndex(film);
                 });
             }
         });
     }
-    function generateFilms(film) {
+    function generateFilmsIndex(film) {
         html = '';
         html += '<div class="grid_1_of_5 images_1_of_5">\
-                    <a href="preview.html"><img src="' + film.image_path + '" alt="" /></a>\
+                    <a href="#"><img src="' + film.image_path + '" alt="" /></a>\
                     <h2><a href="preview.html">' + film.name + '</a></h2>\
                     <div class="price-details">\
                     <div class="price-number">\
@@ -46,7 +48,18 @@ $(document).ready(function () {
                     <div class="clear"></div>\
                 </div>\
             </div>';
-        $('#new_film').append(html);
-        $('#feature_film').append(html);
+        $('#collect_film').append(html);
+    }
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none"; 
+        }
+        slideIndex++;
+        if (slideIndex > x.length) {slideIndex = 1} 
+        x[slideIndex-1].style.display = "block"; 
+        setTimeout(carousel, 5000); 
     }
 });

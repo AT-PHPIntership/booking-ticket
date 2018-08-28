@@ -8,10 +8,10 @@
       <div class="content">
          <div class="content_top">
             <div class="heading">
-               <h3>@lang('user/index.new_film')</h3>
+               <h3>@lang('user/index.collection')</h3>
             </div>
          </div>
-         <div class="section group" id="new_film">
+         <div class="section group" id="collect_film">
             
          </div>
          <div class="show_more">
@@ -19,17 +19,16 @@
          </div>
          <div class="content_bottom">
             <div class="heading">
-               <h3>@lang('user/index.feature_film')</h3>
+               <h3>@lang('user/index.event')</h3>
             </div>
          </div>
-         <div class="section group" id="feature_film">
-           
-         </div>
-         <div class="show_more">
-            <a id="next_feature" class="next_film" href=""> &gt;&gt;&gt;&gt; </a>
+        <div class="w3-content" style="max-width:100%">
+            <img class="mySlides" src="images/banner/banner1.jpg" style="width:100%">
+            <img class="mySlides" src="images/banner/banner2.png" style="width:100%">
+            <img class="mySlides" src="images/banner/banner3.jpg" style="width:100%">
+            <img class="mySlides" src="images/banner/banner4.jpg" style="width:100%">
         </div>
-      </div>
-   </div>
+</div>
 @endsection
 @section('js')
  <script src="js/public/film.js"></script>
