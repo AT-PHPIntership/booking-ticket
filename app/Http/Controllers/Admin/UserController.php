@@ -96,6 +96,22 @@ class UserController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param User $user User
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $user)
+    {
+        try {
+            return view('admin.pages.users.show', compact('user'));
+        } catch (Exception $e) {
+            return redirect()->route('admin.users.index')
+                             ->with('message', trans('user.admin.message.edit_fail'));
+        }
+    }
+    /**
      * Remove the specified resource from storage.
      *
      * @param User $user user
