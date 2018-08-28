@@ -34,8 +34,7 @@ $(document).ready(function () {
         });
     }
     function generateFilmsIndex(film) {
-        html = '';
-        html += '<div class="grid_1_of_5 images_1_of_5">\
+        html = '<div class="grid_1_of_5 images_1_of_5">\
                     <a href="/films/'+ film.id +'"><img src="' + film.image_path + '" alt="" /></a>\
                     <h2><a href="preview.html">' + film.name + '</a></h2>\
                     <div class="price-details">\
