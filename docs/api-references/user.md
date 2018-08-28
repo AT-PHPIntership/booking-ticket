@@ -33,7 +33,7 @@ Get user info
 ```
 ___
 
-### `POST` User
+### `PUT` User
 ```
 /api/user
 ```
