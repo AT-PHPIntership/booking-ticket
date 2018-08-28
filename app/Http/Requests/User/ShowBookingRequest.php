@@ -5,7 +5,7 @@ namespace App\Http\Requests\User;
 use Illuminate\Foundation\Http\FormRequest;
 use DB;
 
-class GetUserBookingRequest extends FormRequest
+class ShowBookingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,16 @@ class GetUserBookingRequest extends FormRequest
      */
     public function rules()
     {
-        $column = DB::select('show columns from bookings');
-        $sortBy = array_column($column, 'Field');
-        $orderBy = [
+        $column = DB::select('show columns from booking_details');
+        $orderby = array_column($column, 'Field');
+        $sortby = [
             config('define.dir_asc'),
             config('define.dir_desc')
         ];
 
         return [
-            'sortBy' => 'in:'. implode(",", $sortBy),
-            'orderBy' => 'in:'. implode(",", $orderBy),
+            'sortby' => 'in:'. implode(",", $sortby),
+            'orderby' => 'in:'. implode(",", $orderby),
             'perpage' => 'integer|min:1'
         ];
     }

@@ -3,9 +3,9 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Ticket;
+use Illuminate\Support\Facades\Auth;
 
-class UserBookingRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,13 @@ class UserBookingRequest extends FormRequest
      */
     public function rules()
     {
+        $id = Auth::user()->id;
+        
         return [
-            'ticket_id' => 'required|exists:tickets,id',
-            'seats' => 'required',
-            'seats.*' => 'exists:seats,id'
+            'full_name' => 'max:255',
+            'email' => 'email|unique:users,email,'. $id,
+            'password' => 'min:8',
+            'phone' => 'regex:/^[0-9]{10,12}$/',
         ];
     }
 }

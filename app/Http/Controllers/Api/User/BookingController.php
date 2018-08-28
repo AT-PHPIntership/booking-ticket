@@ -11,9 +11,9 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\ApiController;
-use App\Http\Requests\User\UserBookingRequest;
-use App\Http\Requests\User\GetUserBookingRequest;
-use App\Http\Requests\User\GetUserDetailBookingRequest;
+use App\Http\Requests\User\GetBookingRequest;
+use App\Http\Requests\User\ShowBookingRequest;
+use App\Http\Requests\User\CreateBookingRequest;
 
 class BookingController extends ApiController
 {
@@ -24,18 +24,17 @@ class BookingController extends ApiController
      *
      * @return void
      */
-    public function getUserBooking(GetUserBookingRequest $request)
+    public function index(GetBookingRequest $request)
     {
-        $rowPerPage = empty($request['perpage']) ? config('define.limit_rows') : $request['perpage'];
         $user = Auth::user();
+        $rowPerPage = empty($request['perpage']) ? config('define.limit_rows') : $request['perpage'];
+        $sortBy = empty($request['sortby']) ? config('define.dir_asc') : $request['sorby'];
         
         $data = Booking::with(['bookingDetails.ticket.schedule.film'])
-        ->where('user_id', $user->id)
-        ->when(request('sortBy'), function ($query) {
-            return $query->when(request('orderBy'), function ($query) {
-                return $query->orderBy(request('sortBy'), request('orderBy'));
-            });
-        })->paginate($rowPerPage);
+            ->where('user_id', $user->id)
+            ->when(request('orderby'), function ($query) use ($sortBy) {
+                return $query->orderBy(request('orderby'), $sortBy);
+            })->paginate($rowPerPage);
 
         $data = $this->formatPaginate($data);
 
@@ -50,15 +49,15 @@ class BookingController extends ApiController
      *
      * @return void
      */
-    public function getUserDetailBooking(Booking $booking, GetUserDetailBookingRequest $request)
+    public function show(Booking $booking, ShowBookingRequest $request)
     {
         $rowPerPage = empty($request['perpage']) ? config('define.limit_rows') : $request['perpage'];
+        $sortBy = empty($request['sortby']) ? config('define.dir_asc') : $request['sortby'];
+
         $data = BookingDetail::with(['ticket.schedule.film', 'seat.room'])
             ->where('booking_id', $booking->id)
-            ->when(request('sortBy'), function ($query) {
-                return $query->when(request('orderBy'), function ($query) {
-                    return $query->orderBy(request('sortBy'), request('orderBy'));
-                });
+            ->when(request('orderby'), function ($query) use ($sortBy) {
+                return $query->orderBy(request('orderby'), $sortBy);
             })->paginate($rowPerPage);
         
         $data = $this->formatPaginate($data);
@@ -73,7 +72,7 @@ class BookingController extends ApiController
      *
      * @return void
      */
-    public function userBooking(UserBookingRequest $request)
+    public function store(CreateBookingRequest $request)
     {
         $user = Auth::user();
         $seats = $request['seats'];
@@ -88,7 +87,7 @@ class BookingController extends ApiController
                     'booking_id' => $booking->id,
                     'ticket_id' => $request['ticket_id'],
                     'seat_id' => $seat
-                    ]);
+                ]);
             }
             DB::commit();
             return $this->successResponse($booking, Response::HTTP_OK);

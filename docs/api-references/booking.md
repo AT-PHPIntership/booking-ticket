@@ -2,7 +2,7 @@
 
 ### `GET` Booking
 ```
-/api/user/booking
+/api/booking
 ```
 Get list all booking of user
 #### Request Headers
@@ -15,8 +15,8 @@ Get list all booking of user
 | para | type | optional |
 |---|---|---|
 |perpage|int|true
-|sortBy|string|true
-|orderBy|ASC/DESC|true
+|orderby|string|true
+|sortby|ASC/DESC|true
 
 #### Response
 ```json
@@ -24,12 +24,12 @@ Get list all booking of user
     "result": {
         "paginator": {
             "current_page": 1,
-            "first_page_url": "http://cinema.com/api/user/booking?page=1",
+            "first_page_url": "http://cinema.com/api/booking?page=1",
             "from": 1,
             "last_page": 1,
-            "last_page_url": "http://cinema.com/api/user/booking?page=1",
+            "last_page_url": "http://cinema.com/api/booking?page=1",
             "next_page_url": null,
-            "path": "http://cinema.com/api/user/booking",
+            "path": "http://cinema.com/api/booking",
             "per_page": "2",
             "prev_page_url": null,
             "to": 2,
@@ -147,7 +147,7 @@ Get list all booking of user
 
 ### `GET` Booking Detail
 ```
-/api/user/booking/{id}
+/api/booking/{id}
 ```
 Get detail of booking
 #### Request Headers
@@ -160,8 +160,8 @@ Get detail of booking
 | para | type | optional |
 |---|---|---|
 |perpage|int|true
-|sortBy|string|true
-|orderBy|ASC/DESC|true
+|orderby|string|true
+|sortby|ASC/DESC|true
 
 #### Response
 ```json
@@ -169,13 +169,13 @@ Get detail of booking
     "result": {
         "paginator": {
             "current_page": 1,
-            "first_page_url": "http://cinema.com/api/user/booking/3?page=1",
+            "first_page_url": "http://cinema.com/api/booking/3?page=1",
             "from": 1,
             "last_page": 1,
-            "last_page_url": "http://cinema.com/api/user/booking/3?page=1",
+            "last_page_url": "http://cinema.com/api/booking/3?page=1",
             "next_page_url": null,
-            "path": "http://cinema.com/api/user/booking/3",
-            "per_page": "2",
+            "path": "http://cinema.com/api/booking/3",
+            "per_page": 6,
             "prev_page_url": null,
             "to": 2,
             "total": 2
@@ -305,7 +305,7 @@ Get detail of booking
 
 ### `POST` Booking 
 ```
-/api/user/booking
+/api/booking
 ```
 Create booking for user
 #### Request Headers

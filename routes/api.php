@@ -21,10 +21,13 @@ Route::group(['as' => 'api.','namespace' => 'Api\User'], function () {
     Route::post('/login', 'LoginController@login');
     Route::post('/register', 'RegisterController@register');
     Route::apiResource('categories', 'CategoryController');
+    Route::apiResource('films', 'FilmController');
     Route::group(['middleware' => 'auth:api'], function () {
         Route::post('/logout', 'LoginController@logout');
-        Route::get('user/booking', 'BookingController@getUserBooking');
-        Route::get('user/booking/{booking}', 'BookingController@getUserDetailBooking');
-        Route::post('user/booking', 'BookingController@userBooking');
+        Route::get('booking', 'BookingController@index');
+        Route::get('booking/{booking}', 'BookingController@show');
+        Route::post('booking', 'BookingController@store');
+        Route::get('/user', 'UserController@show');
+        Route::put('/user', 'UserController@update');
     });
 });
