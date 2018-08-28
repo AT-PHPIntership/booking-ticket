@@ -22,7 +22,7 @@ class RegisterController extends ApiController
      */
     public function register(RegisterUserRequest $request)
     {
-        $user = $request->all();
+        $user = $request->except(['role', 'remember_token']);
         $datas = [
             'email' => $user['email'],
             'password' => $user['password']
