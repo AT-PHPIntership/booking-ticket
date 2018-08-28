@@ -35,12 +35,8 @@ class UserController extends ApiController
     {
         if (Auth::check()) {
             $user = Auth::user();
-            empty($request['full_name']) ?  '' : $user->full_name = $request['full_name'];
-            empty($request['email']) ? '' : $user->email = $request['email'];
-            empty($request['phone']) ? '' : $user->phone = $request['phone'];
-            empty($request['address']) ? '' : $user->address = $request['address'];
-            empty($request['password']) ? '' : $user->password = bcrypt($request['password']);
-            $user->save();
+            $request['password'] = bcrypt($request['password']);
+            $user->update($request->except(['role', 'remember_token']));            
             
             return $this->showOne($user);
         }
