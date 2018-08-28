@@ -24,5 +24,7 @@ Route::group(['as' => 'api.','namespace' => 'Api\User'], function () {
     Route::apiResource('films', 'FilmController');
     Route::group(['middleware' => 'auth:api'], function () {
         Route::post('/logout', 'LoginController@logout');
+        Route::get('/user', 'UserController@show');
+        Route::put('/user', 'UserController@update');
     });
 });
