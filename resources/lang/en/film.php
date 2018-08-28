@@ -24,6 +24,7 @@ return [
             'end_date' => 'End Date',
             'submit' => 'Submit',
             'edit' => 'Edit',
+            'show' => 'Show',
             'reset' => 'Reset',
             'back' => 'Back',
             'cancel' => 'Cancel',

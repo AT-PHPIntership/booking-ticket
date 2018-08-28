@@ -14,10 +14,8 @@
             <th>@lang('user.admin.table.name')</th>
             <th>@lang('user.admin.table.email')</th>
             <th>@lang('user.admin.table.phone')</th>
-            <th>@lang('user.admin.table.address')</th>
-            <th>@lang('user.admin.table.is_active')</th>
-            <th>@lang('user.admin.table.last_login')</th>
             <th>@lang('user.admin.table.role')</th>
+            <th>@lang('user.admin.table.show')</th>
             <th>@lang('user.admin.table.delete')</th>
             <th>@lang('user.admin.table.edit')</th>
           </tr>
@@ -29,10 +27,10 @@
             <td>{{ $data->full_name }}</td>
             <td>{{ $data->email }}</td>
             <td>{{ $data->phone }}</td>
-            <td>{{ $data->address }}</td>
-            <td>{{ $data->is_active ? __('user.admin.table.active') : __('user.admin.table.inactive') }}</td>
-            <td>{{ $data->last_login_at }}</td>
             <td>{{ $data->role ? __('user.admin.table.admin') : __('user.admin.table.user') }}</td>
+            <td class="center"></i> 
+              <a class="btn btn-primary" href="{{ route('admin.users.show', $data->id) }}"><i class="fa fa-eye icon-size" ></i></a>
+            </td>
             <td class="center">
               <form class="col-md-4" method="POST" action="{{ route('admin.users.destroy', ['id' => $data->id]) }}">
                   @method('DELETE')

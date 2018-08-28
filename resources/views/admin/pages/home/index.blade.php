@@ -13,7 +13,9 @@
 <div class="row">
    <div class="col-md-6 col-lg-3">
       <div class="widget-small primary coloured-icon">
+        <a href="{{ route('admin.users.index') }}">
          <i class="icon fa fa-users fa-3x"></i>
+        </a>
          <div class="info">
             <h4>@lang('home.users')</h4>
             <p><b>5</b></p>
@@ -31,7 +33,9 @@
    </div>
    <div class="col-md-6 col-lg-3">
       <div class="widget-small warning coloured-icon">
-         <i class="icon fa fa-files-o fa-3x"></i>
+        <a href="{{ route('admin.categories.index') }}">
+            <i class="icon fa fa-files-o fa-3x"></i>
+        </a>
          <div class="info">
             <h4>@lang('home.categories')</h4>
             <p><b>10</b></p>
@@ -40,7 +44,9 @@
    </div>
    <div class="col-md-6 col-lg-3">
       <div class="widget-small danger coloured-icon">
-         <i class="icon fa fa-star fa-3x"></i>
+        <a href="{{ route('admin.films.index') }}">
+            <i class="icon fa fa-star fa-3x"></i>
+        </a>
          <div class="info">
             <h4>@lang('home.films')</h4>
             <p><b>500</b></p>

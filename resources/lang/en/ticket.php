@@ -11,6 +11,7 @@ return [
             'price' => 'Price',
             'name_film' => 'Name Film',
             'schedule_id' => 'ID Schedule',
+            'time' => 'Time',
             'delete' => 'Delete',
             'edit' => 'Edit',
         ],
