@@ -26,4 +26,5 @@
 @section('script')
   <script src="js/public/logout.js"></script>
   <script src="js/public/category.js"></script>
+  <script src="js/public/sidebar.js"></script>
 @endsection

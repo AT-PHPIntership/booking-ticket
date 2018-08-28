@@ -26,7 +26,7 @@ $(document).ready(function () {
         $('#name_film').text(data.result.name);
         $('#description').text(data.result.describe.substr(0, 150));
         $('#price').text(data.result.price_formated);
-        $('#category').text(data.result.categories);
+        $('#category').text(data.result.categoryFilms);
         $('#start_date').text(data.result.start_date);
         $('#end_date').text(data.result.end_date);
         $('#describe').append(data.result.describe);
