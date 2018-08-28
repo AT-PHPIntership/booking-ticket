@@ -134,14 +134,7 @@ class FilmController extends Controller
     public function show(Film $film)
     {
         try {
-            $categories = Category::all();
-            $categoryIds = $film->cateroryFilms->pluck('category_id')->toArray();
-            $categoryFilms = [];
-            foreach ($categories as $category) {
-                if (in_array($category->id, $categoryIds)) {
-                    array_push($categoryFilms, $category->name);
-                }
-            }
+            $categoryFilms = $film->categories->pluck('name')->toArray();
             return view('admin.pages.films.show', compact('film', 'categoryFilms'));
         } catch (Exception $e) {
             return redirect()->route('admin.films.index')
