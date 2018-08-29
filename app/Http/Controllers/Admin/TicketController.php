@@ -24,6 +24,7 @@ class TicketController extends Controller
             'tickets.type as type',
             'tickets.price as price',
             'tickets.schedule_id as schedule_id',
+            'schedules.start_time as time',
             'films.name as film_name',
         ];
 
@@ -34,7 +35,7 @@ class TicketController extends Controller
                 ->where('films.deleted_at', null)
                 ->where('schedules.deleted_at', null)
                 ->where('tickets.deleted_at', null)
-                ->orderBy('schedules.id', config('define.dir_desc'))
+                ->orderBy('tickets.id', config('define.dir_desc'))
                 ->paginate(config('define.ticket.limit_rows'));
         return view('admin.pages.tickets.index', compact('tickets'));
     }
