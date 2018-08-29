@@ -3,9 +3,9 @@ $(document).ready(function () {
     var slideIndex = 0;
     carousel();
     if (window.location.search == "") {
-        url = '/api/films';
+        url = route('api.films.index');
     } else {
-        url = '/api/films' + window.location.search;
+        url = route('api.films.index') + window.location.search;
     }
 
     getFilms(url);
@@ -35,14 +35,14 @@ $(document).ready(function () {
     }
     function generateFilmsIndex(film) {
         html = '<div class="grid_1_of_5 images_1_of_5">\
-                    <a href="/films/'+ film.id +'"><img src="' + film.image_path + '" alt="" /></a>\
+                    <a href="'+ route('user.films.show', film.id) +'"><img src="' + film.image_path + '" alt="" /></a>\
                     <h2><a href="preview.html">' + film.name + '</a></h2>\
                     <div class="price-details">\
                     <div class="price-number">\
                     <p><span class="rupees">' + film.price_formated + 'VND </span></p>\
                     </div>\
                     <div class="add-cart">\
-                        <h4><a href="/films/'+ film.id +'"> ' + Lang.get('user/index.add_cart') + ' </a></h4>\
+                        <h4><a href="'+ route('user.films.show', film.id) +'"> ' + Lang.get('user/index.add_cart') + ' </a></h4>\
                     </div>\
                     <div class="clear"></div>\
                 </div>\
