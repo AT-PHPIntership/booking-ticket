@@ -8,14 +8,11 @@ use App\Http\Controllers\Controller;
 class FilmController extends Controller
 {
     /**
-     * Display the specified resource.
-     *
-     * @param int $id $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    * Display detail of product.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function show()
     {
-        dd($id);
     }
 }
