@@ -19,10 +19,10 @@ class ScheduleController extends ApiController
      *
      * @return void
      */
-    public function getScheduleSeat(Schedule $schedule)
+    public function getSeat(Schedule $schedule)
     {
         $bookedField = [
-            'seat_id as seat_id',
+            'seat_id',
             'schedules.id as schedule_id'
         ];
         $totalField = [
