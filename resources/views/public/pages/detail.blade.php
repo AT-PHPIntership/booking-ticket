@@ -11,8 +11,7 @@
   <div class="section group">
   <div class="cont-desc span_1_of_2">
     <div class="product-details">				
-    <div class="grid images_3_of_2">
-      <img src="images/banner/1.jpg" alt="" />
+    <div class="grid images_3_of_2" id="image">
     </div>
   <div class="desc span_3_of_2">
     <h2 id="name_film"></h2>
@@ -48,65 +47,12 @@
   </div>
   <div class="rightsidebar span_3_of_1 sidebar">
     <h2>@lang('user/detail.new_film')</h2>
-       <div class="special_movies">
-          <div class="movie_poster">
-           <a href="preview.html"><img src="images/banner/1.jpg" alt="" /></a>
-          </div>
-            <div class="movie_desc">
-            <h3><a href="preview.html">End Game</a></h3>
-             <p><span>$620.87</span> &nbsp; $500.35</p>
-               <span><a href="#">Add to Cart</a></span>
-           </div>
-          <div class="clear"></div>
-         </div>	
-         <div class="special_movies">
-          <div class="movie_poster">
-           <a href="preview.html"><img src="images/banner/1.jpg" alt="" /></a>
-          </div>
-            <div class="movie_desc">
-            <h3><a href="preview.html">Coraline</a></h3>
-             <p><span>$620.87</span> &nbsp; $500.35</p>
-               <span><a href="#">Add to Cart</a></span>
-           </div>
-          <div class="clear"></div>
-         </div>	
-         <div class="special_movies">
-          <div class="movie_poster">
-           <a href="preview.html"><img src="images/banner/1.jpg" alt="" /></a>
-          </div>
-            <div class="movie_desc">
-            <h3><a href="preview.html">Eclipse</a></h3>
-             <p><span>$620.87</span> &nbsp; $500.35</p>
-               <span><a href="#">Add to Cart</a></span>
-           </div>
-          <div class="clear"></div>
-         </div>	
-         <div class="special_movies">
-          <div class="movie_poster">
-           <a href="preview.html"><img src="images/banner/1.jpg" alt="" /></a>
-          </div>
-            <div class="movie_desc">
-            <h3><a href="preview.html">Priest 3D</a></h3>
-             <p><span>$620.87</span> &nbsp; $500.35</p>
-               <span><a href="#">Add to Cart</a></span>
-           </div>
-          <div class="clear"></div>
-         </div>	
-         <div class="special_movies">
-           <div class="movie_poster">
-           <a href="preview.html"><img src="images/banner/1.jpg" alt="" /></a>
-          </div>
-            <div class="movie_desc">
-            <h3><a href="preview.html">Sorority Wars</a></h3>
-             <p><span>$620.87</span> &nbsp; $500.35</p>
-               <span><a href="#">Add to Cart</a></span>
-           </div>
-          <div class="clear"></div>
-         </div>			 
-        </div>
-     </div>
+      <div id="new_films">
+      </div>
   </div>
+  </div>
+</div>
 @endsection
-@section('script')
+@section('js')
   <script src="js/public/detail.js"></script>
 @endsection

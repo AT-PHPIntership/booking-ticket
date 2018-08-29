@@ -9,12 +9,11 @@ use App\Models\Film;
 class FilmController extends Controller
 {
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Film $film)
+    * Display detail of film.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function show()
     {
         return view('public.pages.detail');
     }
