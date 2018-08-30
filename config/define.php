@@ -12,6 +12,8 @@ return [
     'film' => [
         'limit_rows' => 5,
         'upload_image_url' => 'images/upload/',
+        'image_default' => 'images/default/default.jpg',
+        'price_ticket_default' => 60000,
     ],
     'user' => [
         'limit_rows' => 10,
@@ -27,5 +29,6 @@ return [
     ],
     'booking' => [
         'limit_rows' => 5,
-    ],
+        'store_resource_fail' => 'Booking fail!'
+    ]
 ];

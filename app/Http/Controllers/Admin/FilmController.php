@@ -125,6 +125,24 @@ class FilmController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param Film $film Film
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Film $film)
+    {
+        try {
+            $categoryFilms = $film->categories->pluck('name')->toArray();
+            return view('admin.pages.films.show', compact('film', 'categoryFilms'));
+        } catch (Exception $e) {
+            return redirect()->route('admin.films.index')
+                             ->with('message', trans('film.admin.message.edit_fail'));
+        }
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param Film $film Film

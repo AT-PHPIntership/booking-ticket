@@ -23,16 +23,13 @@
                <div class="seat-selection-box">
                   <div>
                      <div class="title-film">
-                        <span>@lang('user/booking.film'): <b style="text-transform: uppercase">
-                        Chang Vo Cua Em</b> </span>
+                        <span>@lang('user/booking.film'): <b style="text-transform: uppercase" id="name_film"</b></span>
                      </div>
                      <div class="title-film">
-                        <span>@lang('user/booking.date'): <b>
-                        23-08-2018</b></span>
+                        <span>@lang('user/booking.date'): <b id="date_schedule"></b></span>
                      </div>
                      <div class="title-film">
-                        <span>@lang('user/booking.schedule'): <b>
-                        20:30</b></span>
+                        <span>@lang('user/booking.schedule'): <b id="time_schedule"></b></span>
                      </div>
                   </div>
                   <div class="title-film">
@@ -251,6 +248,7 @@
          <div class="container back-and-forward">
             <div class="row">
                <div class="col-xs-12">
+                  <a id="btnChangeTime" class="pull-left btn-changeschedule">@lang('user/booking.back')</a>
                   <a id="btnNext" class="pull-right btn-continue">@lang('user/booking.continue')</a>
                </div>
             </div>
@@ -259,6 +257,6 @@
    </div>
 </div>
 @endsection
-@section('script')
+@section('js')
 <script src="js/public/order.js"></script>
 @endsection

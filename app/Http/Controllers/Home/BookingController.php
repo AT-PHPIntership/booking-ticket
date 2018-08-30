@@ -8,13 +8,21 @@ use App\Http\Controllers\Controller;
 class BookingController extends Controller
 {
     /**
-     * Display the specified resource.
+     * Display a listing of the resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show()
     {
         return view('public.pages.order');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function confirm()
+    {
     }
 }

@@ -13,22 +13,32 @@
          <div class="col span_2_of_3">
             <div class="contact-form">
                <h2>@lang('user/login.register_form')</h2>
-               <form method="post" action="">
-                  <div>
+               <div id="error">
+                </div>
+               <form class="form">
+                 <div>
                      <span><label>@lang('user/login.form.email')</label></span>
-                     <span><input name="email" type="text" class="textbox" placeholder="@lang('user/login.form.email_hint')" required=" "></span>
+                     <span><input name="email" type="text" class="textbox" value="{{ old('email') }}" placeholder="@lang('user/login.form.email_hint')" ></span>
                   </div>
                   <div>
                     <span><label>@lang('user/login.form.full_name')</label></span>
-                    <span><input name="full_name" type="text" class="textbox" placeholder="@lang('user/login.form.full_name_hint')" required=" "></span>
+                    <span><input name="full_name" type="text" class="textbox" value="{{ old('full_name') }}" placeholder="@lang('user/login.form.full_name_hint')" ></span>
                  </div>
                  <div>
                     <span><label>@lang('user/login.form.password')</label></span>
-                    <span><input name="password" type="password" class="textbox" placeholder="@lang('user/login.form.password_hint')" required=" "></span>
+                    <span><input name="password" id="password" type="password"  class="textbox" placeholder="@lang('user/login.form.password_hint')"></span>
                   </div>
                   <div>
                      <span><label>@lang('user/login.form.repassword')</label></span>
-                     <span><input name="repassword" type="password" class="textbox" placeholder="@lang('user/login.form.repassword_hint')" required=" "></span>
+                     <span><input name="repassword" type="password" class="textbox" placeholder="@lang('user/login.form.repassword_hint')"></span>
+                  </div>
+                  <div>
+                    <span><label>@lang('user/login.form.phone')</label></span>
+                    <span><input name="phone" type="number" class="textbox" value="{{ old('phone') }}" placeholder="@lang('user/login.form.phone_hint')"></span>
+                 </div>
+                 <div>
+                   <span><label>@lang('user/login.form.address')</label></span>
+                   <span><input name="address" type="text" class="textbox" value="{{ old('address') }}" placeholder="@lang('user/login.form.address_hint')"></span>
                   </div>
                   <div>
                      <span><input type="submit" value="@lang('user/login.form.register')" class="mybutton"></span>
@@ -60,4 +70,7 @@
       </div>
    </div>
 </div>
+@endsection
+@section('script')
+  <script type="text/javascript" src="js/public/register.js"></script>
 @endsection

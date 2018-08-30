@@ -1,10 +1,26 @@
 $(document).ready(function() {
-    var idSchedule;
-
-    var array = [1, 7, 18];
-    for (var i = 0; i < array.length; i++) {
-        bookedSeat(array[i]);
+    if (!localStorage.getItem('booking')) {
+        window.location.href = route('api.films.index');
     }
+    var idSchedule;
+    var array = [];
+    var booking = JSON.parse(localStorage.getItem('booking'));
+    $('#name_film').text(booking.name);
+    $('#date_schedule').text(booking.date);
+    $('#time_schedule').text(booking.time);
+    $.ajax({
+        url: route('api.schedule.seat', booking.schedule_id),
+        type: "get",
+        headers: {
+            'Accept': 'application/json',
+        },
+        success: function (response) {
+            response.result.booked.forEach(booked => {
+                bookedSeat(booked.seat_id);
+                array.push(booked.seat_id);
+            });
+        },
+    });
 
     $('#quantity').on('change', function() {
       $("#quantity option:selected").each(function () {
@@ -19,7 +35,7 @@ $(document).ready(function() {
             selectSeat(seatID);
             return;
         }
-        alert('Bạn vui lòng chọn số lượng ghế');
+        alert(Lang.get('user/booking.please_choose_number'));
     });
 
     $('#btnNext').on('click', function() {
@@ -27,9 +43,13 @@ $(document).ready(function() {
             Continue();
             return;
         }
-        alert('Bạn vui lòng chọn số lượng ghế');
+        alert(Lang.get('user/booking.please_choose_number'));
     });
-});
+
+    $('#btnChangeTime').on('click', function() {
+        localStorage.removeItem('booking');
+        window.location.href = route('user.films.show', booking.film_id);
+    });
 
 function startTimer(duration, display) {
     var start = Date.now(), diff, minutes, seconds;
@@ -55,7 +75,8 @@ window.onload = function () {
     var tenMinutes = 60 * 10,
     display = document.querySelector('#time');
     setTimeout(function(){
-        alert('aaa');
+        localStorage.removeItem('booking');
+        window.location.href = route('api.films.index');
     }, 600000);
     startTimer(tenMinutes, display);
 };
@@ -64,7 +85,7 @@ function changeSeatTotal() {
     var selectedOption = $(".ddl-seat-count option:selected").text();
     seatTotal = parseInt(selectedOption);
     $('[data-seatTotalLabel=""]').text(seatTotal);
-    $('[data-totalPrice=""]').text((seatTotal*60000).toLocaleString());
+    $('[data-totalPrice=""]').text((seatTotal*convertPrice(booking.price)*1000).toLocaleString());
     $('div.item-seat-selected').removeClass('item-seat-selected childitem').addClass('item-seat childitem');
 }
 
@@ -89,7 +110,7 @@ function selectSeat(seatID) {
         if (classSeat == "item-seat-selected childitem") {
             document.getElementById(seatID).className = "item-seat childitem";
         }
-        alert('Bạn chỉ được chọn ' + parseFloat(seatTotal) + ' Ghế');
+        alert(Lang.get('user/booking.choose_only') + parseFloat(seatTotal) + Lang.get('user/booking.seat'));
         return false;
     }
 }
@@ -120,27 +141,39 @@ function Continue() {
     for (i = 0; i < seats.length; i++) {               
         if (seats.item(i).className == "item-seat-selected childitem") {
             seatCount += 1;
-            if (seats.item(i).className == "item-seat-selected-couple childitem") {
-                seatCoupleCount += 1;
-            }
         }
     }
     if (seatCount > seatTotal) {
-        alert('Bạn chỉ được chọn' + parseFloat(seatTotal) + 'Ghế');
+        alert(Lang.get('user/booking.choose_only') + parseFloat(seatTotal) + Lang.get('user/booking.seat'));
         return false;
     }
     
     if (seatCount < seatTotal) {
-        alert('Bạn vui lòng chọn thêm ' + (seatTotal - seatCount) + ' ghế để đủ số lượng');
+        alert(Lang.get('user/booking.choose_add') + (seatTotal - seatCount) + Lang.get('user/booking.order_to'));
         return false;
     }
     var strList = GetListSeat();
-    if (strList != "") {               
-        // PageMethods.SendForm(strList, seatTotal, OnSucceeded, OnFailed);
-        console.log(strList);
-    }
-    else {
-        alert('Bạn chưa chọn ghế');
+    if (strList != "") {
+        var order = {
+            name_film: booking.name,
+            ticket_id: booking.ticket_id,
+            seat_id: strList,
+            room_id: booking.room_id,
+            time: booking.time,
+            date: booking.date,
+            price: $('[data-totalPrice=""]').text(),
+        };
+        localStorage.removeItem('booking');
+        window.localStorage.setItem('order', JSON.stringify(order));     
+        window.location.href = route('user.confirm');
+    } else {
+        alert(Lang.get('user/booking.choose_no'));
         return false;
     }
 }
+
+function convertPrice(price) {
+    var price = price.split(",");
+    return parseInt(price[0]);
+}
+});
