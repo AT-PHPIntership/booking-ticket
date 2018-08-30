@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['as' => 'api.','namespace' => 'Api\User'], function () {
     Route::post('/login', 'LoginController@login');
     Route::post('/register', 'RegisterController@register');
+    Route::get('/schedule/{schedule}/seat', 'ScheduleController@getSeat');
     Route::apiResource('categories', 'CategoryController');
     Route::apiResource('films', 'FilmController');
     Route::get('search', 'FilmController@search')->name('search');
