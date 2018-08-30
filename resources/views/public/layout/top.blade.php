@@ -36,8 +36,8 @@
               </p>
            </div>
            <div class="search_box">
-              <form>
-                 <input type="text" placeholder="@lang('user/layout.search')">
+              <form method="GET">
+                 <input type="text" name="name" placeholder="@lang('user/layout.search')">
                  <input type="submit" value="">
               </form>
            </div>

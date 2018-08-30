@@ -29,5 +29,6 @@ return [
     ],
     'booking' => [
         'limit_rows' => 5,
-    ],
+        'store_resource_fail' => 'Booking fail!'
+    ]
 ];

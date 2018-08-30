@@ -4,8 +4,10 @@ $.ajax({
     success: function( result ) {
         let html = '';
          result.result.forEach(category => {
-            html += '<li><a href="#">'+ category.name + '</a></li>';
+            url ="?category="+category.id;
+            html += '<li><a href="' + url + '">'+ category.name + '</a></li>';
         });
         $('.navbar-nav').append(html);
     }
  });
+ 

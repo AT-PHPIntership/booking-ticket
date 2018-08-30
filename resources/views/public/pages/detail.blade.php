@@ -11,7 +11,8 @@
   <div class="section group">
   <div class="cont-desc span_1_of_2">
     <div class="product-details">				
-    <div class="grid images_3_of_2" id="image">
+    <div class="grid images_3_of_2">
+      <img id="image" src="" alt='' />
     </div>
   <div class="desc span_3_of_2">
     <h2 id="name_film"></h2>
