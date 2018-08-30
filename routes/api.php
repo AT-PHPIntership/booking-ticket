@@ -23,11 +23,10 @@ Route::group(['as' => 'api.','namespace' => 'Api\User'], function () {
     Route::get('/schedule/{schedule}/seat', 'ScheduleController@getSeat');
     Route::apiResource('categories', 'CategoryController');
     Route::apiResource('films', 'FilmController');
+    Route::get('search', 'FilmController@search')->name('search');
     Route::group(['middleware' => 'auth:api'], function () {
+        Route::apiResource('booking', 'BookingController');
         Route::post('/logout', 'LoginController@logout');
-        Route::get('booking', 'BookingController@index');
-        Route::get('booking/{booking}', 'BookingController@show');
-        Route::post('booking', 'BookingController@store');
         Route::get('/user', 'UserController@show');
         Route::put('/user', 'UserController@update');
     });
