@@ -36,9 +36,10 @@
               </p>
            </div>
            <div class="search_box">
-              <form method="GET">
-                 <input type="text" name="name" placeholder="@lang('user/layout.search')">
+              <form>
+                 <input id="query_search" type="text" placeholder="@lang('user/layout.search')">
                  <input type="submit" value="">
+                 <div class="search-hint" id="search-hint"></div>
               </form>
            </div>
            <div class="clear"></div>
@@ -49,6 +50,6 @@
   </div>
 </div>
 @section('script')
-  <script src="js/public/logout.js"></script>
-  <script src="js/public/sidebar.js"></script>
+<script src="js/public/logout.js"></script>
+<script src="js/public/sidebar.js"></script>
 @endsection
