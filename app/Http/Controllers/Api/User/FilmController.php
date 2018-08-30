@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ApiController;
 use Illuminate\Http\Response;
 use App\Models\Film;
 use App\Models\Category;
+use DB;
 
 class FilmController extends ApiController
 {
@@ -50,5 +51,17 @@ class FilmController extends ApiController
         }
         $films = $this->formatPaginate($films);
         return $this->showAll($films, Response::HTTP_OK);
+    }
+
+    public function search()
+    {
+        $data = Film::with(['images' => function ($query) {
+            $query->first();
+        }])
+        ->select(['id', 'name', 'director', 'actor'])
+        ->where(DB::raw("CONCAT(`name`, ' ', `director`, ' ', `actor`)"), 'LIKE', "%".request('query')."%")
+        ->take(5)
+        ->get();
+        return $this->showAll($data);
     }
 }
