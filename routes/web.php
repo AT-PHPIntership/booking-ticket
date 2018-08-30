@@ -15,8 +15,10 @@ Route::group(['as' => 'user.', 'namespace' => 'Home'], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('/films', 'FilmController');
     Route::get('/login', 'LoginController@showLoginForm')->name('login');
+    Route::get('/booking', 'BookingController@show')->name('booking');
     Route::get('/profile', 'ProfileController@show')->name('profile');
     Route::get('/register', 'RegisterController@index')->name('register');
+    Route::resource('films', 'FilmController');
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => 'adminLogin'], function() {

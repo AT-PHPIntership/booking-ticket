@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Api\User;
 
 use Illuminate\Http\Request;
@@ -27,7 +26,6 @@ class FilmController extends ApiController
         $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? number_format(config('define.film.price_ticket_default')) : number_format($film['schedules'][0]['tickets'][0]['price']);
         return $this->showOne($film, Response::HTTP_OK);
     }
-
      /**
      * Display a listing of the resource.
      *
@@ -43,7 +41,6 @@ class FilmController extends ApiController
             $query->select('film_id')
                   ->from('schedules');
         })->orderBy('id', config('define.dir_desc'))->paginate(config('define.film.limit_rows'));
-
         foreach ($films as $film) {
             $film['image_path'] = empty($film['images'][0]) ? config('define.film.image_default') : $film['images'][0]['path'];
             $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? number_format(config('define.film.price_ticket_default')) : number_format($film['schedules'][0]['tickets'][0]['price']);
