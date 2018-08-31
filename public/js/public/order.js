@@ -175,6 +175,7 @@ function Continue() {
         var order = {
             name_film: booking.name,
             ticket_id: booking.ticket_id,
+            film_id: booking.film_id,
             seat_id: strList,
             seat_name: strListName,
             room_id: booking.room_id,

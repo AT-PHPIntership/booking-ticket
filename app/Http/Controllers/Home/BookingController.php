@@ -24,5 +24,6 @@ class BookingController extends Controller
      */
     public function confirm()
     {
+        return view('public.pages.booking');
     }
 }

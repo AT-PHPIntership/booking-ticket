@@ -2,7 +2,7 @@ $(document).ready(function () {
     url = window.location.pathname;
     var id = url.substring(url.lastIndexOf('/') + 1);
     var url_film = route('api.films.index');
-    var ticket_id;
+    
     $.ajax({
         url: route('api.films.show', id),
         type: "get",
@@ -10,20 +10,23 @@ $(document).ready(function () {
         success: function( data ) {
         var html = '';
         var todayDate = new Date();
-        ticket_id = data.result.schedules[0].tickets[0].id;
         data.result.schedules.forEach(schedule => {
             var schedule_id = schedule.id;
             var room_id = schedule.room_id;
-            var schedule = schedule.start_time.split(" ");
+            var time = schedule.start_time.split(" ");
             var today = todayDate.toISOString().slice(0, 10);
             var todayTime = todayDate.getHours();
-            if ((Date.parse(schedule[0]) >= Date.parse(today)) && (parseInt(todayTime) < checkTime(schedule[1]))) {
-                html += '<h2>' + schedule[0] + '</h2>\
+            var ticket_id = '';
+            if (schedule.tickets[0]) {
+                var ticket_id = schedule.tickets[0].id;
+            }
+            if ((Date.parse(time[0]) >= Date.parse(today)) && (parseInt(todayTime) < checkTime(time[1]))) {
+                html += '<h2>' + time[0] + '</h2>\
                     <div class="time-wrapper">\
                         <ul>\
-                            <li><a class="available" href="#" data-time="' + schedule[1] + '"\
+                            <li><a class="available" href="#" data-time="' + time[1] + '"\
                             data-schedule="' + schedule_id + '" data-room="' + room_id + '"\
-                            data-date="' + schedule[0] + '" data-ticket="' + ticket_id + '">' + schedule[1] + '</a></li>\
+                            data-date="' + time[0] + '" data-ticket="' + ticket_id + '">' + time[1] + '</a></li>\
                         </ul>\
                     </div>';
             }

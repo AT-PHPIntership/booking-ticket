@@ -72,11 +72,11 @@ class BookingController extends ApiController
      *
      * @return void
      */
-    public function store(CreateBookingRequest $request)
+    public function store(Request $request)
     {
         $user = Auth::user();
         $seats = $request['seats'];
-
+        $seats = explode(",", $seats);
         DB::beginTransaction();
         try {
             $booking = Booking::create([
