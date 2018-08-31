@@ -15,4 +15,14 @@ class BookingController extends Controller
     public function show()
     {
     }
+
+    /**
+    * Display detail of booking.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function confirm()
+    {
+        return view('public.pages.booking');
+    }
 }
