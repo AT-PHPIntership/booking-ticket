@@ -60,7 +60,6 @@ class FilmController extends ApiController
         $data = Film::with(['images'])
         ->select(['id', 'name', 'director', 'actor'])
         ->where(DB::raw("CONCAT(`name`, ' ', `director`, ' ', `actor`)"), 'LIKE', "%".request('query')."%")
-        ->take(5)
         ->get();
         return $this->showAll($data);
     }
