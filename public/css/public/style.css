@@ -110,13 +110,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
  .header_top_right{
 	 float:right;
 	 padding:18px 0;
+	 width: 25%;
  }
  .search_box {
-	  background: url(/images/icon/strip-bg.gif) repeat-x #F6F6F6;
-	  border: 1px solid #D2D2D2;
+	 background: url(/images/icon/strip-bg.gif) repeat-x #F6F6F6;
+	 border: 1px solid #D2D2D2;
 	 position: relative;
 	 float: left;
 	 margin-right: 15px;
+	 width: 88%;
  }
  .search_box form input[type="text"] {
 	 border: none;
@@ -125,7 +127,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	 font-size:0.85em;
 	 color: #acacac;
 	 font-family: 'ambleregular';
-	 width:74%;
+	 width:88%;
 	 padding:9px;
 	 -webkit-apperance:none;
  }
@@ -1560,12 +1562,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 }
 
 #search-hint ul li a {
-	background: #FFF;
+	background: seashell;
 	text-decoration: none;
     display: block;
     min-height: 66px;
     padding: 10px;
-    border-bottom: 1px solid;
+	border-bottom: 1px solid slategray;
+	color: tomato;
 }
 
 #search-hint ul li a div.image {
@@ -1587,7 +1590,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-
 }
 
 #search-hint ul li a div.search-content b {

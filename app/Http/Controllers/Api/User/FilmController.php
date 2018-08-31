@@ -57,9 +57,7 @@ class FilmController extends ApiController
      */
     public function search()
     {
-        $data = Film::with(['images' => function ($query) {
-            $query->first();
-        }])
+        $data = Film::with(['images'])
         ->select(['id', 'name', 'director', 'actor'])
         ->where(DB::raw("CONCAT(`name`, ' ', `director`, ' ', `actor`)"), 'LIKE', "%".request('query')."%")
         ->take(5)

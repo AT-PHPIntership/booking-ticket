@@ -1,9 +1,11 @@
 var currentRequest = null;
 var timeoutID = null;
 
+// Parse data from ajax to html
 function parseData(data) {
     html = '<ul>';
     data.result.forEach(film => {
+        console.log(film.images[0].path);
         path = (typeof film.images[0] != 'undefined' && film.images[0]) ? film.images[0].path : 'images/default/default-film.jpeg';
         html +='<li>'+
                     '<a href=/films/' + film.id + '>'+
@@ -19,6 +21,7 @@ function parseData(data) {
     return html;
 }
 
+// Handle request from ajax(send/abort)
 function findListSearch(str) {
     if (currentRequest != null) {
         currentRequest.abort();
@@ -39,11 +42,13 @@ function findListSearch(str) {
     });
 }
 
+// Handle event keyup in search element
 $('#query_search').keyup(function (e) {
     clearTimeout(timeoutID);
     timeoutID = setTimeout(findListSearch.bind(undefined, e.target.value), 200);
 });
 
+// Hide box result when click out of result dropbox
 $(document).on('click', function () {
     $('#search-hint').html('');
 });
