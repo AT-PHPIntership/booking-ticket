@@ -18,13 +18,7 @@
                   <input class="cat_type category-input" data-label="film" id="film" value="film" name="search-filter" type="radio" ><label for="film" >Film</label>
                   </li>
                   <li >
-                  <input type="radio" name="search-filter" id="design" value="design" ><label class="category-label" for="design" >Design</label>
-                  </li>
-                  <li >
                   <input type="radio" name="search-filter" id="user" value="user" ><label class="category-label" for="user" >User</label>
-                  </li>
-                  <li >
-                  <input type="radio" name="search-filter" id="schedule" value="schedule" ><label class="category-label" for="schedule" >Schedule</label>
                   </li>
                 </ul>
               </div>

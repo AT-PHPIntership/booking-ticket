@@ -1544,7 +1544,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     width: 250px;
     right: 10px;
     position: absolute;
-    z-index: 200;
+	z-index: 200;
+	overflow-y: scroll;
 }
 
 #search-hint ul {

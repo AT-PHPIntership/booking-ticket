@@ -15377,6 +15377,7 @@ be a descendant of the grid when it is being dragged.
   right: 10px;
   position: absolute;
   z-index: 200;
+  overflow-y: scroll;
 }
 
 #search-hint ul {
