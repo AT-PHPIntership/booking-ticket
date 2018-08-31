@@ -5,8 +5,30 @@
   <!-- Navbar Right Menu-->
   <ul class="app-nav">
      <li class="app-search">
-        <input class="app-search__input" type="search" placeholder="{{ __('master.search') }}">
-        <button class="app-search__button"><i class="fa fa-search"></i></button>
+      <div class="container">
+        <div class="row searchFilter" >
+          <div class="col-sm-12" >
+            <div class="input-group" >
+            <input id="table_filter" type="text" class="form-control" aria-label="Text input with segmented button dropdown" >
+            <div class="input-group-btn" >
+              <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="label-icon" >Category</span> <span class="caret" >&nbsp;</span></button>
+              <div class="dropdown-menu dropdown-menu-right" >
+                <ul class="category_filters" >
+                  <li >
+                  <input class="cat_type category-input" data-label="film" id="film" value="film" name="search-filter" type="radio" ><label for="film" >Film</label>
+                  </li>
+                  <li >
+                  <input type="radio" name="search-filter" id="user" value="user" ><label class="category-label" for="user" >User</label>
+                  </li>
+                </ul>
+              </div>
+              <button id="searchBtn" type="button" class="btn btn-secondary btn-search" ><span class="glyphicon glyphicon-search" >&nbsp;</span> <span class="label-icon" >Search</span></button>
+            </div>
+            </div>
+            <div class="search-hint" id="search-hint"></div>
+          </div>
+        </div>
+      </div>
      </li>
      <!--Notification Menu-->
      <li class="dropdown">
