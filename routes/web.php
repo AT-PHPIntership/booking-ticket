@@ -19,6 +19,8 @@ Route::group(['as' => 'user.', 'namespace' => 'Home'], function () {
     Route::get('/confirm', 'BookingController@confirm')->name('confirm');
     Route::get('/profile', 'ProfileController@show')->name('profile');
     Route::get('/register', 'RegisterController@index')->name('register');
+    Route::get('/booking', 'BookingController@show')->name('booking');
+    Route::get('/confirm', 'BookingController@confirm')->name('confirm');
     Route::resource('films', 'FilmController');
 });
 

@@ -27,4 +27,5 @@ return [
     'time_schedule' => 'Time',
     'seat_schedule' => 'Seat',
     'total' => 'Total',
+    'success' => 'Success!!!',
 ];

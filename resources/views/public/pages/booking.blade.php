@@ -12,38 +12,36 @@
     <div class="row">
       <div class="col-xs-4">
         <div class="movie-img img-background">
-            <img src="images/default/default.jpg" >
+            <img src="images/default/default.jpg" id="image">
         </div>
         <p class="title">
-          <span id="ctl00_plcMain_lblMovieName">Cats And Peachtopia</span>
+          <span id="name_film"></span>
         </p>
       </div>
       <div class="col-xs-3">
         <p>
           <span class="pull-left">@lang('user/booking.date_schedule'): </span>
           <span>
-            <span id="ctl00_plcMain_lblCinemaName">ThanhHoa</span>
+            <span id="date_schedule"></span>
           </span>
         </p>
         <div class="clearfix"></div>
         <p>
           <span class="pull-left">@lang('user/booking.time_schedule'): </span>
           <span>
-            <span id="ctl00_plcMain_lblScreen">Scm03</span>
+            <span id="time_schedule"></span>
           </span>
         </p>
         <div class="clearfix"></div>
         <p>
           <span class="pull-left">@lang('user/booking.seat_schedule'): </span>
           <span>
-            <span id="ctl00_plcMain_lblSeat">I3-I4</span>
+            <span id="seat_name"></span>
           </span>
         </p>
       </div>
       <div class="col-xs-5 dis-flex-row">
         <h3 class="text-bold" id="total">
-          120.000
-          đ
         </h3>
       </div>
     </div>
@@ -52,18 +50,17 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-2">
-          <a class="pointer" href="#">
+          <a class="pointer" href="#" id="back">
             <p style="color:#000205">@lang('user/booking.back')</p>
           </a>
         </div>
         <div class="col-xs-3">
           <h4>@lang('user/booking.total') <span class="pull-right" id="totalFooter">
-            140,000
-            đ</span>
+          </span>
           </h4>
         </div>
         <div class="col-xs-offset-5 col-xs-2">
-          <a class="pointer" href="#">
+          <a class="pointer" href="#" id="submit">
             <p class="text-center">@lang('user/booking.continue')</p>
           </a>
         </div>
@@ -73,4 +70,5 @@
 </div>
 @endsection
 @section('js')
+  <script src="js/public/booking.js"></script>
 @endsection

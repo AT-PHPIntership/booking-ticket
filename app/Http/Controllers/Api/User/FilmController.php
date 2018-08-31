@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ApiController;
 use Illuminate\Http\Response;
 use App\Models\Film;
 use App\Models\Category;
+use DB;
 
 class FilmController extends ApiController
 {
@@ -22,8 +23,12 @@ class FilmController extends ApiController
         $categoryFilms = $film->categories->pluck('name')->toArray();
         $film['categoryFilms'] = implode(", ", $categoryFilms);
         $film->images;
+        $film->schedules;
         $film['image_path'] = empty($film['images'][0]) ? config('define.film.image_default') : $film['images'][0]['path'];
         $film['price_formated'] = empty($film['schedules'][0]['tickets'][0]) ? number_format(config('define.film.price_ticket_default')) : number_format($film['schedules'][0]['tickets'][0]['price']);
+        foreach ($film['schedules'] as $schedule) {
+            $schedule->tickets;
+        }
         return $this->showOne($film, Response::HTTP_OK);
     }
      /**
@@ -47,5 +52,22 @@ class FilmController extends ApiController
         }
         $films = $this->formatPaginate($films);
         return $this->showAll($films, Response::HTTP_OK);
+    }
+
+    /**
+     * Search film in public page
+     *
+     * @return void
+     */
+    public function search()
+    {
+        $data = Film::with(['images' => function ($query) {
+            $query->first();
+        }])
+        ->select(['id', 'name', 'director', 'actor'])
+        ->where(DB::raw("CONCAT(`name`, ' ', `director`, ' ', `actor`)"), 'LIKE', "%".request('query')."%")
+        ->take(5)
+        ->get();
+        return $this->showAll($data);
     }
 }

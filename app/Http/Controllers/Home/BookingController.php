@@ -8,19 +8,20 @@ use App\Http\Controllers\Controller;
 class BookingController extends Controller
 {
     /**
-    * Display detail of booking.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function show()
     {
+        return view('public.pages.order');
     }
 
     /**
-    * Display detail of booking.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function confirm()
     {
         return view('public.pages.booking');
