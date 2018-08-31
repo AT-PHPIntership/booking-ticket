@@ -1,6 +1,6 @@
 $(document).ready(function() {
     if (!localStorage.getItem('booking')) {
-        window.location.href = route('api.films.index');
+        window.location.href = route('user.home');
     }
     var idSchedule;
     var array = [];
@@ -51,6 +51,7 @@ $(document).ready(function() {
         window.location.href = route('user.films.show', booking.film_id);
     });
 
+//initiate clock timer display view
 function startTimer(duration, display) {
     var start = Date.now(), diff, minutes, seconds;
     function timer() {
@@ -71,6 +72,7 @@ function startTimer(duration, display) {
     setInterval(timer, 1000);
 }
 
+//show timer clock view and redirect page index if it's timeout
 window.onload = function () {
     var tenMinutes = 60 * 10,
     display = document.querySelector('#time');
@@ -81,6 +83,7 @@ window.onload = function () {
     startTimer(tenMinutes, display);
 };
 
+//change quantity seat and quantity price if user change choose quantity seat
 function changeSeatTotal() {
     var selectedOption = $(".ddl-seat-count option:selected").text();
     seatTotal = parseInt(selectedOption);
@@ -89,6 +92,7 @@ function changeSeatTotal() {
     $('div.item-seat-selected').removeClass('item-seat-selected childitem').addClass('item-seat childitem');
 }
 
+//choose seat with quantity seat available
 function selectSeat(seatID) {
     var seat = document.getElementById(seatID).className;
     if (seat == "item-seat childitem") {
@@ -99,9 +103,9 @@ function selectSeat(seatID) {
     }
   
     var seatCount = 0;
-    var a = document.getElementById('sodoghe').getElementsByClassName('childitem');  
-    for (i = 0; i < a.length; i++) {
-        if (a.item(i).className == "item-seat-selected childitem") {
+    var seats = $('#sodoghe .childitem');  
+    for (i = 0; i < seats.length; i++) {
+        if (seats[i].className == "item-seat-selected childitem") {
             seatCount += 1;
         }
     }
@@ -115,6 +119,7 @@ function selectSeat(seatID) {
     }
 }
 
+//check for seat was booked
 function bookedSeat(seatID) {
     var seat = document.getElementById(seatID).className;
     if (seat == "item-seat childitem") {
@@ -122,24 +127,36 @@ function bookedSeat(seatID) {
     }
 }
 
+//Get list id seat user booked
 function GetListSeat() {
-    var  seats = document.getElementById('sodoghe').getElementsByClassName('childitem');  
+    var  seats = $('#sodoghe .childitem');  
     var listSeat = "";
     for (i = 0; i < seats.length; i++) {
-        if (seats.item(i).className == "item-seat-selected childitem") {
-            listSeat += seats.item(i).id + ",";
+        if (seats[i].className == "item-seat-selected childitem") {
+            listSeat += seats[i].id + ",";
         }
     }
     return listSeat;
 }
 
+//Get list name seat user booked
+function GetListNameSeat() {
+    var  seats = $('#sodoghe .childitem');  
+    var nameSeat = "";
+    for (i = 0; i < seats.length; i++) {
+        if (seats[i].className == "item-seat-selected childitem") {
+            nameSeat += $(seats[i]).attr('data-seat') + ",";
+        }
+    }
+    return nameSeat;
+}
+
+//Get information booking and redirect page confirm booking
 function Continue() {
     var seatCount = 0;
-    var seats = document.getElementById('sodoghe').getElementsByClassName('childitem');  
-    var countSeatNull = document.getElementsByClassName('item-seat').length;
-    var totaldiv = seats.length;
+    var seats = $('#sodoghe .childitem'); 
     for (i = 0; i < seats.length; i++) {               
-        if (seats.item(i).className == "item-seat-selected childitem") {
+        if (seats[i].className == "item-seat-selected childitem") {
             seatCount += 1;
         }
     }
@@ -153,11 +170,13 @@ function Continue() {
         return false;
     }
     var strList = GetListSeat();
+    var strListName = GetListNameSeat();
     if (strList != "") {
         var order = {
             name_film: booking.name,
             ticket_id: booking.ticket_id,
             seat_id: strList,
+            seat_name: strListName,
             room_id: booking.room_id,
             time: booking.time,
             date: booking.date,
