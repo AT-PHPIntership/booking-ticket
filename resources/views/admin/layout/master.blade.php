@@ -22,6 +22,7 @@
     <script src="js/admin/bootstrap.min.js"></script>
     <script src="js/admin/main.js"></script>
     <script src="js/admin/pace.min.js"></script>
+    <script src="js/admin/search.js"></script>
     @yield('script')
   </body>
 </html>

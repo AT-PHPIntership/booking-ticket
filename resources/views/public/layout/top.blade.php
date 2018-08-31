@@ -25,16 +25,6 @@
            <a href="#"><img src="images/icon/logo.png" alt="" /></a>
         </div>
         <div class="header_top_right">
-           <div class="cart">
-              <p><span>@lang('user/layout.cart')</span>
-              <div id="dd" class="wrapper-dropdown-2">
-                 (@lang('user/layout.empty'))
-                 <ul class="dropdown">
-                    <li>@lang('user/layout.empty_movie')</li>
-                 </ul>
-              </div>
-              </p>
-           </div>
            <div class="search_box">
               <form>
                  <input id="query_search" type="text" placeholder="@lang('user/layout.search')">
