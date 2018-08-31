@@ -5,7 +5,6 @@ var timeoutID = null;
 function parseData(data) {
     html = '<ul>';
     data.result.forEach(film => {
-        console.log(film.images[0].path);
         path = (typeof film.images[0] != 'undefined' && film.images[0]) ? film.images[0].path : 'images/default/default-film.jpeg';
         html +='<li>'+
                     '<a href=/films/' + film.id + '>'+
