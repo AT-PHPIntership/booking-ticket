@@ -74,6 +74,7 @@
       <script type="text/javascript" src="js/public/jquery.nivo.slider.js"></script>
       <script type="text/javascript" src="js/public/main.js"></script>
       <script type="text/javascript" src="messages.js"></script>
+      <script src="js/public/search.js"></script>
       @yield('script')
       @yield('js')
    </body>
