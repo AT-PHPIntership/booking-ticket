@@ -22,4 +22,10 @@ return [
     'choose_add' => 'Please choose seat plus ',
     'order_to' => ' order to equal quantity',
     'choose_no' => 'Please choose seat',
+    'selected' => 'You are selected',
+    'date_schedule' => 'Date',
+    'time_schedule' => 'Time',
+    'seat_schedule' => 'Seat',
+    'total' => 'Total',
+    'success' => 'Success!!!',
 ];
