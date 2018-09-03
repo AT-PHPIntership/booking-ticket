@@ -22,8 +22,8 @@
                      <span><label>@lang('user/login.form.password')</label></span>
                      <span><input name="password" type="password" class="textbox" placeholder="@lang('user/login.form.password_hint')" required=" "></span>
                   </div>
-                  <div>
-                    <a href="">{{ __('user/login.form.forgot_password') }}</a>
+                  <div class="forgot">
+                    <a href="{{ route('password.request') }}">{{ __('user/login.form.forgot_password') }}</a>
                   </div>
                   <div>
                      <span><input type="submit" value="@lang('user/login.form.login')" class="mybutton"></span>

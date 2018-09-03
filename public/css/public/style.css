@@ -2636,3 +2636,69 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   	display: block;
 	clear: both;
 }
+
+
+
+.form-reset > .container > .content {
+	width: 573px;
+    margin: auto;
+}
+
+.form-reset > .container > .content > h2 {
+	font-size: 30px;
+}
+
+.form-reset > .container > .content > .form-group {
+	margin: 20px 0;
+}
+
+.alert {
+	position: absolute;
+    margin-top: 15px;
+}
+.alert-success {
+    color: rgb(64, 189, 64);
+    font-size: 14px;
+}
+
+.alert-danger {
+	color: rgb(255, 30, 30);
+    font-size: 14px;
+}
+
+.form-reset input[type="submit"] {
+	height: 34px;
+    border: none;
+    cursor: pointer;
+	color: #1b1919;
+	background: #ffffff;
+    border-radius: 27px;
+	border: 1px solid;
+	transition: .4s;
+	padding: 0;
+}
+#send_reset_mail_btn {
+	width: 100px;
+}
+
+.form-reset input[type="submit"]:hover{
+	color: #fff;
+    background: #1b1b1b;
+}
+
+input:focus {
+	outline: none;
+}
+
+.form-reset input {
+	height: 30px;
+    width: 300px;
+    padding-left: 10px;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    margin-top: 40px;
+}
+
+#reset_password_btn {
+	width: 312px;
+}

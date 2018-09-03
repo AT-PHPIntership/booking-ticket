@@ -11,6 +11,11 @@
 |
 */
 
+Route::group(['namespace' => 'Home'], function () {
+    Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
+});
+
 Route::group(['as' => 'user.', 'namespace' => 'Home'], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('/films', 'FilmController');
