@@ -22,6 +22,8 @@ Route::get('admin_search', 'Api\Admin\SearchController@search')->name('api.admin
 Route::group(['as' => 'api.','namespace' => 'Api\User'], function () {
     Route::post('/login', 'LoginController@login');
     Route::post('/register', 'RegisterController@register');
+    Route::post('/password/reset', 'ForgotPasswordController@sendResetLinkEmail');
+    Route::put('/password/reset', 'ResetPasswordController@reset');
     Route::get('/schedule/{schedule}/seat', 'ScheduleController@getSeat')->name('schedule.seat');
     Route::apiResource('categories', 'CategoryController');
     Route::apiResource('films', 'FilmController');
