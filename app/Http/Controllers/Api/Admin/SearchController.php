@@ -18,11 +18,9 @@ class SearchController extends ApiController
      */
     public function film()
     {
-        $data = Film::with(['images' => function ($query) {
-            $query->first();
-        }])
+        $data = Film::with(['images'])
         ->select(['id', 'name', 'director', 'actor'])
-        ->where(DB::raw("CONCAT(`id`, ' ', `name`, ' ', `director`, ' ', `actor`)"), 'LIKE', "%".request('query')."%")
+        ->where(DB::raw("CONCAT(`name`, ' ', `director`, ' ', `actor`, ' ', `producer`, ' ', `country`, ' ', `describe`)"), 'LIKE', "%".request('query')."%")
         ->get();
         
         return $data;
@@ -36,7 +34,7 @@ class SearchController extends ApiController
     public function user()
     {
         $data = User::select(['id', 'full_name', 'email', 'phone', 'address'])
-        ->where(DB::raw("CONCAT(`id`, ' ', 'full_name', ' ', `email`, ' ', `phone`, ' ', `address`)"), 'LIKE', "%".request('query')."%")
+        ->where(DB::raw("CONCAT(`id`, ' ', `full_name`, ' ', `email`, ' ', `phone`, ' ', `address`)"), 'LIKE', "%".request('query')."%")
         ->get();
         return $data;
     }
@@ -44,13 +42,11 @@ class SearchController extends ApiController
     /**
      * Handle search request
      *
-     * @param SearchRequest $request request
-     *
      * @return void
      */
-    public function search(SearchRequest $request)
+    public function search()
     {
-        switch ($request->filter) {
+        switch (request('filter')) {
             case 'film':
                 return $this->showAll($this->film(request('query')));
             case 'user':
