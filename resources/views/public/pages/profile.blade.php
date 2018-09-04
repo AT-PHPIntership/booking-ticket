@@ -38,15 +38,25 @@
           </div>
           <div class="element-last">
             <ul class="content">
-              <li class="menu info">
+              <li class="menu">
                 <ul>
                   <li class="button"><a href="#">@lang('user/layout.profile')<span class="p-icon"> </span></a></li>
                   <li class="dropdown">
                     <ul class="icon-navigation">
-                      <li><a href="#" id="name"></a></li>
-                      <li><a href="#" id="email"></a></li>
-                      <li><a href="#" id="phone"></a></li>
-                      <li><a href="#" id="address"></a></li>
+                      <li><a id="name"></a></li>
+                      <li><a id="email"></a></li>
+                      <li><a id="phone"></a></li>
+                      <li><a id="address"></a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu">
+                <ul>
+                  <li class="button"><a href="#">@lang('user/booking.title')<span class="p-icon msg"> </span></a></li>
+                  <li class="dropdown" id="booking_schedule">
+                    <ul class="icon-navigation">
+                      <li><a></a></li>
                     </ul>
                   </li>
                 </ul>

@@ -6,7 +6,7 @@ $(document).ready(function() {
         type: "GET",
         url: "admin/tickets/film/"+idSchedule,
         success: function( msg ) {
-          $("#film").html("<input class='form-control' type='text' value='"+ msg + "' disabled >");
+          $("#film_schedule").html("<input class='form-control' type='text' value='"+ msg + "' disabled >");
         }
       });
     });
@@ -19,7 +19,7 @@ $(document).ready(function() {
         type: "GET",
         url: "admin/tickets/film/"+idSchedule,
         success: function( msg ) {
-          $("#film").html("<input class='form-control' type='text' value='"+ msg + "' disabled >");
+          $("#film_schedule").html("<input class='form-control' type='text' value='"+ msg + "' disabled >");
         }
       });
     });

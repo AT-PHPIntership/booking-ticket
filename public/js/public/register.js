@@ -35,7 +35,7 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.form input[type="submit"]', function (event) {
-        event.preventDefault();
+       event.preventDefault();
         $.ajax({
             url: "/api/register",
             type: "post",

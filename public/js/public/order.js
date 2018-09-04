@@ -184,7 +184,7 @@ function Continue() {
             price: $('[data-totalPrice=""]').text(),
         };
         localStorage.removeItem('booking');
-        window.localStorage.setItem('order', JSON.stringify(order));     
+        window.localStorage.setItem('order', JSON.stringify(order));   
         window.location.href = route('user.confirm');
     } else {
         alert(Lang.get('user/booking.choose_no'));

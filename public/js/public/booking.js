@@ -19,12 +19,20 @@ $(document).ready(function () {
         },
     });
 
-    $('#name_film').text(booking.name);
+    $('#name_film').text(booking.name_film);
     $('#date_schedule').text(booking.date);
     $('#time_schedule').text(booking.time);
     $('#seat_name').text(seatName);
     $('#total').text(booking.price);
     $('#totalFooter').text(booking.price);
+
+    var userBooking = {
+        name_film: booking.name_film,
+        seat_name: seatName,
+        time: booking.time,
+        date: booking.date,
+        price: booking.price,
+    };
 
     $(document).on('click', '#submit', function (event) {
         event.preventDefault();
@@ -40,6 +48,7 @@ $(document).ready(function () {
               seats: seatId, 
             },
             success: function (response) {
+                window.localStorage.setItem('user_booking', JSON.stringify(userBooking));
                 alert(Lang.get('user/booking.success'));
                 window.location.href = route('user.profile');
             },

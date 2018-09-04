@@ -13671,7 +13671,6 @@ be a descendant of the grid when it is being dragged.
   -ms-flex-item-align: center;
       align-self: center;
   margin-right: 15px;
-  padding: 10px 0;
 }
 
 @media (max-width: 480px) {
@@ -15236,9 +15235,6 @@ be a descendant of the grid when it is being dragged.
   color: #666;
 }
 
-.searchFilter {
-  margin-bottom: 20px;    
-}
  .searchFilter.btn {
     display: inline-block;
     font-weight: 400;
