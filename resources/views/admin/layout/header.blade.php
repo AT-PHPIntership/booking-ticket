@@ -15,14 +15,17 @@
               <div class="dropdown-menu dropdown-menu-right" >
                 <ul class="category_filters" >
                   <li >
-                  <input class="cat_type category-input" data-label="film" id="film" value="film" name="search-filter" type="radio" ><label for="film" >Film</label>
+                    <input class="cat_type category-input" data-label="all" id="all" value="all" name="search-filter" type="radio" ><label for="all" >All</label>
                   </li>
                   <li >
-                  <input type="radio" name="search-filter" id="user" value="user" ><label class="category-label" for="user" >User</label>
+                    <input class="cat_type category-input" data-label="film" id="film" value="film" name="search-filter" type="radio" ><label for="film" >Film</label>
+                  </li>
+                  <li >
+                    <input type="radio" name="search-filter" id="user" value="user" ><label class="category-label" for="user" >User</label>
                   </li>
                 </ul>
               </div>
-              <button id="searchBtn" type="button" class="btn btn-secondary btn-search" ><span class="glyphicon glyphicon-search" >&nbsp;</span> <span class="label-icon" >Search</span></button>
+              <a href="#searchModal" data-toggle="modal"><button id="searchBtn" type="button" class="btn btn-secondary btn-search" ><span class="glyphicon glyphicon-search" >&nbsp;</span> <span class="label-icon" >Search</span></button></a>
             </div>
             </div>
             <div class="search-hint" id="search-hint"></div>
@@ -53,3 +56,28 @@
      </li>
   </ul>
 </header>
+
+<!-- Model search result -->
+<div class="modal" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog-centered modal-full" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="model-title">Result:</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body p-4" id="result">
+                    <div class="row">
+                    <div id="group-film-result" class="group-film-small"> 
+                    </div>
+                    <div id="group-user-result" class="group-film-small"> 
+                    </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>

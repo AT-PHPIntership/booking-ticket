@@ -26,9 +26,9 @@
         </div>
         <div class="header_top_right">
            <div class="search_box">
-              <form>
-                 <input id="query_search" type="text" placeholder="@lang('user/layout.search')">
-                 <input type="submit" value="">
+              <form action="">
+                 <input id="query_search" type="text" placeholder="@lang('user/layout.search')" autocomplete="off">
+                 <a href="#searchModal" data-toggle="modal"><input type="submit" disabled value=""></a>
                  <div class="search-hint" id="search-hint"></div>
               </form>
            </div>
