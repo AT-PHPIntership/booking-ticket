@@ -1,12 +1,11 @@
 <?php
 namespace App\Http\Controllers\Api\User;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\ApiController;
 use Illuminate\Http\Response;
-use App\Models\Film;
+use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Film;
 use DB;
 
 class FilmController extends ApiController
@@ -63,7 +62,7 @@ class FilmController extends ApiController
     {
         $data = Film::with(['images'])
         ->select(['id', 'name', 'director', 'actor'])
-        ->where(DB::raw("CONCAT(`name`, ' ', `director`, ' ', `actor`)"), 'LIKE', "%".request('query')."%")
+        ->where(DB::raw("CONCAT(`name`, ' ', `director`, ' ', `actor`, ' ', `producer`, ' ', `country`, ' ', `describe`)"), 'LIKE', "%".request('query')."%")
         ->get();
         return $this->showAll($data);
     }
