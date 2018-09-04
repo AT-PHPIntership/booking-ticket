@@ -2636,3 +2636,146 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   	display: block;
 	clear: both;
 }
+
+@media (min-width: 1200px) {
+	.group-film-small {
+	  margin: 20px 0 0 0;
+	}
+  
+	.group-film-small .film-small {
+	  width: 122px;
+	  margin: 0 8px 8px 0;
+	}
+  
+	.group-film-small .film-small .poster-film-small {
+	  width: 122px;
+	  height: 175px;
+	}
+  
+	.group-film-small .film-small .title-film-small {
+	  padding: 0;
+	}
+  
+	.group-film-small .film-small .title-film-small b {
+	  font-size: 14px;
+	  line-height: 17px;
+	}
+  
+	.group-film-small .film-small .title-film-small p {
+	  font-size: 14px;
+	}
+  }
+  
+  @media (min-width: 992px) {
+	.group-film-small {
+	  margin: 20px 0 0 0;
+	}
+  
+	.group-film-small .film-small {
+	  width: 142px;
+	  margin: 0 8px 8px 0;
+	}
+  
+	.group-film-small .film-small .poster-film-small {
+	  width: 142px;
+	  height: 205px;
+	}
+  
+	.group-film-small .film-small .title-film-small {
+	  padding: 0;
+	}
+  
+	.group-film-small .film-small .title-film-small b {
+	  font-size: 15px;
+	  line-height: 18px;
+	}
+  
+	.group-film-small .film-small .title-film-small p {
+	  font-size: 14px;
+	}
+  }
+  
+  @media (min-width: 768px) {
+	.group-film-small {
+	  margin: 20px 0 0 0;
+	}
+  
+	.group-film-small .film-small {
+	  width: 200px;
+	  margin: 0 8px 8px 0;
+	}
+  
+	.group-film-small .film-small .poster-film-small {
+	  width: 200px;
+	  height: 152px;
+	}
+  
+	.group-film-small .film-small .title-film-small {
+	  padding: 0;
+	}
+  
+	.group-film-small .film-small .title-film-small b {
+	  font-size: 14px;
+	  line-height: 16px;
+	}
+  
+	.group-film-small .film-small .title-film-small p {
+	  font-size: 13px;
+	}
+  }
+  
+  @media (min-width: 0) {
+	.group-film-small {
+	  margin: 20px 0 0 0;
+	}
+  
+	.group-film-small .film-small {
+	  display: inline-block;
+	  width: 200px;
+	  margin: 0 8px 8px 0;
+	  text-decoration: none;
+	}
+  
+	.group-film-small .film-small .poster-film-small {
+	  width: 200px;
+	  height: 152px;
+	  display: block;
+	  background-size: cover;
+	  background-repeat: no-repeat;
+	  position: relative;
+	}
+  
+	.group-film-small .film-small .title-film-small {
+	  padding: 0;
+	}
+  
+	.group-film-small .film-small .title-film-small b {
+	  font-size: 14px;
+	  color: #d04a4a;
+	  padding: 0;
+	  margin: 4px 0 0 0;
+	  text-align: left;
+	  font-weight: bold;
+	  display: block;
+	  transition: .2s;
+	  max-width: 100%;
+	  line-height: 16px;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	  white-space: nowrap;
+	}
+  
+	.group-film-small .film-small .title-film-small p {
+	  font-size: 13px;
+	  color: #d04a4a;
+	  padding: 0;
+	  margin: 0;
+	  text-align: left;
+	  display: block;
+	  -webkit-transition: .2s;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
+  }
+
