@@ -14,6 +14,8 @@ use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\User\GetBookingRequest;
 use App\Http\Requests\User\ShowBookingRequest;
 use App\Http\Requests\User\CreateBookingRequest;
+use App\Models\Ticket;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class BookingController extends ApiController
 {
@@ -66,23 +68,55 @@ class BookingController extends ApiController
     }
 
     /**
+     * Get seat booked and total seat for function store
+     *
+     * @return void
+     */
+    public function getSeats()
+    {
+        $seatBooked = DB::table('schedules')
+            ->join('tickets', 'schedules.id', 'tickets.schedule_id')
+            ->join('booking_details', 'booking_details.ticket_id', 'tickets.id')
+            ->where('schedules.id', Ticket::find(request('ticket_id'))->schedule_id)
+            ->get()
+            ->pluck('seat_id')
+            ->toArray();
+        $roomSeats = DB::table('schedules')
+            ->join('rooms', 'schedules.room_id', 'rooms.id')
+            ->join('seats', 'rooms.id', 'seats.room_id')
+            ->where('schedules.id', Ticket::find(request('ticket_id'))->schedule_id)
+            ->get()
+            ->pluck('id')
+            ->toArray();
+
+        return [
+            'seatBooked' => $seatBooked,
+            'roomSeats' => $roomSeats
+        ];
+    }
+
+    /**
      * Create booking for user
      *
      * @param UserBookingRequest $request request
      *
      * @return void
      */
-    public function store(Request $request)
+    public function store(CreateBookingRequest $request)
     {
         $user = Auth::user();
-        $seats = $request['seats'];
-        $seats = explode(",", $seats);
+        $seats = explode(",", $request['seats']);
+        $seatCheck = $this->getSeats();
+
         DB::beginTransaction();
         try {
             $booking = Booking::create([
                 'user_id' => $user->id
             ]);
             foreach ($seats as $seat) {
+                if (!in_array($seat, $seatCheck['roomSeats']) || in_array($seat, $seatCheck['seatBooked'])) {
+                    throw new ModelNotFoundException('Seat ' . $seat . ' have been taken or invalid');
+                }
                 BookingDetail::create([
                     'booking_id' => $booking->id,
                     'ticket_id' => $request['ticket_id'],
@@ -93,7 +127,7 @@ class BookingController extends ApiController
             return $this->successResponse($booking, Response::HTTP_OK);
         } catch (\Exception $ex) {
             DB::rollback();
-            return $this->errorResponse(config('define.booking.store_resource_fail'), Response::HTTP_SERVICE_UNAVAILABLE);
+            return $this->errorResponse($ex->getMessage(), Response::HTTP_SERVICE_UNAVAILABLE);
         }
     }
 }
