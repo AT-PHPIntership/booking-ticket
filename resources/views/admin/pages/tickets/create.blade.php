@@ -26,7 +26,7 @@
             </div>
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('ticket.admin.table.name_film')</label>
-              <div class="col-md-8" id="film">
+              <div class="col-md-8" id="film_schedule">
                 <input class="form-control" type="text" value="" disabled >
               </div>
             </div>

@@ -14,22 +14,33 @@ $(document).ready(function () {
             var schedule_id = schedule.id;
             var room_id = schedule.room_id;
             var time = schedule.start_time.split(" ");
-            var today = todayDate.toISOString().slice(0, 10);
+            var today = todayDate.toJSON().slice(0,10);
             var todayTime = todayDate.getHours();
             var ticket_id = '';
             if (schedule.tickets[0]) {
                 var ticket_id = schedule.tickets[0].id;
             }
-            if ((Date.parse(time[0]) >= Date.parse(today)) && (parseInt(todayTime) < checkTime(time[1]))) {
-                html += '<h2>' + time[0] + '</h2>\
-                    <div class="time-wrapper">\
+            if (Date.parse(time[0]) > Date.parse(today)) {
+              html += '<h2>' + time[0] + '</h2>\
+                      <div class="time-wrapper">\
                         <ul>\
-                            <li><a class="available" href="#" data-time="' + time[1] + '"\
-                            data-schedule="' + schedule_id + '" data-room="' + room_id + '"\
-                            data-date="' + time[0] + '" data-ticket="' + ticket_id + '">' + time[1] + '</a></li>\
+                          <li><a class="available" href="#" data-time="' + time[1] + '"\
+                          data-schedule="' + schedule_id + '" data-room="' + room_id + '"\
+                          data-date="' + time[0] + '" data-ticket="' + ticket_id + '">' + time[1] + '</a></li>\
                         </ul>\
-                    </div>';
-            }
+                      </div>'; 
+            } else if (Date.parse(time[0]) == Date.parse(today)) {
+                if (parseInt(todayTime) < checkTime(time[1])) {
+                  html += '<h2>' + time[0] + '</h2>\
+                          <div class="time-wrapper">\
+                            <ul>\
+                              <li><a class="available" href="#" data-time="' + time[1] + '"\
+                              data-schedule="' + schedule_id + '" data-room="' + room_id + '"\
+                              data-date="' + time[0] + '" data-ticket="' + ticket_id + '">' + time[1] + '</a></li>\
+                            </ul>\
+                          </div>';
+                } 
+            } 
         });
         $('#name_film').text(data.result.name);
         $('#description').text(data.result.describe.substr(0, 150));
