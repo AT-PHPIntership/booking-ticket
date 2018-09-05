@@ -27,6 +27,7 @@ class ScheduleController extends ApiController
         ];
         $totalField = [
             'seats.id as seat_id',
+            'seats.name as seat_name',
             'schedules.id as schedule_id'
         ];
 

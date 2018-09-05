@@ -41,6 +41,7 @@ $(document).ready(function () {
                           </div>';
                 } 
             } 
+            console.log("Detail: " + ticket_id);
         });
         $('#name_film').text(data.result.name);
         $('#description').text(data.result.describe.substr(0, 150));

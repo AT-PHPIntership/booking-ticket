@@ -8,7 +8,7 @@
       <div class="content">
          <div class="content_top">
             <div class="heading">
-               <h3>@lang('user/index.collection')</h3>
+               <h3 id="film_category">@lang('user/index.collection')</h3>
             </div>
          </div>
          <div class="section group" id="collect_film">

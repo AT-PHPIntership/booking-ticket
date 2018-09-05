@@ -34,6 +34,8 @@ $(document).ready(function () {
         price: booking.price,
     };
 
+    console.log(booking.ticket_id + " : " + seatId);
+
     $(document).on('click', '#submit', function (event) {
         event.preventDefault();
         $.ajax({
