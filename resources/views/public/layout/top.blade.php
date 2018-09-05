@@ -22,7 +22,7 @@
   <div class="wrap">
      <div class="header_top">
         <div class="logo">
-           <a href="#"><img src="images/icon/logo.png" alt="" /></a>
+           <a href="{{ route('user.home') }}"><img src="images/icon/logo.png" alt="" /></a>
         </div>
         <div class="header_top_right">
            <div class="search_box">

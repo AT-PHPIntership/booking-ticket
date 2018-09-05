@@ -20,4 +20,16 @@ class CategoryController extends ApiController
         $categories = Category::all();
         return $this->showAll($categories, Response::HTTP_OK);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param \App\Models\Category $category show detail category
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Category $category)
+    {
+        return $this->showOne($category, Response::HTTP_OK);
+    }
 }

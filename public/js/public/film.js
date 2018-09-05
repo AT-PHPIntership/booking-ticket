@@ -6,6 +6,14 @@ $(document).ready(function () {
         url = route('api.films.index');
     } else {
         url = route('api.films.index') + window.location.search;
+        var id = url.substring(url.lastIndexOf('=') + 1); 
+        $.ajax({
+            url: route('api.categories.show', id),
+            type: "GET",
+            success: function (response) {
+                $('#film_category').text(response.result.name);
+            }
+        });
     }
 
     getFilms(url);
