@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateUserRequest;
-use App\Models\User;
 use PHPUnit\Framework\MockObject\Stub\Exception;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Models\User;
 use DB;
 
 class UserController extends Controller
@@ -39,10 +41,10 @@ class UserController extends Controller
         ];
         if (User::create($data)) {
             return redirect()->route('admin.users.index')
-                        ->with('message', trans('user.admin.add.message.add_success'));
+                ->with('message', trans('user.admin.add.message.add_success'));
         }
         return redirect()->back()
-                        ->with('message', trans('user.admin.add.message.msg_add_error'));
+                ->with('message', trans('user.admin.add.message.msg_add_error'));
     }
 
     /**
@@ -76,22 +78,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(CreateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $data = [
-            'full_name' => $request->full_name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'phone' => $request->phone,
-            'address' => $request->address
-        ];
+        $request['password'] = bcrypt($request['password']);
         try {
-            $user->update($data);
+            $user->update($request->all());
             return redirect()->route('admin.users.index')
-                            ->with('message', trans('user.admin.edit.message.edit_success'));
+                ->with('message', trans('user.admin.edit.message.edit_success'));
         } catch (Exception $e) {
             return redirect()->back()
-                            ->with('message', trans('user.admin.edit.message.edit_error'));
+                ->with('message', trans('user.admin.edit.message.edit_error'));
         }
     }
 
@@ -108,7 +104,7 @@ class UserController extends Controller
             return view('admin.pages.users.show', compact('user'));
         } catch (Exception $e) {
             return redirect()->route('admin.users.index')
-                             ->with('message', trans('user.admin.message.edit_fail'));
+                ->with('message', trans('user.admin.message.edit_fail'));
         }
     }
     /**
