@@ -15,7 +15,10 @@ use App\Http\Requests\User\GetBookingRequest;
 use App\Http\Requests\User\ShowBookingRequest;
 use App\Http\Requests\User\CreateBookingRequest;
 use App\Models\Ticket;
+use App\Models\Seat;
+use App\Jobs\SendMailJob;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Models\Schedule;
 
 class BookingController extends ApiController
 {
@@ -96,6 +99,46 @@ class BookingController extends ApiController
     }
 
     /**
+     * This function will send mail if user booked
+     *
+     * @param [type] $booking booking id
+     * @param [type] $ticket  ticket id
+     * @param [type] $seats   seats id
+     * @param [type] $user    user
+     *
+     * @return void
+     */
+    public function sentMailBooking($booking, $ticket, $seats, $user)
+    {
+        $ticket = Ticket::find($ticket);
+        $room = DB::table('schedules')
+            ->join('rooms', 'schedules.room_id', 'rooms.id')
+            ->where('schedules.id', $ticket->schedule_id)
+            ->get()
+            ->pluck('name');
+        $film = DB::table('schedules')
+            ->join('films', 'schedules.film_id', 'films.id')
+            ->where('schedules.id', $ticket->schedule_id)
+            ->get()
+            ->pluck('name');
+
+        $seats = Seat::whereIn('id', $seats)->get()->pluck('name');
+        $totalPrice = $ticket->price * count($seats);
+        $startTime = Schedule::where('id', $ticket->schedule_id)->get()->pluck('start_time');
+
+        $datas = [
+            'booking_id' => $booking,
+            'room' => array_first($room),
+            'film' => array_first($film),
+            'seats' => implode(' ', $seats->toArray()),
+            'totalPrice' => $totalPrice,
+            'startTime' => array_first($startTime)
+        ];
+
+        $this->dispatch(new SendMailJob('public.pages.send_mail_booking', $user['email'], $datas));
+    }
+
+    /**
      * Create booking for user
      *
      * @param UserBookingRequest $request request
@@ -123,6 +166,7 @@ class BookingController extends ApiController
                     'seat_id' => $seat
                 ]);
             }
+            $this->sentMailBooking($booking->id, $request['ticket_id'], $seats, $user);
             DB::commit();
             return $this->successResponse($booking, Response::HTTP_OK);
         } catch (\Exception $ex) {
