@@ -54,17 +54,11 @@ class UpdateUserTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->admin)
                 ->visit($this->updateUserPage)
-                ->clear('email')
-                ->clear('full_name')
                 ->clear('phone')
-                ->clear('address')
+                ->type('phone', '0000')
                 ->press('Submit')
                 ->assertPathIs($this->updateUserPage->url())
-                ->assertSee(trans('user.admin.add.message.require_full_name'))
-                ->assertSee(trans('user.admin.add.message.require_email'))
-                ->assertSee(trans('user.admin.add.message.require_password'))
-                ->assertSee(trans('user.admin.add.message.add_invalid_phone'))
-                ->assertSee(trans('user.admin.add.message.require_address'));
+                ->assertSee(trans('user.admin.add.message.add_invalid_phone'));
             $this->assertDatabaseHas('users', [
                 'id' => (string)$this->admin->id,
                 'email' => 'taylor@laravel.com'
