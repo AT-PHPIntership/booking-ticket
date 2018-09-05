@@ -52,6 +52,7 @@ $(document).ready(function () {
             success: function (response) {
                 localStorage.setItem('login-token', response.result.token);
                 window.localStorage.setItem('user', JSON.stringify(response.result.user));
+                alert(Lang.get('user/login.register_success'));
                 window.location.href = 'http://' + window.location.hostname;
             },
             error: function (response) {

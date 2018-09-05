@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    if (!localStorage.getItem('booking')) {
+    if (!localStorage.getItem('booking') || !localStorage.getItem('login-token')) {
         window.location.href = route('user.home');
     }
     var idSchedule;

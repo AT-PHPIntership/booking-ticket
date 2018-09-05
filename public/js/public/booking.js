@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    if (!localStorage.getItem('order')) {
-        window.location.href = route('user.films.index');
+    if (!localStorage.getItem('order') || !localStorage.getItem('login-token')) {
+        window.location.href = route('user.home');
     }
 
     var booking = JSON.parse(localStorage.getItem('order'));
@@ -60,7 +60,8 @@ $(document).ready(function () {
         });
     });
 
-    $('#back').on('click', function() {
+    $('#back').on('click', function(event) {
+      event.preventDefault();
       localStorage.removeItem('order');
       window.location.href = route('user.films.show', booking.film_id);
     });
