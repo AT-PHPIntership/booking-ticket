@@ -35,6 +35,7 @@ class UserController extends ApiController
     {
         if (Auth::check()) {
             $user = Auth::user();
+            $request['password'] = bcrypt($request['password']);
             $user->update($request->except(['role', 'remember_token']));
             
             return $this->showOne($user);
