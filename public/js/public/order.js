@@ -15,9 +15,9 @@ $(document).ready(function() {
             'Accept': 'application/json',
         },
         success: function (response) {
+            setTotalSeats(response.result.totalSeats);
             response.result.booked.forEach(booked => {
-                bookedSeat(booked.seat_id);
-                array.push(booked.seat_id);
+                $('#' + booked.seat_id).toggleClass('item-seat item-seat-selected')
             });
         },
     });
@@ -89,7 +89,7 @@ function changeSeatTotal() {
     seatTotal = parseInt(selectedOption);
     $('[data-seatTotalLabel=""]').text(seatTotal);
     $('[data-totalPrice=""]').text((seatTotal*convertPrice(booking.price)*1000).toLocaleString());
-    $('div.item-seat-selected').removeClass('item-seat-selected childitem').addClass('item-seat childitem');
+    // $('div.item-seat-selected').removeClass('item-seat-selected childitem').addClass('item-seat childitem');
 }
 
 //choose seat with quantity seat available
@@ -119,11 +119,12 @@ function selectSeat(seatID) {
     }
 }
 
-//check for seat was booked
-function bookedSeat(seatID) {
-    var seat = document.getElementById(seatID).className;
-    if (seat == "item-seat childitem") {
-        document.getElementById(seatID).className = "item-seat-booked childitem";
+// set id seat
+function setTotalSeats(totalSeats) {
+    var seat = $('.childitem');
+    for(i = 0; i < seat.length; i++) {
+        seat.eq(i).attr('data-id', totalSeats[i].seat_id);
+        seat.eq(i).attr('id', totalSeats[i].seat_id);
     }
 }
 

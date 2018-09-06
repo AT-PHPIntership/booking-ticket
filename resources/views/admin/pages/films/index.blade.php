@@ -20,12 +20,12 @@
           </tr>
         </thead>
         <tbody>
-            @foreach ($films as $film)
+            @foreach ($films as $key => $film)
               <tr>
-                <td>{{ $film->id }}</td>
+                <td>{{ ++$key }}</td>
                 <td>{{ $film->name }}</td>
                 <td>{{ $film->actor }}</td>
-                <td>{{ $film->duration }}</td>
+                <td>{{ $film->duration . ' minute' }}</td>
                 <td>{{ $film->country }}</td>
                 <td class="center"></i> 
                   <a class="btn btn-primary" href="{{ route('admin.films.show', $film->id) }}"><i class="fa fa-eye icon-size" ></i></a>

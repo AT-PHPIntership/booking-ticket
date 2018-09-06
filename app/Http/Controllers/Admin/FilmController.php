@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\CategoryFilm;
-use App\Models\Film;
-use App\Models\Image;
-use App\Models\Ticket;
 use App\Http\Requests\CreateFilmRequest;
 use App\Http\Requests\EditFilmRequest;
+use App\Http\Controllers\Controller;
+use App\Models\CategoryFilm;
+use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Ticket;
+use App\Models\Image;
+use App\Models\Film;
 use DB;
 
 class FilmController extends Controller
@@ -22,7 +22,8 @@ class FilmController extends Controller
      */
     public function index()
     {
-        $films = Film::orderBy('id', config('define.dir_desc'))->paginate(config('define.film.limit_rows'));
+        $films = Film::orderBy('updated_at', config('define.dir_desc'))
+            ->paginate(config('define.film.limit_rows'));
         return view('admin.pages.films.index', compact('films'));
     }
 
@@ -76,7 +77,7 @@ class FilmController extends Controller
             return view('admin.pages.films.edit', compact('film', 'categories', 'categoryIds'));
         } catch (Exception $e) {
             return redirect()->route('admin.films.index')
-                             ->with('message', trans('film.admin.message.edit_fail'));
+                ->with('message', trans('film.admin.message.edit_fail'));
         }
     }
 
@@ -120,7 +121,7 @@ class FilmController extends Controller
             return redirect()->route('admin.films.index')->with('message', trans('film.admin.message.edit'));
         } catch (Exception $e) {
             return redirect()->route('admin.films.index')
-                             ->with('message', trans('category.admin.message.edit_fail'));
+                ->with('message', trans('category.admin.message.edit_fail'));
         }
     }
 
@@ -138,7 +139,7 @@ class FilmController extends Controller
             return view('admin.pages.films.show', compact('film', 'categoryFilms'));
         } catch (Exception $e) {
             return redirect()->route('admin.films.index')
-                             ->with('message', trans('film.admin.message.edit_fail'));
+                ->with('message', trans('film.admin.message.edit_fail'));
         }
     }
 

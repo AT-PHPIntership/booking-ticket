@@ -8,7 +8,7 @@
       </div>
    </div>
    <ul class="app-menu">
-      <li><a class="app-menu__item active" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i>
+      <li><a class="app-menu__item active" href="{{ route('admin.dashboard') }}"><i class="app-menu__icon fa fa-dashboard"></i>
         <span class="app-menu__label">@lang('master.home')</span></a>
       </li>
       <li class="treeview">
@@ -56,7 +56,7 @@
           <li><a class="treeview-item" href="{{ route('admin.schedules.create') }}"><i class="icon fa fa-circle-o"></i> @lang('master.add_schedule')</a></li>
         </ul>
       </li>
-      <li class="treeview">
+      <li class="treeview d-none">
         <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i>
           <span class="app-menu__label">@lang('master.tickets')</span><i class="treeview-indicator fa fa-angle-right"></i>
         </a>
@@ -65,7 +65,7 @@
           <li><a class="treeview-item" href="{{ route('admin.tickets.create') }}"><i class="icon fa fa-circle-o"></i> @lang('master.add_ticket')</a></li>
         </ul>
       </li>
-      <li class="treeview">
+      <li class="treeview d-none">
         <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i>
           <span class="app-menu__label">@lang('master.pages')</span><i class="treeview-indicator fa fa-angle-right"></i>
         </a>

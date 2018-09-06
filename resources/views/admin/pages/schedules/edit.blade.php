@@ -49,6 +49,22 @@
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-lg-5">
+                <div class="form-group">
+                  <label for="type">Ticket Type:</label>
+                  <input class="form-control" type="text" name="type" value="{{ $ticket['type'] ? $ticket['type'] : '' }}" placeholder="Type of ticket">
+                </div>
+              </div>
+              <div class="col-lg-5 offset-lg-1">
+                <div class="form-group">
+                  <fieldset>
+                    <label for="price">Price:</label>
+                    <input class="form-control" type="number" min="1" name="price" value="{{ $ticket['price'] ? $ticket['price'] : '' }}" placeholder="Price of ticket">
+                  </fieldset>
+                </div>
+              </div>
+            </div>
             <div class="tile-footer">
               <div class="row">
                 <div class="col-md-8 col-md-offset-3">

@@ -21,46 +21,34 @@
               <input class="form-control col-md-8" type="text" value="{{$booking->user->email}}" disabled>
             </div>
           </div>
-          @foreach ($bookings as $booking)
-            <div class="tile-footer">
-              <div class="form-group row">
-                  <label class="control-label col-md-3">@lang('booking.admin.table.film')</label>
-                  <div class="col-md-8">
-                    <input class="form-control col-md-8" type="text" value="{{$booking->film}}" disabled>
-                  </div>
-                </div>
-              <div class="form-group row">
-                <label class="control-label col-md-3">@lang('booking.admin.table.room')</label>
-                <div class="col-md-8">
-                  <input class="form-control col-md-8" type="text" value="{{$booking->room}}" disabled>
-                </div>
-              </div>
-              <div class="form-group row">
-                  <label class="control-label col-md-3">@lang('booking.admin.table.seat')</label>
-                  <div class="col-md-8">
-                    <input class="form-control col-md-8" type="text" value="{{$booking->seat}}" disabled>
-                  </div>
-              </div>
-              <div class="form-group row">
-                <label class="control-label col-md-3">@lang('booking.admin.table.price')</label>
-                <div class="col-md-8">
-                  <input class="form-control col-md-8" type="text" value="{{$booking->price}}" disabled>
-                </div>
-              </div>
-              <div class="form-group row">
-                  <label class="control-label col-md-3">@lang('booking.admin.table.start_time')</label>
-                  <div class="col-md-8">
-                    <input class="form-control col-md-8" type="text" value="{{$booking->start}}" disabled>
-                  </div>
-              </div>
-              <div class="form-group row">
-                <label class="control-label col-md-3">@lang('booking.admin.table.end_time')</label>
-                <div class="col-md-8">
-                  <input class="form-control col-md-8" type="text" value="{{$booking->end}}" disabled>
-                </div>
-              </div>
-            </div>
+          <div class="container">          
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>@lang('booking.admin.table.film')</th>
+                  <th>@lang('booking.admin.table.room')</th>
+                  <th>@lang('booking.admin.table.seat')</th>
+                  <th>@lang('booking.admin.table.price')</th>
+                  <th>@lang('booking.admin.table.start_time')</th>
+                  <th>@lang('booking.admin.table.end_time')</th>
+                </tr>
+              </thead>
+              <tbody>
+          @foreach ($bookings as $key => $booking)
+            <tr>
+              <td>{{ ++$key }}</td>
+              <td>{{$booking->film}}</td>
+              <td>{{$booking->room}}</td>
+              <td>{{$booking->seat}}</td>
+              <td>{{$booking->price}}</td>
+              <td>{{$booking->start}}</td>
+              <td>{{$booking->end}}</td>
+            </tr>
           @endforeach
+          </tbody>
+        </table>
+      </div>
           <div class="tile-footer">
             <div class="row">
               <div class="col-md-8 col-md-offset-3">

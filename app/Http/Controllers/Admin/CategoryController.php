@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCategoryRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -16,7 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderBy('id', config('define.dir_desc'))->paginate(config('define.category.limit_rows'));
+        $categories = Category::orderBy('updated_at', config('define.dir_desc'))
+            ->paginate(config('define.category.limit_rows'));
         return view('admin.pages.categories.index', compact('categories'));
     }
 
@@ -58,7 +59,7 @@ class CategoryController extends Controller
             return view('admin.pages.categories.edit', compact('category'));
         } catch (Exception $e) {
             return redirect()->route('admin.categories.index')
-                             ->with('message', trans('category.admin.message.edit_fail'));
+                ->with('message', trans('category.admin.message.edit_fail'));
         }
     }
 
@@ -76,10 +77,10 @@ class CategoryController extends Controller
             $category->name = $request->name;
             $category->save();
             return redirect()->route('admin.categories.index')
-                             ->with('message', trans('category.admin.message.edit'));
+                ->with('message', trans('category.admin.message.edit'));
         } catch (Exception $e) {
             return redirect()->route('admin.categories.index')
-                             ->with('message', trans('category.admin.message.edit_fail'));
+                ->with('message', trans('category.admin.message.edit_fail'));
         }
     }
 
@@ -93,12 +94,13 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         try {
+            $category->categoryFilms()->delete();
             $category->delete();
             return redirect()->route('admin.categories.index')
-                             ->with('message', trans('category.admin.message.del'));
+                ->with('message', trans('category.admin.message.del'));
         } catch (Exception $e) {
             return redirect()->route('admin.categories.index')
-                             ->with('message', trans('category.admin.message.del_fail'));
+                ->with('message', trans('category.admin.message.del_fail'));
         }
     }
 }

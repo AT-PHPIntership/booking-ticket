@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     var url = '';
     var slideIndex = 0;
     carousel();
@@ -61,5 +62,31 @@ $(document).ready(function () {
         } 
         slides[slideIndex-1].style.display = "block"; 
         setTimeout(carousel, 5000); 
+    }
+
+    var categoryFilms = [
+        'Action Films',
+        'Adventure Films',
+        'Comedy Films',
+        'Drama Films',
+        'Horror Films',
+        'Science Fiction Films',
+        'War Films',
+        'Fantasy Films',
+        'Animated Films',
+        'Romance Films'
+    ];
+    var cate = GetURLParameter('category');
+    $('.content_top .heading h3').html(categoryFilms[--cate]);
+    function GetURLParameter(sParam) {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++){
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam)
+            {
+                return sParameterName[1];
+            }
+        }
     }
 });

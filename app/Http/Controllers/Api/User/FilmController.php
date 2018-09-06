@@ -43,7 +43,7 @@ class FilmController extends ApiController
             $query->orderBy('price', config('define.dir_desc'));
         }])->whereIn('id', function ($query) {
             $query->select('film_id')
-                  ->from('schedules');
+                ->from('schedules');
         })->orderBy('id', config('define.dir_desc'))->paginate(config('define.film.limit_rows'));
         foreach ($films as $film) {
             $film['image_path'] = empty($film['images'][0]) ? config('define.film.image_default') : $film['images'][0]['path'];

@@ -19,9 +19,9 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($bookings as $booking)
+          @foreach ($bookings as $key => $booking)
             <tr>
-              <td>{{ $booking->id }}</td>
+              <td>{{ ++$key }}</td>
               <td>{{ $booking->name }}</td>
               <td>{{ $booking->email }}</td>
               <td>{{ $booking->quantity }}</td>
