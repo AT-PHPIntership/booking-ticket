@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Ticket;
-use DB;
-use App\Models\Schedule;
 use App\Http\Requests\CreateTicketRequest;
 use App\Http\Requests\EditTicketRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Schedule;
+use App\Models\Ticket;
+use DB;
 
 class TicketController extends Controller
 {
@@ -29,14 +29,14 @@ class TicketController extends Controller
         ];
 
         $tickets = DB::table('tickets')
-                ->join('schedules', 'schedules.id', 'tickets.schedule_id')
-                ->join('films', 'schedules.film_id', 'films.id')
-                ->select($getField)
-                ->where('films.deleted_at', null)
-                ->where('schedules.deleted_at', null)
-                ->where('tickets.deleted_at', null)
-                ->orderBy('tickets.id', config('define.dir_desc'))
-                ->paginate(config('define.ticket.limit_rows'));
+            ->join('schedules', 'schedules.id', 'tickets.schedule_id')
+            ->join('films', 'schedules.film_id', 'films.id')
+            ->select($getField)
+            ->where('films.deleted_at', null)
+            ->where('schedules.deleted_at', null)
+            ->where('tickets.deleted_at', null)
+            ->orderBy('tickets.id', config('define.dir_desc'))
+            ->paginate(config('define.ticket.limit_rows'));
         return view('admin.pages.tickets.index', compact('tickets'));
     }
 
@@ -79,17 +79,17 @@ class TicketController extends Controller
             $tickets = $schedule->tickets->pluck('type')->toArray();
             if (in_array($request->type, $tickets)) {
                 return redirect()->route('admin.tickets.create')
-                                ->with('message', trans('ticket.admin.message.valid_type'));
+                    ->with('message', trans('ticket.admin.message.valid_type'));
             }
             $ticket->type = $request->type;
             $ticket->price = $request->price;
             $ticket->schedule_id = $request->schedule_id;
             $ticket->save();
             return redirect()->route('admin.tickets.index')
-                             ->with('message', trans('ticket.admin.message.add'));
+                ->with('message', trans('ticket.admin.message.add'));
         } catch (Exception $e) {
             return redirect()->route('admin.tickets.create')
-                             ->with('message', trans('ticket.admin.message.add_fail'));
+                ->with('message', trans('ticket.admin.message.add_fail'));
         }
     }
 
@@ -107,7 +107,7 @@ class TicketController extends Controller
             return view('admin.pages.tickets.edit', compact('schedules', 'ticket'));
         } catch (Exception $e) {
             return redirect()->route('admin.tickets.index')
-                             ->with('message', trans('ticket.admin.message.edit_fail'));
+                ->with('message', trans('ticket.admin.message.edit_fail'));
         }
     }
 
@@ -126,16 +126,16 @@ class TicketController extends Controller
             $tickets = $schedule->tickets->pluck('type')->toArray();
             if (in_array($request->type, $tickets)) {
                 return redirect()->route('admin.tickets.index')
-                                ->with('err', trans('ticket.admin.message.valid_type'));
+                    ->with('err', trans('ticket.admin.message.valid_type'));
             }
             $ticket->type = $request->type;
             $ticket->price = $request->price;
             $ticket->save();
             return redirect()->route('admin.tickets.index')
-                             ->with('message', trans('ticket.admin.message.edit'));
+                ->with('message', trans('ticket.admin.message.edit'));
         } catch (Exception $e) {
             return redirect()->route('admin.tickets.index')
-                             ->with('message', trans('ticket.admin.message.edit_fail'));
+                ->with('message', trans('ticket.admin.message.edit_fail'));
         }
     }
 
