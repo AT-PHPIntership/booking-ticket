@@ -21,6 +21,7 @@ class SearchController extends ApiController
         $data = Film::with(['images'])
         ->select(['id', 'name', 'director', 'actor'])
         ->where(DB::raw("CONCAT(`name`, ' ', `director`, ' ', `actor`, ' ', `producer`, ' ', `country`, ' ', `describe`)"), 'LIKE', "%".request('query')."%")
+        ->limit(20)
         ->get();
         
         return $data;
@@ -35,6 +36,7 @@ class SearchController extends ApiController
     {
         $data = User::select(['id', 'full_name', 'email', 'phone', 'address'])
         ->where(DB::raw("CONCAT(`id`, ' ', `full_name`, ' ', `email`, ' ', `phone`, ' ', `address`)"), 'LIKE', "%".request('query')."%")
+        ->limit(20)
         ->get();
         return $data;
     }
