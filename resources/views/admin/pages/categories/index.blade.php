@@ -19,9 +19,9 @@
         </thead>
         <tbody>
           @if ($categories)
-            @foreach ($categories as $item)
+            @foreach ($categories as $key => $item)
               <tr>
-                <td>{{ $item->id }}</td>
+                <td>{{ ++$key }}</td>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->created_at }}</td>
                 <td>{{ $item->updated_at }}</td>

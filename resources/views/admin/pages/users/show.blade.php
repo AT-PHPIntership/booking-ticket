@@ -95,14 +95,12 @@
                 <input class="form-control col-md-8" name="email" type="email" value="{{ old('email', $user->email) }}" placeholder="@lang('user.admin.add.placeholder_email')">
               </div>
             </div>
-            @if (Auth::user()->id == $user->id)
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('user.admin.add.password')</label>
               <div class="col-md-8">
                 <input class="form-control col-md-8" name="password" type="password" placeholder="@lang('user.admin.add.placeholder_password')">
               </div>
             </div>
-            @endif
             <div class="form-group row">
               <label class="control-label col-md-3">@lang('user.admin.add.phone')</label>
               <div class="col-md-8">

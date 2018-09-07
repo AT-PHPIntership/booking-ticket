@@ -18,12 +18,8 @@ class AdminLoginMiddleware
     public function handle($request, Closure $next)
     {
         $user = Auth::user();
-        if ($user) {
-            if ($user->role) {
-                return $next($request);
-            } else {
-                return redirect('/home'); // redirect public
-            }
+        if ($user && $user->role) {
+            return $next($request);
         } else {
             return redirect('/admin/login');
         }

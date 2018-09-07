@@ -32,7 +32,7 @@ Route::group(['as' => 'user.', 'namespace' => 'Home'], function () {
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => 'adminLogin'], function() {
     Route::get('/dashboard', function() {
       return view('admin.pages.home.index');
-    });
+    })->name('dashboard');
     Route::resource('users', 'UserController');
     Route::resource('categories', 'CategoryController');
     Route::resource('films', 'FilmController');
