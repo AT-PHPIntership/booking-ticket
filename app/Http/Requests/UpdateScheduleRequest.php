@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateScheduleRequest extends FormRequest
+class UpdateScheduleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,12 @@ class CreateScheduleRequest extends FormRequest
     public function rules()
     {
         return [
-            'film' => 'required|exists:films,id',
-            'room' => 'required|exists:rooms,id',
-            'starttime' => 'required|date_format:d-m-Y H:i|after:'. date('Y-m-d'),
-            'endtime' => 'required|date_format:d-m-Y H:i|after:starttime',
-            'type' => 'required|string',
-            'price' => 'required|min:1'
+            'film' => 'exists:films,id',
+            'room' => 'exists:rooms,id',
+            'starttime' => 'date_format:d-m-Y H:i|after:'. date('Y-m-d'),
+            'endtime' => 'date_format:d-m-Y H:i|after:starttime',
+            'type' => 'string',
+            'price' => 'min:1'
         ];
     }
 }
