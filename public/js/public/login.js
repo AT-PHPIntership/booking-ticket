@@ -19,12 +19,15 @@ $(document).ready(function () {
                 window.localStorage.setItem('user', JSON.stringify(response.result.user))
                 window.location.href = 'http://' + window.location.hostname;
             },
-            statusCode: {
-                401: function (response) {
-                    alert(response.responseJSON.error);
-                    $('input[type="password"]').val('');
-                }
+            error: function (response) {
+                $('#error-message').html(JSON.parse(response.responseText).error);
+                $('input[type="password"]').val('');
             }
+            // statusCode: {
+            //     401: function (response) {
+            //         alert(response.responseJSON.error);
+            //     }
+            // }
         });
     });
 })

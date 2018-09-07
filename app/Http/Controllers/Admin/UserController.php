@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Jobs\SendMailJob;
 use App\Models\User;
 use DB;
 
@@ -39,12 +40,17 @@ class UserController extends Controller
             'phone' => $request->phone,
             'address' => $request->address
         ];
+        $dataMail = [
+            'email' => request('email'),
+            'password' => request('password')
+        ];
         if (User::create($data)) {
+            $this->dispatch(new SendMailJob('admin.pages.users.mail', request('email'), $dataMail));
             return redirect()->route('admin.users.index')
                 ->with('message', trans('user.admin.add.message.add_success'));
         }
         return redirect()->back()
-                ->with('message', trans('user.admin.add.message.msg_add_error'));
+            ->with('message', trans('user.admin.add.message.msg_add_error'));
     }
 
     /**
@@ -54,7 +60,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $datas = User::orderBy('id')->paginate(config('define.user.limit_rows'));
+        $datas = User::orderBy('updated_at', config('define.dir_desc'))
+            ->paginate(config('define.user.limit_rows'));
         return view('admin.pages.users.index', compact('datas'));
     }
 
@@ -80,9 +87,14 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
+        $datas = [
+            'email' => $user->email,
+            'password' => request('password')
+        ];
         $request['password'] = bcrypt($request['password']);
         try {
             $user->update($request->all());
+            $this->dispatch(new SendMailJob('admin.pages.users.mail', request('email'), $datas));
             return redirect()->route('admin.users.index')
                 ->with('message', trans('user.admin.edit.message.edit_success'));
         } catch (Exception $e) {
