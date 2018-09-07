@@ -58,6 +58,30 @@ class ScheduleController extends Controller
     }
 
     /**
+     * This function check valid time when create/update schedule
+     *
+     * @param [type] $schedules schedules
+     * @param [type] $startTime startTime
+     * @param [type] $endTime   endTime
+     *
+     * @return boolean
+     */
+    public function isValidTimeSchedule($schedules, $startTime, $endTime)
+    {
+        foreach ($schedules as $schedule) {
+            $scheduleStartTime = $schedule->start_time;
+            $scheduleEndTime = $schedule->end_time;
+            if (($startTime >= $scheduleStartTime && $startTime <= $scheduleEndTime)
+                || ($endTime >= $scheduleStartTime && $endTime <= $scheduleEndTime)
+                || ($startTime <= $scheduleStartTime && $endTime >= $scheduleEndTime)
+                ) {
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * This function store schedule
      *
      * @param CreateScheduleRequest $request request
@@ -79,16 +103,9 @@ class ScheduleController extends Controller
             // if set time between start or end time of another schedule
             $schedules = Schedule::where('schedules.room_id', $request->room)->get();
 
-            foreach ($schedules as $schedule) {
-                $scheduleStartTime = $schedule->start_time;
-                $scheduleEndTime = $schedule->end_time;
-                if (($startTime >= $scheduleStartTime && $startTime <= $scheduleEndTime)
-                    || ($endTime >= $scheduleStartTime && $endTime <= $scheduleEndTime)
-                    || ($startTime <= $scheduleStartTime && $endTime >= $scheduleEndTime)
-                    ) {
-                        return redirect()->back()
-                            ->with('message', trans('schedule.admin.message.room_invalid'));
-                }
+            if (!$this->isValidTimeSchedule($schedules, $startTime, $endTime)) {
+                return redirect()->back()
+                    ->with('message', trans('schedule.admin.message.room_invalid'));
             }
             // insert schedule to databases
             $data = [
@@ -160,18 +177,12 @@ class ScheduleController extends Controller
                 ['schedules.room_id', '=', request('room')],
                 ['schedules.id', '<>', $schedule->id]
             ])->get();
-            foreach ($schedules as $scheduleT) {
-                $scheduleStartTime = $scheduleT->start_time;
-                $scheduleEndTime = $scheduleT->end_time;
 
-                if (($startTime >= $scheduleStartTime && $startTime <= $scheduleEndTime)
-                    || ($endTime >= $scheduleStartTime && $endTime <= $scheduleEndTime)
-                    || ($startTime <= $scheduleStartTime && $endTime >= $scheduleEndTime)
-                    ) {
-                        return redirect()->back()
-                            ->with('message', trans('schedule.admin.message.room_invalid'));
-                }
+            if (!$this->isValidTimeSchedule($schedules, $startTime, $endTime)) {
+                return redirect()->back()
+                    ->with('message', trans('schedule.admin.message.room_invalid'));
             }
+
             $data = [
                 'film_id' => $request->film,
                 'room_id' => $request->room,
