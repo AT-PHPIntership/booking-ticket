@@ -111,16 +111,12 @@ class BookingController extends ApiController
     public function sentMailBooking($booking, $ticket, $seats, $user)
     {
         $ticket = Ticket::find($ticket);
-        $room = DB::table('schedules')
-            ->join('rooms', 'schedules.room_id', 'rooms.id')
-            ->where('schedules.id', $ticket->schedule_id)
-            ->get()
-            ->pluck('name');
         $film = DB::table('schedules')
+            ->join('rooms', 'schedules.room_id', 'rooms.id')
             ->join('films', 'schedules.film_id', 'films.id')
             ->where('schedules.id', $ticket->schedule_id)
-            ->get()
-            ->pluck('name');
+            ->select('rooms.name as room', 'films.name as film')
+            ->get();
 
         $seats = Seat::whereIn('id', $seats)->get()->pluck('name');
         $totalPrice = $ticket->price * count($seats);
@@ -128,13 +124,11 @@ class BookingController extends ApiController
 
         $datas = [
             'booking_id' => $booking,
-            'room' => array_first($room),
             'film' => array_first($film),
             'seats' => implode(' ', $seats->toArray()),
             'totalPrice' => $totalPrice,
             'startTime' => array_first($startTime)
         ];
-
         $this->dispatch(new SendMailJob('public.pages.send_mail_booking', $user['email'], $datas));
     }
 
