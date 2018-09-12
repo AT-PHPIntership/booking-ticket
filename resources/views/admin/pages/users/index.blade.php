@@ -21,9 +21,9 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($datas->all() as $data)
+          @foreach ($datas->all() as $key => $data)
           <tr>
-            <td>{{ $data->id }}</td>
+            <td>{{ ++$key }}</td>
             <td>{{ $data->full_name }}</td>
             <td>{{ $data->email }}</td>
             <td>{{ $data->phone }}</td>

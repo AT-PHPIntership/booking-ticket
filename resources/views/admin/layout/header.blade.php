@@ -1,5 +1,5 @@
 <header class="app-header">
-  <a class="app-header__logo" href="#">{{ __('master.logo') }}</a>
+  <a class="app-header__logo" href="{{ route('admin.dashboard') }}">{{ __('master.logo') }}</a>
   <!-- Sidebar toggle button-->
   <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
   <!-- Navbar Right Menu-->
@@ -45,8 +45,7 @@
           <i class="fa fa-user fa-lg"></i>
         </a>
         <ul class="dropdown-menu settings-menu dropdown-menu-right">
-           <li><a class="dropdown-item" href="#"><i class="fa fa-cog fa-lg"></i>{{ __('master.setting') }}</a></li>
-           <li><a class="dropdown-item" href="#"><i class="fa fa-user fa-lg"></i>
+           <li><a class="dropdown-item" href="{{ 'admin/users/' . Auth::user()->id }}"><i class="fa fa-user fa-lg"></i>
             @if (Auth::user())
               {{ Auth::user()->full_name }}
            @endif
