@@ -25,18 +25,18 @@ class CreateFilmRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255|unique:films,name',
-            'actor' => 'required|string',
-            'producer' => 'required|max:100',
-            'director' => 'required|string',
-            'duration' => 'required|integer|min:90|max:180',
-            'describe' => 'required|string',
+            'actor' => 'max:255',
+            'producer' => 'max:255',
+            'director' => 'max:255',
+            'duration' => 'required|integer|min:20|max:300',
+            'describe' => 'max:255',
             'start_date' => 'required|date',
-            'end_date' => 'date|after:start_date',
+            'end_date' => 'required|date|after:start_date',
             'categories' => 'required',
             'categories.*' => 'required',
             'photos' => 'required',
             'photos.*' => 'image|mimes:jpg,png,jpeg|max:2048',
-            'country' => 'required|string'
+            'country' => 'max:255'
         ];
     }
 
