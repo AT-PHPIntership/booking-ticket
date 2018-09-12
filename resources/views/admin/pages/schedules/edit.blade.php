@@ -4,7 +4,7 @@
 <div class="col-md-12">
   <div class="col-md-10">
     <div class="tile">
-      <h3 class="tile-title">@lang('schedule.admin.add.title')</h3>
+      <h3 class="tile-title">@lang('schedule.admin.edit.title')</h3>
       <div class="tile-body">
         <div class="x_content">
           <br>
@@ -45,6 +45,22 @@
                   <fieldset>
                     <label for="endtime">@lang('schedule.admin.add.end_time')</label>
                     <input class="form-control" type="text" name="endtime" value="{{ $schedule['end_time'] }}" placeholder="@lang('schedule.admin.add.placeholder_time')">
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-5">
+                <div class="form-group">
+                  <label for="type">Ticket Type:</label>
+                  <input class="form-control" type="text" name="type" value="{{ $ticket['type'] ? $ticket['type'] : '' }}" placeholder="Type of ticket">
+                </div>
+              </div>
+              <div class="col-lg-5 offset-lg-1">
+                <div class="form-group">
+                  <fieldset>
+                    <label for="price">Price:</label>
+                    <input class="form-control" type="number" min="1" name="price" value="{{ $ticket['price'] ? $ticket['price'] : '' }}" placeholder="Price of ticket">
                   </fieldset>
                 </div>
               </div>
