@@ -99,6 +99,37 @@ class BookingController extends ApiController
     }
 
     /**
+     * This function will send mail if user booked
+     *
+     * @param [type] $booking booking id
+     * @param [type] $ticket  ticket id
+     * @param [type] $seats   seats id
+     * @param [type] $user    user
+     *
+     * @return void
+     */
+    public function sentMailBooking($booking, $ticket, $seats, $user)
+    {
+        $ticket = Ticket::find($ticket);
+        $film = DB::table('schedules')
+            ->join('rooms', 'schedules.room_id', 'rooms.id')
+            ->join('films', 'schedules.film_id', 'films.id')
+            ->where('schedules.id', $ticket->schedule_id)
+            ->select('rooms.name as room', 'films.name as film', 'start_time')
+            ->get();
+        $seats = Seat::whereIn('id', $seats)->get()->pluck('name');
+        $totalPrice = $ticket->price * count($seats);
+
+        $datas = [
+            'booking_id' => $booking,
+            'film' => array_first($film),
+            'seats' => implode(' ', $seats->toArray()),
+            'totalPrice' => $totalPrice,
+        ];
+        $this->dispatch(new SendMailJob('public.pages.send_mail_booking', $user['email'], $datas));
+    }
+
+    /**
      * Create booking for user
      *
      * @param UserBookingRequest $request request
@@ -126,6 +157,7 @@ class BookingController extends ApiController
                     'seat_id' => $seat
                 ]);
             }
+            $this->sentMailBooking($booking->id, $request['ticket_id'], $seats, $user);
             DB::commit();
             return $this->successResponse($booking, Response::HTTP_OK);
         } catch (\Exception $ex) {
