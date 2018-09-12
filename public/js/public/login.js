@@ -16,7 +16,8 @@ $(document).ready(function () {
             },
             success: function (response) {
                 localStorage.setItem('login-token', response.result.token);
-                window.localStorage.setItem('user', JSON.stringify(response.result.user))
+                window.localStorage.setItem('user', JSON.stringify(response.result.user));
+                alert(Lang.get('user/login.login_success'));
                 window.location.href = 'http://' + window.location.hostname;
             },
             statusCode: {

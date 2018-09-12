@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers\Api\User;
 
-use DB;
-use App\Models\User;
-use App\Models\Booking;
-use App\Models\BookingDetail;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\Api\ApiController;
-use App\Http\Requests\User\GetBookingRequest;
-use App\Http\Requests\User\ShowBookingRequest;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Requests\User\CreateBookingRequest;
+use App\Http\Requests\User\ShowBookingRequest;
+use App\Http\Requests\User\GetBookingRequest;
+use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Response;
+use Illuminate\Http\Request;
+use App\Models\BookingDetail;
+use App\Jobs\SendMailJob;
+use App\Models\Schedule;
+use App\Models\Booking;
 use App\Models\Ticket;
 use App\Models\Seat;
-use App\Jobs\SendMailJob;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\Models\Schedule;
+use App\Models\User;
+use DB;
 
 class BookingController extends ApiController
 {
@@ -115,19 +115,16 @@ class BookingController extends ApiController
             ->join('rooms', 'schedules.room_id', 'rooms.id')
             ->join('films', 'schedules.film_id', 'films.id')
             ->where('schedules.id', $ticket->schedule_id)
-            ->select('rooms.name as room', 'films.name as film')
+            ->select('rooms.name as room', 'films.name as film', 'start_time')
             ->get();
-
         $seats = Seat::whereIn('id', $seats)->get()->pluck('name');
         $totalPrice = $ticket->price * count($seats);
-        $startTime = Schedule::where('id', $ticket->schedule_id)->get()->pluck('start_time');
 
         $datas = [
             'booking_id' => $booking,
             'film' => array_first($film),
             'seats' => implode(' ', $seats->toArray()),
             'totalPrice' => $totalPrice,
-            'startTime' => array_first($startTime)
         ];
         $this->dispatch(new SendMailJob('public.pages.send_mail_booking', $user['email'], $datas));
     }
