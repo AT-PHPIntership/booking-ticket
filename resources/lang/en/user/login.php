@@ -34,4 +34,6 @@ return [
     'follow' => 'Follow on',
     'street' => 'Block 4, An Don',
     'address' => 'An Hai Bac, Son Tra, Da Nang',
+    'login_success' => 'Login success!!!',
+    'register_success' => 'Register success!!!',
 ];

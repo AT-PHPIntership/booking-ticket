@@ -71,6 +71,6 @@
    </div>
 </div>
 @endsection
-@section('script')
+@section('js')
   <script type="text/javascript" src="js/public/register.js"></script>
 @endsection
