@@ -14,8 +14,8 @@ class EditFilmsTable extends Migration
     public function up()
     {
         Schema::table('films', function (Blueprint $table) {
-            $table->date('start_date')->after('country');
-            $table->date('end_date')->after('start_date');
+            $table->date('start_date')->after('country')->nullable();
+            $table->date('end_date')->after('start_date')->nullable();
         });
     }
 
@@ -27,8 +27,7 @@ class EditFilmsTable extends Migration
     public function down()
     {
         Schema::table('films', function (Blueprint $table) {
-            $table->dropColumn('start_date');
-            $table->dropColumn('end_date');
+            $table->dropColumn(['start_date', 'end_date']);
         });
     }
 }
